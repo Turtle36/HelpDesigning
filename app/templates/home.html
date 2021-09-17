@@ -1,0 +1,137 @@
+<html lang="en" translate="yes">
+<head>
+    <script data-ad-client="ca-pub-9082544303103022" async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="icon" href="{{ url_for('icon') }}" type="image/icon type">
+    <script async custom-element="amp-auto-ads"
+            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;900&amp;display=swap"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;1,300&amp;display=swap"
+          rel="stylesheet">
+    <title>Internalium</title>
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    </script>
+
+
+    <link href="https://getbootstrap.com/docs/5.0/examples/dashboard/" rel="canonical">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/dashboard.css') }}" rel="stylesheet">
+</head>
+<body>
+<amp-auto-ads type="adsense"
+        data-ad-client="ca-pub-9082544303103022">
+</amp-auto-ads>
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">Internalium</a>
+    <button aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"
+            class="navbar-toggler position-absolute d-md-none collapsed" data-bs-target="#sidebarMenu"
+            data-bs-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</header>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse w3-responsive" id="sidebarMenu">
+            <div class="position-sticky pt-3 w3-responsive">
+                <ul class="nav flex-column w3-responsive">
+
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link active" href="/">
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link" href="/new">
+                            New Article
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/support">
+                            Support
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Home</h1>
+            </div>
+            <div id="content">
+                <!--Search-->
+                <form method="post">
+                    <input type="text" name="search" placeholder="Search" id="search">
+                    <button type="submit" class="btn-search">Search</button>
+                </form>
+
+                <div class="w3-responsive">
+                    <table class="w3-table-all w3-centered">
+                        <thead>
+                        <tr class="w3-pale-green">
+                            <th>Title</th>
+                            <th colspan="2">Actions</th>
+                            <th>Open</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for table in tables %}
+                        <tr>
+                            <td>{{table.name}}</td>
+
+                            <!--actions-->
+                            <td><a style="color: #32d232;" class="link" href="/edit/{{table.name}}">Edit</a></td>
+                            <td><a style="color: red;" class="link" href="/delete/{{table.name}}">Delete</a></td>
+
+                            <!--open-->
+                            <td><a class="link" href="/article/{{table.name}}">Open</a></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br><br>
+        </main>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+
+<script crossorigin="anonymous" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
+        src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+<script crossorigin="anonymous" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
+        src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
