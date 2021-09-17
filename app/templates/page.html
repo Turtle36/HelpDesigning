@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>{{name}} | Internalium</title>
+    <title>{{ name }} | Internalium</title>
     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ url_for('icon') }}" type="image/icon type">
     <style type="text/css">
@@ -99,7 +99,7 @@
 <body>
 <div id="share" class="masuk">
     <div class="container">
-        <input type="text" id="link" value="http://www.internalium.com/article/{{name}}" readonly><br>
+        <input type="text" id="link" value="http://www.internalium.com/article/{{ name }}" readonly><br>
         <button onclick="CopyLink()">Copy Link</button>
         <input type="button" class="btn-cancel" onclick="CAncel()" value="Cancel">
         <script>
@@ -124,20 +124,21 @@
         </script>
     </div>
 </div>
-<div style="overflow: hidden; width: 100%; border: 2px solid black; background-color: lightslategray;" id="Content">
-    <div class="container">
-        <div class="section friendly" style="background-color: lightslategray;">
-            <h2><strong style="color: #fffefe;">{{name}}</strong><button style="border: 1px solid black; float: right;" onclick="Share()">Share</button></h2>
-            <div class="article" style="background-color: white;">
-                {% for tables in table %}
-                <p id="content{{tables.name}}" class="message">{{tables.content}}</p>
+<div class="container">
+    <div class="section friendly" style="background-color: lightslategray;">
+        <h2><strong style="color: #fffefe;">{{ name }}</strong>
+            <button style="border: 1px solid black; float: right;" onclick="Share()">Share</button>
+        </h2>
+        <div class="article" style="background-color: white;">
+            {% for tables in table %}
+                <p id="content{{ tables.name }}" class="message">{{ tables.content }}</p>
                 <script>
-                var text_{{tables.name}} = document.getElementById("content{{tables.name}}").innerHTML;
-                text_{{tables.name}} = text_{{tables.name}}.replace(/(https?:\/\/[^\s]+)/g, "<a class='link' href=\"$1\" target=\"_blank\">$1</a>");
-                document.getElementById("content{{tables.name}}").innerHTML = text_{{tables.name}}
+                    var text_{{tables.name}} = document.getElementById("content{{tables.name}}").innerHTML;
+                    text_{{tables.name}} = text_{{tables.name}}.replace(/(https?:\/\/[^\s]+)/g, "<a class='link' href=\"$1\" target=\"_blank\">$1</a>");
+                    document.getElementById("content{{tables.name}}").innerHTML = text_
+                    {{tables.name}}
                 </script>
-                {% endfor %}
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
