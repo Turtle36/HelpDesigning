@@ -3,6 +3,11 @@ from app.main import app
 from app.models import db, Table
 
 
+@app.route("/premium")
+def premium():
+    return render_template("premium.html")
+
+
 @app.route("/support")
 def support():
     return render_template("support.html")

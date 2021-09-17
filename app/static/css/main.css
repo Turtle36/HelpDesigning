@@ -199,6 +199,41 @@
         color: #de0505;
     }
 
+    .delete-link:hover {
+        color: #de0505;
+    }
+
+    .edit-link:hover {
+        color: #15c415;
+    }
+
+    #DeleteArticle button {
+        background-color: #04AA6D;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
+
+    #DeleteArticle button:hover {
+        opacity: 1;
+    }
+
+    /* Extra styles for the cancel button */
+    #DeleteArticle .cancelbtn {
+        padding: 14px 20px;
+        background-color: #f44336;
+    }
+
+    /* Float cancel and signup buttons and add an equal width */
+    #DeleteArticle .cancelbtn, .signupbtn {
+        float: left;
+        width: 50%;
+    }
+
     .link {
         text-decoration: none;
     }
@@ -388,4 +423,5 @@
         color: #f2c94c;
         text-shadow: 4px 0 0 #fff, 0 0 100px #f2c94c;
     }
+
 }

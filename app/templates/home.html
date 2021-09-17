@@ -45,9 +45,9 @@
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='css/dashboard.css') }}" rel="stylesheet">
 </head>
-<body>
+<body id="document">
 <amp-auto-ads type="adsense"
-        data-ad-client="ca-pub-9082544303103022">
+              data-ad-client="ca-pub-9082544303103022">
 </amp-auto-ads>
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -87,16 +87,21 @@
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                 <h1 class="h2">Home</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Premium</button>
+                    </div>
+                </div>
             </div>
             <div id="content">
                 <!--Search-->
-                <form method="post">
+                <form method="post" id="SearchForm">
                     <input type="text" name="search" placeholder="Search" id="search">
                     <button type="submit" class="btn-search">Search</button>
                 </form>
 
                 <div class="w3-responsive">
-                    <table class="w3-table-all w3-centered">
+                    <table class="w3-table-all w3-centered" id="table">
                         <thead>
                         <tr class="w3-pale-green">
                             <th>Title</th>
@@ -106,16 +111,48 @@
                         </thead>
                         <tbody>
                         {% for table in tables %}
-                        <tr>
-                            <td>{{table.name}}</td>
+                            <tr>
+                                <td>{{ table.name }}</td>
 
-                            <!--actions-->
-                            <td><a class="link edit-link" href="/edit/{{table.name}}">Edit</a></td>
-                            <td><a class="link delete-link" href="/delete/{{table.name}}">Delete</a></td>
+                                <!--actions-->
+                                <td><a class="link edit-link" href="/edit/{{ table.name }}">Edit</a></td>
+                                <td><a class="link delete-link" onclick="deleteArticle()">Delete</a></td>
 
-                            <!--open-->
-                            <td><a class="link link-color" href="/article/{{table.name}}">Open</a></td>
-                        </tr>
+                                <script>
+                                    function deleteArticle() {
+                                        document.getElementById("deleteArticle").style.display = 'block';
+                                        document.getElementById("document").style.backgroundColor = "rgba(0, 0, 0, 0.4)";
+                                        document.getElementById("table").style.display = "none";
+                                        document.getElementById("SearchForm").style.display = "none";
+                                    }
+                                </script>
+
+                                <!--open-->
+                                <td><a class="link link-color" href="/article/{{ table.name }}">Open</a></td>
+
+
+                                <center>
+                                    <div id="deleteArticle" class="masuk">
+                                        <div class="modal-content animate">
+                                            <div class="container" id="DeleteArticle">
+                                                <center>Are you sure want to delete this article?</center>
+                                                <button onclick="hideDeleteArticle()">Cancel</button>
+                                                <input type="button" value="Delete" class="btn-cancel"
+                                                       onclick="DeleteThisArticle()">
+                                                <script>
+                                                    function DeleteThisArticle() {
+                                                        open("/delete/{{ table.name }}", "_top")
+                                                    }
+
+                                                    function hideDeleteArticle() {
+                                                        open("/", "_top")
+                                                    }
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </center>
+                            </tr>
                         {% endfor %}
                         </tbody>
                     </table>

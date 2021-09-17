@@ -119,13 +119,13 @@
                 /* Copy the text inside the text field */
                 navigator.clipboard.writeText("http://www." + copyText.value);
 
-                open("/", "_top")
+                open("/article/{{ name }}", "_top")
             }
         </script>
     </div>
 </div>
 <div class="container">
-    <div class="section friendly" style="background-color: lightslategray;">
+    <div class="section friendly" id="Content">
         <h2><strong style="color: #fffefe;">{{ name }}</strong>
             <button style="border: 1px solid black; float: right;" onclick="Share()">Share</button>
         </h2>
@@ -140,11 +140,9 @@
                 </script>
             {% endfor %}
         </div>
+        <br>
+        <a href="/" id="linkHome" class="link link-color">Back To Homepage</a>
     </div>
-</div>
-<br><br>
-<div class="container">
-    <a href="/" id="linkHome" style="text-decoration: none; color: dodgerblue">Back To Homepage</a>
 </div>
 <script>
     function Share() {
