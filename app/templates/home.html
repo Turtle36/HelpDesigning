@@ -110,11 +110,11 @@
                             <td>{{table.name}}</td>
 
                             <!--actions-->
-                            <td><a style="color: #32d232;" class="link" href="/edit/{{table.name}}">Edit</a></td>
-                            <td><a style="color: red;" class="link" href="/delete/{{table.name}}">Delete</a></td>
+                            <td><a class="link edit-link" href="/edit/{{table.name}}">Edit</a></td>
+                            <td><a class="link delete-link" href="/delete/{{table.name}}">Delete</a></td>
 
                             <!--open-->
-                            <td><a class="link" href="/article/{{table.name}}">Open</a></td>
+                            <td><a class="link link-color" href="/article/{{table.name}}">Open</a></td>
                         </tr>
                         {% endfor %}
                         </tbody>
