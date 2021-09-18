@@ -12,17 +12,10 @@ def support():
 def edit(name):
     if request.method == 'POST':
         content = request.form['content']
-        title = request.form['Name']
 
         table = Table.query.filter_by(name=name).first()
 
-        exist = db.session.query(db.exists().where(Table.name == name)).scalar()
-
-        if exist == True:
-            return render_template("error_already_exist.html", name=name)
-
         table.content = content
-        table.name = title
 
         db.session.commit()
 
@@ -30,11 +23,9 @@ def edit(name):
 
     table = Table.query.filter_by(name=name).first()
 
-    page_name = table.name
-
     content = table.content
 
-    return render_template("edit.html", name=name, tables=table, page_name=page_name, content=content)
+    return render_template("edit.html", name=name, tables=table, content=content)
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -59,6 +50,7 @@ def icon():
 def earth_gif():
     return redirect(url_for("static", filename='image/earth.gif'))
 
+
 @app.route("/delete/<name>")
 def delete(name):
     row = Table.query.filter_by(name=name)
@@ -82,13 +74,6 @@ def new():
         content = request.form['content']
 
         name = request.form['Name']
-
-        exist = db.session.query(db.exists().where(Table.name == name)).scalar()
-
-        if exist == True:
-            return render_template("error_already_exist.html", name=name)
-        else:
-            "None"
 
         if name == "":
             return False
