@@ -99,12 +99,12 @@
 <body>
 <div id="share" class="masuk">
     <div class="container">
-        <input type="text" id="link" value="http://www.internalium.com/article/{{ name }}" readonly><br>
+        <input type="text" id="link" value="http://www.internalium.com/page/{{ name }}" readonly><br>
         <button onclick="CopyLink()">Copy Link</button>
         <input type="button" class="btn-cancel" onclick="CAncel()" value="Cancel">
         <script>
             function CAncel() {
-                open("/article/{{name}}", "_top")
+                open("/page/{{name}}", "_top")
             }
         </script>
         <script>
@@ -119,7 +119,7 @@
                 /* Copy the text inside the text field */
                 navigator.clipboard.writeText("http://www." + copyText.value);
 
-                open("/article/{{ name }}", "_top")
+                open("/page/{{ name }}", "_top")
             }
         </script>
     </div>

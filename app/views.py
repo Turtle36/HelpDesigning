@@ -62,7 +62,7 @@ def delete(name):
     return redirect(url_for("Home"))
 
 
-@app.route("/article/<name>")
+@app.route("/page/<name>")
 def page(name):
     table = Table.query.filter_by(name=name).all()
     return render_template("page.html", name=name, table=table)
@@ -84,7 +84,7 @@ def new():
         new_page = Table(name=name, content=content)
         db.session.add(new_page)
         db.session.commit()
-        return redirect("/article/%s" % name)
+        return redirect("/page/%s" % name)
 
     return render_template("new.html")
 

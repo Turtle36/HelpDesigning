@@ -11,14 +11,12 @@
             let content = document.forms['newPageForm']['content'].value;
 
             if (name === "" || name === null) {
-                document.getElementById("creator").style.border = "1px solid black";
                 document.getElementById("content").style.border = "1px solid black";
                 document.getElementById("Name").style.border = "1px solid red";
                 return false;
             }
 
             if (content === "" || content === null) {
-                document.getElementById("creator").style.border = "1px solid black";
                 document.getElementById("Name").style.border = "1px solid black";
                 document.getElementById("content").style.border = "1px solid red";
                 return false;
