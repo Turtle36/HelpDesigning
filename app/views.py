@@ -77,7 +77,6 @@ def new():
 
         exist = db.session.query(db.exists().where(Article.name == name)).scalar()
 
-
         if exist == True:
             return render_template("error_already_exist.html", name=name)
 
