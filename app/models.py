@@ -3,8 +3,8 @@ from sqlalchemy import INTEGER, String, TEXT, TIME
 from sqlalchemy.schema import FetchedValue
 
 
-class Table(db.Model):
-    __tablename__ = 'page'
+class Article(db.Model):
+    __tablename__ = 'article'
     name = db.Column(db.String(), primary_key=True)  # Name | String
     content = db.Column(db.String())  # Content | String
 

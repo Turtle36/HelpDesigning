@@ -72,7 +72,7 @@
                     </li>
                     <li class="nav-item">
                         <a aria-current="page" class="nav-link" href="/new">
-                            New Page
+                            New Article
                         </a>
                     </li>
                     <li class="nav-item">
@@ -116,21 +116,17 @@
                                 <script>
                                     function deleteArticle() {
                                         document.getElementById("deleteArticle").style.display = 'block';
-                                        document.getElementById("document").style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-                                        document.getElementById("table").style.display = "none";
-                                        document.getElementById("SearchForm").style.display = "none";
                                     }
                                 </script>
 
                                 <!--open-->
-                                <td><a class="link link-color" href="/page/{{ table.name }}">Open</a></td>
+                                <td><a class="link link-color" href="/article/{{ table.name }}">Open</a></td>
 
-
-                                <center>
-                                    <div id="deleteArticle" class="masuk">
+                                    <div id="deleteArticle" class="delete">
                                         <div class="modal-content animate">
                                             <div class="container" id="DeleteArticle">
-                                                <center>Are you sure want to delete this page?</center>
+                                                <center><h6>Are you sure want to delete this article?</h6></center>
+                                                <br>
                                                 <button onclick="hideDeleteArticle()">Cancel</button>
                                                 <input type="button" value="Delete" class="btn-cancel"
                                                        onclick="DeleteThisArticle()">
@@ -140,13 +136,12 @@
                                                     }
 
                                                     function hideDeleteArticle() {
-                                                        open("/", "_top")
+                                                        document.getElementById("deleteArticle").style.display = "none";
                                                     }
                                                 </script>
                                             </div>
                                         </div>
                                     </div>
-                                </center>
                             </tr>
                         {% endfor %}
                         </tbody>

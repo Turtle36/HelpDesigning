@@ -1,6 +1,6 @@
 from flask import *
 from app.main import app
-from app.models import db, Table
+from app.models import db, Article
 
 
 @app.route("/support")
@@ -13,7 +13,7 @@ def edit(name):
     if request.method == 'POST':
         content = request.form['content']
 
-        table = Table.query.filter_by(name=name).first()
+        table = Article.query.filter_by(name=name).first()
 
         table.content = content
 
@@ -21,7 +21,7 @@ def edit(name):
 
         return redirect(url_for("Home"))
 
-    table = Table.query.filter_by(name=name).first()
+    table = Article.query.filter_by(name=name).first()
 
     content = table.content
 
@@ -31,12 +31,12 @@ def edit(name):
 @app.route("/", methods=['GET', 'POST'])
 def Home():
     # Table
-    table = Table.query.all()
+    table = Article.query.all()
 
     if request.method == 'POST':
         search = request.form['search']
 
-        table = Table.query.filter(Table.name.like('%' + search + '%')).all()
+        table = Article.query.filter(Article.name.like('%' + search + '%')).all()
 
     return render_template("home.html", tables=table)
 
@@ -53,7 +53,7 @@ def earth_gif():
 
 @app.route("/delete/<name>")
 def delete(name):
-    row = Table.query.filter_by(name=name)
+    row = Article.query.filter_by(name=name)
 
     row.delete()
 
@@ -62,10 +62,10 @@ def delete(name):
     return redirect(url_for("Home"))
 
 
-@app.route("/page/<name>")
-def page(name):
-    table = Table.query.filter_by(name=name).all()
-    return render_template("page.html", name=name, table=table)
+@app.route("/article/<name>")
+def article(name):
+    table = Article.query.filter_by(name=name)
+    return render_template("article.html", name=name, table=table)
 
 
 @app.route("/new", methods=['GET', 'POST'])
@@ -73,7 +73,13 @@ def new():
     if request.method == 'POST':
         content = request.form['content']
 
-        name = request.form['Name']
+        name = request.form['title']
+
+        exist = db.session.query(db.exists().where(Article.name == name)).scalar()
+
+
+        if exist == True:
+            return render_template("error_already_exist.html", name=name)
 
         if name == "":
             return False
@@ -81,10 +87,10 @@ def new():
         if content == "":
             return False
 
-        new_page = Table(name=name, content=content)
-        db.session.add(new_page)
+        new_article = Article(name=name, content=content)
+        db.session.add(new_article)
         db.session.commit()
-        return redirect("/page/%s" % name)
+        return redirect("/article/%s" % name)
 
     return render_template("new.html")
 

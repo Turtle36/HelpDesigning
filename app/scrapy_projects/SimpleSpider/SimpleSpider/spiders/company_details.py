@@ -9,10 +9,9 @@ class CompanyDetailsSpider(scrapy.Spider):
 
     def parse(self, response):
         company_names_list = response.xpath(
-            '//*[@id="scr-res-table"]/div[1]/table/tbody/tr[2]/td[2]/text()').extract()
+            '//*[@id="scr-res-table"]/div[1]/table/tbody/tr/td[2]/text()').extract()
 
-        company_price_list = response.xpath(
-            '//*[@id="scr-res-table"]/div[1]/table/tbody/tr[2]/td[2]/span/text()').extract()
+        company_price_list = 9
 
         count = len(company_names_list)
 
