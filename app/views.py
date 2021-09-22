@@ -28,15 +28,10 @@ def edit(name):
     return render_template("edit.html", name=name, tables=table, content=content)
 
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/")
 def Home():
     # Table
     table = Article.query.all()
-
-    if request.method == 'POST':
-        search = request.form['search']
-
-        table = Article.query.filter(Article.name.like('%' + search + '%')).all()
 
     return render_template("home.html", tables=table)
 
@@ -60,6 +55,11 @@ def delete(name):
     db.session.commit()
 
     return redirect(url_for("Home"))
+
+
+@app.route("/image/search_icon.png")
+def search_icon_png():
+    return redirect(url_for("static", filename='image/searchicon.png'))
 
 
 @app.route("/article/<name>")

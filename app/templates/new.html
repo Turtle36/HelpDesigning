@@ -7,17 +7,17 @@
     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
     <script>
         function validateForm() {
-            let name = document.forms['newPageForm']['Name'].value;
+            let name = document.forms['newPageForm']['title'].value;
             let content = document.forms['newPageForm']['content'].value;
 
             if (name === "" || name === null) {
                 document.getElementById("content").style.border = "1px solid black";
-                document.getElementById("Name").style.border = "1px solid red";
+                document.getElementById("title").style.border = "1px solid red";
                 return false;
             }
 
             if (content === "" || content === null) {
-                document.getElementById("Name").style.border = "1px solid black";
+                document.getElementById("title").style.border = "1px solid black";
                 document.getElementById("content").style.border = "1px solid red";
                 return false;
             }
@@ -30,7 +30,7 @@
           onsubmit="return validateForm()">
         <div class="container">
             <label for="title"><b>Title</b></label>
-            <input type="text" placeholder="Please enter a page name" name="title" id="title" maxlength="30">
+            <input type="text" placeholder="Please enter a title" name="title" id="title" maxlength="30">
 
             <label for="content"><b>Content</b></label><br>
             <textarea placeholder="Please enter a content" style="width: 100%;" name="content" id="content"></textarea>

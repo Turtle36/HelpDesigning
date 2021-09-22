@@ -90,11 +90,9 @@
             </div>
             <div id="content">
                 <!--Search-->
-                <form method="post" id="SearchForm">
-                    <input type="text" name="search" placeholder="Search" id="search">
-                    <button type="submit" class="btn-search">Search</button>
-                </form>
-
+                <input type="text" name="search" placeholder="Search" id="search">
+                <button onclick="searchTable()" class="btn-search"><img src="/image/search_icon.png"></button>
+                <br><br>
                 <div class="w3-responsive">
                     <table class="w3-table-all w3-centered" id="table">
                         <thead>
@@ -122,26 +120,45 @@
                                 <!--open-->
                                 <td><a class="link link-color" href="/article/{{ table.name }}">Open</a></td>
 
-                                    <div id="deleteArticle" class="delete">
-                                        <div class="modal-content animate">
-                                            <div class="container" id="DeleteArticle">
-                                                <center><h6>Are you sure want to delete this article?</h6></center>
-                                                <br>
-                                                <button onclick="hideDeleteArticle()">Cancel</button>
-                                                <input type="button" value="Delete" class="btn-cancel"
-                                                       onclick="DeleteThisArticle()">
-                                                <script>
-                                                    function DeleteThisArticle() {
-                                                        open("/delete/{{ table.name }}", "_top")
+                                <div id="deleteArticle" class="delete">
+                                    <div class="modal-content animate">
+                                        <div class="container" id="DeleteArticle">
+                                            <center><h6>Are you sure want to delete this article?</h6></center>
+                                            <br>
+                                            <button onclick="hideDeleteArticle()">Cancel</button>
+                                            <input type="button" value="Delete" class="btn-cancel"
+                                                   onclick="DeleteThisArticle()">
+                                            <script>
+                                                function searchTable() {
+                                                    var input, filter, table, tr, td, i, txtValue;
+                                                    input = document.getElementById("search");
+                                                    filter = input.value.toUpperCase();
+                                                    table = document.getElementById("table");
+                                                    tr = table.getElementsByTagName("tr");
+                                                    for (i = 0; i < tr.length; i++) {
+                                                        td = tr[i].getElementsByTagName("td")[0];
+                                                        if (td) {
+                                                            txtValue = td.textContent || td.innerText;
+                                                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                                                tr[i].style.display = "";
+                                                            } else {
+                                                                tr[i].style.display = "none";
+                                                            }
+                                                        }
                                                     }
+                                                }
 
-                                                    function hideDeleteArticle() {
-                                                        document.getElementById("deleteArticle").style.display = "none";
-                                                    }
-                                                </script>
-                                            </div>
+                                                function DeleteThisArticle() {
+                                                    open("/delete/{{ table.name }}", "_top")
+                                                }
+
+                                                function hideDeleteArticle() {
+                                                    document.getElementById("deleteArticle").style.display = "none";
+                                                }
+                                            </script>
                                         </div>
                                     </div>
+                                </div>
                             </tr>
                         {% endfor %}
                         </tbody>
