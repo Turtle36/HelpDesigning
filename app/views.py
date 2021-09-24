@@ -72,13 +72,13 @@ def sign_up():
         db.session.add(new_user)
         db.session.commit()
 
-        User.setUsername(username)
-        User.setPassword(password)
-
         SignUp = User.SignUp()
 
         SignUp.setUsername(username)
         SignUp.setPassword(password)
+
+        User.setUsername(username)
+        User.setPassword(password)
 
         return redirect(url_for("Home"))
 
