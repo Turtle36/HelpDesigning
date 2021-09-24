@@ -99,7 +99,8 @@ def login():
 
         SignUp = User.SignUp()
 
-        user_password = Sign_Up.query.filter_by(username=SignUp.getUsername()).password
+        table = Sign_Up.query.filter_by(username=SignUp.getUsername())
+        user_password = table.password
 
         LOGIN = User.Login()
 
