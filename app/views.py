@@ -107,17 +107,16 @@ def login():
         User.setUsername(username)
         User.setPassword(password)
 
-        for tables in table:
-            if password == tables.password:
-                "Required"
+        if password == table.password:
+            "Required"
 
-                user = Login(username=username, password=password)
-                db.session.add(user)
-                db.session.commit()
+            user = Login(username=username, password=password)
+            db.session.add(user)
+            db.session.commit()
 
-                return redirect(url_for("Home"))
-            else:
-                return render_template("alert_error.html", alert='There was a problem with your login.')
+            return redirect(url_for("Home"))
+        else:
+            return render_template("alert_error.html", alert='There was a problem with your login.')
 
     return render_template("login.html")
 
