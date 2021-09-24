@@ -100,7 +100,6 @@ def login():
         SignUp = User.SignUp()
 
         table = Sign_Up.query.filter_by(username=SignUp.getUsername())
-        user_password = table.password
 
         LOGIN = User.Login()
 
@@ -109,7 +108,7 @@ def login():
         User.setUsername(username)
         User.setPassword(password)
 
-        if password == user_password:
+        if password == table.password:
             "Required"
 
             user = Login(username=username, password=password)
