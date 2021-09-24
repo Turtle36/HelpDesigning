@@ -2,24 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{name}} | Edit</title>
+    <title>{{ name }} | Edit</title>
     <link rel="icon" href="{{ url_for('icon') }}" type="image/icon type">
     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
     <script>
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function checkCookie() {
+            document.getElementById("body").style.display = "none";
+            document.getElementById("loading_page").style.display = "block";
+            let username = getCookie("username");
+            if (username !== "") {
+            } else {
+                open("/login", "_top")
+            }
+            await sleep(3000)
+            document.getElementById("body").style.display = "block";
+            document.getElementById("loading_page").style.display = "none";
+        }
+    </script>
+    <script>
         function validateForm() {
-            let name = document.forms['newPageForm']['Name'].value;
             let content = document.forms['newPageForm']['content'].value;
 
-            if (name === "" || name === null) {
-                document.getElementById("creator").style.border = "1px solid black";
-                document.getElementById("content").style.border = "1px solid black";
-                document.getElementById("Name").style.border = "1px solid red";
-                return false;
-            }
 
             if (content === "" || content === null) {
-                document.getElementById("creator").style.border = "1px solid black";
-                document.getElementById("Name").style.border = "1px solid black";
                 document.getElementById("content").style.border = "1px solid red";
                 return false;
             }
@@ -27,17 +36,24 @@
     </script>
 </head>
 <body style="background-color: lightgray">
-<div class="masuk" style="display: block">
-    <form class="modal-content animate" method="post" name="newPageForm" id="newPageForm"
-          onsubmit="return validateForm()">
-        <div class="container">
-            <label for="content"><b>Content</b></label><br>
-            <textarea placeholder="Please enter a content" style="width: 100%;" name="content"
-                      id="content">{{content}}</textarea>
-            <br>
-            <button type="submit">Edit</button>
-        </div>
-    </form>
+<div id="loading_page" style="display: none;">
+    <center>
+        <div class="loader"></div>
+    </center>
+</div>
+<div id="body">
+    <div class="masuk" style="display: block">
+        <form class="modal-content animate" method="post" name="newPageForm" id="newPageForm"
+              onsubmit="return validateForm()">
+            <div class="container">
+                <label for="content"><b>Content</b></label><br>
+                <textarea placeholder="Please enter a content" style="width: 100%;" name="content"
+                          id="content">{{ content }}</textarea>
+                <br>
+                <button type="submit">Edit</button>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>

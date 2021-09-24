@@ -209,7 +209,48 @@
         color: #15c415;
     }
 
-    #DeleteArticle button {
+    .delete input[type=text], input[type=password] {
+        width: 100%;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 100%;
+        border-top: 16px solid dodgerblue;
+        width: 70px;
+        height: 70px;
+        -webkit-animation: spin 1.5s linear infinite;
+        animation: spin 1.5s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    .delete input[type=text], input[type=password] {
+        width: 100%;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    .delete button {
         background-color: #04AA6D;
         color: white;
         padding: 14px 20px;
@@ -220,20 +261,14 @@
         opacity: 0.9;
     }
 
-    #DeleteArticle button:hover {
+    .delete button:hover {
         opacity: 1;
     }
 
     /* Extra styles for the cancel button */
-    #DeleteArticle .cancelbtn {
+    .delete .cancelbtn {
         padding: 14px 20px;
         background-color: #f44336;
-    }
-
-    /* Float cancel and signup buttons and add an equal width */
-    #DeleteArticle .cancelbtn, .signupbtn {
-        float: left;
-        width: 50%;
     }
 
     .link {

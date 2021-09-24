@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Internalium</title>
     <link rel="icon" href="{{ url_for('icon') }}" type="image/icon type">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
     <script>
         function validateForm() {
@@ -23,21 +24,47 @@
             }
         }
     </script>
-</head>
-<body style="background-color: lightgray">
-<div class="masuk" style="display: block">
-    <form class="modal-content animate" method="post" name="newPageForm" id="newPageForm"
-          onsubmit="return validateForm()">
-        <div class="container">
-            <label for="title"><b>Title</b></label>
-            <input type="text" placeholder="Please enter a title" name="title" id="title" maxlength="30">
+    <script>
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
 
-            <label for="content"><b>Content</b></label><br>
-            <textarea placeholder="Please enter a content" style="width: 100%;" name="content" id="content"></textarea>
-            <br>
-            <button type="submit">Create</button>
-        </div>
-    </form>
+        async function checkCookie() {
+            document.getElementById("body").style.display = "none";
+            document.getElementById("loading_page").style.display = "block";
+            let username = getCookie("username");
+            if (username !== "") {
+            } else {
+                open("/login", "_top")
+            }
+            await sleep(3000)
+            document.getElementById("body").style.display = "block";
+            document.getElementById("loading_page").style.display = "none";
+        }
+    </script>
+
+</head>
+<body style="background-color: lightgray" onload="checkCookie()">
+<div id="loading_page" style="display: none;">
+    <center>
+        <div class="loader"></div>
+    </center>
+</div>
+<div id="body">
+    <div class="masuk" style="display: block">
+        <form class="modal-content animate" method="post" name="newPageForm" id="newPageForm"
+              onsubmit="return validateForm()">
+            <div class="container">
+                <label for="title"><b>Title</b></label>
+                <input type="text" placeholder="Please enter a title" name="title" id="title" maxlength="30">
+
+                <label for="content"><b>Content</b></label><br>
+                <textarea placeholder="Please enter a content" style="width: 100%;" name="content"
+                          id="content"></textarea>
+                <button type="submit">Create</button>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>

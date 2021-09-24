@@ -1,6 +1,8 @@
 from flask import *
 from app.main import app
-from app.models import db, Article
+from app.models import db, article as Article, sign_up as Sign_Up, login as Login, User
+
+User = User()
 
 
 @app.route("/support")
@@ -13,7 +15,7 @@ def edit(name):
     if request.method == 'POST':
         content = request.form['content']
 
-        table = Article.query.filter_by(name=name).first()
+        table = Article.query.filter_by(name=name, user=User.getUsername()).first()
 
         table.content = content
 
@@ -28,15 +30,7 @@ def edit(name):
     return render_template("edit.html", name=name, tables=table, content=content)
 
 
-@app.route("/")
-def Home():
-    # Table
-    table = Article.query.all()
-
-    return render_template("home.html", tables=table)
-
-
-@app.route("/image/icon.png")
+@app.route("/image /icon.png")
 def icon():
     return redirect(url_for("static", filename='image/icon.png'))
 
@@ -48,13 +42,84 @@ def earth_gif():
 
 @app.route("/delete/<name>")
 def delete(name):
-    row = Article.query.filter_by(name=name)
+    row = Article.query.filter_by(name=name, user=User.getUsername())
 
     row.delete()
 
     db.session.commit()
 
     return redirect(url_for("Home"))
+
+
+@app.route("/sign-up", methods=['GET', 'POST'])
+def sign_up():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        exist = db.session.query(db.exists().where(Sign_Up.username == username)).scalar()
+
+        if exist == True:
+            return render_template("alert_error.html", alert=""""%s" Already Exist""" % username)
+
+        if username == '':
+            return redirect(url_for("Home"))
+
+        if password == '':
+            return redirect(url_for("Home"))
+
+        new_user = Sign_Up(username=username, password=password)
+        db.session.add(new_user)
+        db.session.commit()
+
+        User.setUsername(username)
+        User.setPassword(password)
+
+        SignUp = User.SignUp()
+
+        SignUp.setUsername(username)
+        SignUp.setPassword(password)
+
+        return redirect(url_for("Home"))
+
+    return render_template("signup.html")
+
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        if username == '':
+            return False
+
+        if password == '':
+            return False
+
+        SignUp = User.SignUp()
+
+        user_password = Sign_Up.query.filter_by(username=SignUp.getUsername()).password
+
+        LOGIN = User.Login()
+
+        LOGIN.setUsername(username)
+        LOGIN.setPassword(password)
+        User.setUsername(username)
+        User.setPassword(password)
+
+        if password == user_password:
+            "Required"
+
+            user = Login(username=username, password=password)
+            db.session.add(user)
+            db.session.commit()
+
+            return redirect(url_for("Home"))
+        else:
+            return render_template("alert_error.html", alert='There was a problem with your login.')
+
+    return render_template("login.html")
 
 
 @app.route("/image/search_icon.png")
@@ -72,7 +137,6 @@ def article(name):
 def new():
     if request.method == 'POST':
         content = request.form['content']
-
         name = request.form['title']
 
         exist = db.session.query(db.exists().where(Article.name == name)).scalar()
@@ -86,7 +150,7 @@ def new():
         if content == "":
             return False
 
-        new_article = Article(name=name, content=content)
+        new_article = Article(name=name, content=content, user=User.getUsername())
         db.session.add(new_article)
         db.session.commit()
         return redirect("/article/%s" % name)
@@ -102,3 +166,11 @@ def error_png():
 @app.errorhandler(404)
 def halaman_tidak_ditemukan(e):
     return redirect(url_for("Home"))
+
+
+@app.route("/")
+def Home():
+    # Table
+    table = Article.query.filter_by(user=User.getUsername())
+
+    return render_template("home.html", tables=table)

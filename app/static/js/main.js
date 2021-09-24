@@ -5,6 +5,13 @@ function setCookie(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+function deleteCookie(cname) {
+  const d = new Date(0);
+  d.setTime(d.getTime());
+  let expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=" + '' + ";" + expires + ";path=/";
+}
+
 function getCookie(cname) {
   let name = cname + "=";
   let ca = document.cookie.split(';');
