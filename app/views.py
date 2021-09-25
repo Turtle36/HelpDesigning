@@ -114,8 +114,6 @@ def login():
                 user = Login(username=username, password=password)
                 db.session.add(user)
                 db.session.commit()
-
-                return redirect(url_for("Home"))
             else:
                 return render_template("alert_error.html", alert='There was a problem with your login.')
 
