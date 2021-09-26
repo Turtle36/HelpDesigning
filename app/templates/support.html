@@ -3,22 +3,14 @@
 <head>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script async="async"
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9082544303103022"
-            crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;900&amp;display=swap"
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;1,300&amp;display=swap"
           rel="stylesheet">
     <title>Internalium</title>
     <link rel="icon" href="{{ url_for('icon') }}" type="image/icon type">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script async="async" custom-element="amp-auto-ads"
-            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-    </script>
-
 
     <link href="https://getbootstrap.com/docs/5.0/examples/dashboard/" rel="canonical">
 
@@ -76,7 +68,20 @@
                                 Support
                             </a>
                         </li>
+                        <hr>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/" onclick="Exit()">
+                                Exit
+                            </a>
+                        </li>
                     </ul>
+                    <script>
+                        function Exit() {
+                            deleteCookie('username')
+                            deleteCookie('password')
+                            open("/", "_top")
+                        }
+                    </script>
                 </div>
             </nav>
 

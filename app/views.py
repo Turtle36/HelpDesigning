@@ -15,7 +15,7 @@ def edit(name):
     if request.method == 'POST':
         content = request.form['content']
 
-        table = Article.query.filter_by(name=name, user=User.getUsername()).first()
+        table = Article.query.filter_by(name=name).first()
 
         table.content = content
 
@@ -28,16 +28,6 @@ def edit(name):
     content = table.content
 
     return render_template("edit.html", name=name, tables=table, content=content)
-
-
-@app.route("/image /icon.png")
-def icon():
-    return redirect(url_for("static", filename='image/icon.png'))
-
-
-@app.route("/image/earth.gif")
-def earth_gif():
-    return redirect(url_for("static", filename='image/earth.gif'))
 
 
 @app.route("/delete/<name>")
@@ -99,23 +89,25 @@ def login():
 
         SignUp = User.SignUp()
 
-        table = Sign_Up.query.filter_by(username=SignUp.getUsername())
+        table = Sign_Up.query.filter_by(username=username).first()
+
         LOGIN = User.Login()
 
-        LOGIN.setUsername(username)
-        LOGIN.setPassword(password)
-        User.setUsername(username)
-        User.setPassword(password)
+        if password == table.password:
+            "Required"
 
-        for tables in table:
-            if password == tables.password:
-                "Required"
+            LOGIN.setUsername(username)
+            LOGIN.setPassword(password)
+            User.setUsername(username)
+            User.setPassword(password)
 
-                user = Login(username=username, password=password)
-                db.session.add(user)
-                db.session.commit()
-            else:
-                return render_template("alert_error.html", alert='There was a problem with your login.')
+            user = Login(username=username, password=password)
+            db.session.add(user)
+            db.session.commit()
+
+            return redirect(url_for("Home"))
+        else:
+            return render_template("alert_error.html", alert='There was a problem with your login.')
 
     return render_template("login.html")
 
@@ -169,6 +161,10 @@ def halaman_tidak_ditemukan(e):
 @app.route("/")
 def Home():
     # Table
-    table = Article.query.filter_by(user=User.getUsername())
+    username = User.getUsername()
+    table = Article.query.filter_by(user=username)
 
     return render_template("home.html", tables=table)
+
+
+from app.image import *

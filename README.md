@@ -1,7 +1,3 @@
-Internalium adalah website untuk membuat artikel
-<br>
-anda bisa membuat artikel yang sangat banyak dan dibagikan
-<br>
-artikel nya bisa di hapus dan di edit
-<br>
-Buat Article di www.internalium.com
+Internalium is a website for creating articles
+You can create a lot of articles and share 
+articles can be delete and edit. Create Articles at www.internalium.com

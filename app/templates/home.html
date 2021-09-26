@@ -108,7 +108,7 @@
                                 Support
                             </a>
                         </li>
-                        <hr />
+                        <hr/>
                         <li class="nav-item">
                             <a class="nav-link" href="/" onclick="Exit()">
                                 Exit
@@ -131,7 +131,14 @@
                 </div>
                 <div id="content">
                     <!--Search-->
-                    <input type="text" name="search" placeholder="Search" id="search" onkeyup="searchTable()">
+                    <label>Search:
+                        <input type="text" class="searchArticle" name="search" list="MenuSearch" placeholder="Search" id="search"
+                               onkeyup="searchTable()"></label>
+                    <datalist id="MenuSearch">
+                        {% for table in tables %}
+                            <option value="{{ table.name }}">
+                        {% endfor %}
+                    </datalist>
                     <br><br>
                     <div class="w3-responsive">
                         <table class="w3-table-all w3-centered" id="table">
