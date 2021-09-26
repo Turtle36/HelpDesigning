@@ -32,7 +32,7 @@ def edit(name):
 
 @app.route("/delete/<name>")
 def delete(name):
-    row = Article.query.filter_by(name=name, user=User.getUsername())
+    row = Article.query.filter_by(name=name)
 
     row.delete()
 
