@@ -166,5 +166,4 @@ def Home():
 
     return render_template("home.html", tables=table)
 
-
 from app.image import *
