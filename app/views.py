@@ -38,6 +38,13 @@ def delete(name):
 
     db.session.commit()
 
+    return redirect(url_for("homepage"))
+
+
+@app.run("/home")
+def homepage():
+    return redirect(url_for("Home"))
+
 
 @app.route("/sign-up", methods=['GET', 'POST'])
 def sign_up():
