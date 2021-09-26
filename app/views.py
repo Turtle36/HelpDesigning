@@ -38,7 +38,6 @@ def delete(name):
 
     db.session.commit()
 
-    return redirect(url_for("Home"))
 
 
 @app.route("/sign-up", methods=['GET', 'POST'])
