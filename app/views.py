@@ -96,14 +96,15 @@ def login():
         if password == table.password:
             "Required"
 
-            LOGIN.setUsername(username)
-            LOGIN.setPassword(password)
-            User.setUsername(username)
-            User.setPassword(password)
-
             user = Login(username=username, password=password)
             db.session.add(user)
             db.session.commit()
+
+            User.setUsername(username)
+            User.setPassword(password)
+
+            LOGIN.setUsername(username)
+            LOGIN.setPassword(password)
 
             return redirect(url_for("Home"))
         else:
