@@ -74,8 +74,8 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/article/<user>/<name>")
-def article(name, user):
+@app.route("/article/<name>")
+def article(name):
     table = Article.query.filter_by(name=name)
     return render_template("article.html", name=name, table=table)
 
@@ -116,10 +116,7 @@ def edit(name):
 
         db.session.commit()
 
-        try:
-            return redirect("/article/%s/%s" % (app.config['username'], name))
-        except:
-            return redirect(url_for("Home"))
+        return redirect("/article/%s" % (name))
 
     table = Article.query.filter_by(name=name).first()
 
@@ -149,7 +146,7 @@ def new():
         new_article = Article(name=name, content=content, user=app.config["username"], background=background)
         db.session.add(new_article)
         db.session.commit()
-        return redirect("/article/%s/%s" % (app.config['username'], name))
+        return redirect("/article/%s" % (name))
 
     return render_template("new.html")
 
