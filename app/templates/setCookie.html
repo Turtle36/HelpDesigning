@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Internalium</title>
+    <script src="{{ url_for("static", filename='js/main.js') }}"></script>
+    <link rel="icon" href="/image/icon.png">
+</head>
+<body>
+<script>
+    let username = "{{ username }}"
+    let password = "{{ password }}"
+
+    setCookie("username", username, 1)
+
+    open('/', "_top")
+</script>
+</body>
+</html>

@@ -3,28 +3,6 @@ from app.main import app
 from app.models import db, article as Article, sign_up as Sign_Up, login as Login
 
 
-@app.route("/edit/<name>", methods=['GET', 'POST'])
-def edit(name):
-    if request.method == 'POST':
-        content = request.form['content']
-        background = request.form['background']
-
-        table = Article.query.filter_by(name=name).first()
-
-        table.content = content
-        table.background = background
-
-        db.session.commit()
-
-        return redirect("/article/%s" % name)
-
-    table = Article.query.filter_by(name=name).first()
-
-    content = table.content
-
-    return render_template("edit.html", name=name, tables=table, content=content)
-
-
 @app.route("/delete/<name>")
 def delete(name):
     row = Article.query.filter_by(name=name)
@@ -60,7 +38,7 @@ def sign_up():
         app.config["username"] = username
         app.config["password"] = password
 
-        return redirect(url_for("Home"))
+        return render_template("setCookie.html", username=username, password=password)
     return render_template("signup.html")
 
 
@@ -87,7 +65,7 @@ def login():
                 app.config['username'] = username
                 app.config['password'] = password
 
-                return redirect(url_for("Home"))
+                return render_template("setCookie.html", username=username, password=password)
             else:
                 return render_template("alert_error.html", alert='There was a problem with your login.')
         except:
@@ -96,8 +74,8 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/article/<name>")
-def article(name):
+@app.route("/article/<user>/<name>")
+def article(name, user):
     table = Article.query.filter_by(name=name)
     return render_template("article.html", name=name, table=table)
 
@@ -120,9 +98,35 @@ def Home():
 
         tables = Article.query.filter_by(user=username)
 
-        return render_template("home.html", tables=tables)
+        return render_template("home.html", tables=tables, username=username)
     except KeyError:
         return redirect(url_for("login"))
+
+
+@app.route("/edit/<name>", methods=['GET', 'POST'])
+def edit(name):
+    if request.method == 'POST':
+        content = request.form['content']
+        background = request.form['background']
+
+        table = Article.query.filter_by(name=name).first()
+
+        table.content = content
+        table.background = background
+
+        db.session.commit()
+
+        try:
+            return redirect("/article/%s/%s" % (app.config['username'], name))
+        except:
+            return redirect(url_for("Home"))
+
+    table = Article.query.filter_by(name=name).first()
+
+    content = table.content
+
+    return render_template("edit.html", name=name, tables=table, content=content)
+
 
 @app.route("/new", methods=['GET', 'POST'])
 def new():
@@ -145,7 +149,7 @@ def new():
         new_article = Article(name=name, content=content, user=app.config["username"], background=background)
         db.session.add(new_article)
         db.session.commit()
-        return redirect("/article/%s" % name)
+        return redirect("/article/%s/%s" % (app.config['username'], name))
 
     return render_template("new.html")
 

@@ -142,18 +142,8 @@
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </head>
 <body>
-<script>
-    function SetCookie() {
-        let username = document.forms['loginForm']['username'].value;
-        let password = document.forms['loginForm']['password'].value;
-
-        setCookie("username", username, 1)
-
-        open('/', '_top')
-    }
-</script>
 <div id="login" class="modal">
-    <form class="modal-content animate" method="post" onsubmit="SetCookie()" id="loginForm">
+    <form class="modal-content animate" method="post" id="loginForm">
         <div class="container">
             <label for="username"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" id="username" name="username" required>
@@ -165,13 +155,8 @@
         </div>
 
         <div class="container" style="background-color:#f1f1f1">
-            <button type="button" onclick="support()" class="btn-none"></button>
+            <button type="button" class="btn-none"></button>
             <span class="psw">Already Have an Account? <a href="/login" class="link">Login</a></span>
-            <script>
-                function support() {
-                    open("/support", "_top")
-                }
-            </script>
         </div>
     </form>
 </div>
