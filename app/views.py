@@ -115,12 +115,14 @@ def halaman_tidak_ditemukan(e):
 @app.route("/")
 def Home():
     # Table
-    username = app.config["username"]
+    try:
+        username = app.config["username"]
 
-    tables = Article.query.filter_by(user=username)
+        tables = Article.query.filter_by(user=username)
 
-    return render_template("home.html", tables=tables)
-
+        return render_template("home.html", tables=tables)
+    except KeyError:
+        return redirect(url_for("login"))
 
 @app.route("/new", methods=['GET', 'POST'])
 def new():
