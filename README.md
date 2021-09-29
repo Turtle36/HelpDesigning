@@ -1,4 +1,3 @@
-##My Website
 Internalium is a website for creating articles
 <br>
 You can create articles and share 
