@@ -1,27 +1,22 @@
 from flask import *
 from app.main import app
-from app.models import db, article as Article, sign_up as Sign_Up, login as Login, User
-
-User = User()
-
-
-@app.route("/support")
-def support():
-    return render_template("support.html")
+from app.models import db, article as Article, sign_up as Sign_Up, login as Login
 
 
 @app.route("/edit/<name>", methods=['GET', 'POST'])
 def edit(name):
     if request.method == 'POST':
         content = request.form['content']
+        background = request.form['background']
 
         table = Article.query.filter_by(name=name).first()
 
         table.content = content
+        table.background = background
 
         db.session.commit()
 
-        return redirect(url_for("Home"))
+        return redirect("/article/%s" % name)
 
     table = Article.query.filter_by(name=name).first()
 
@@ -53,25 +48,19 @@ def sign_up():
             return render_template("alert_error.html", alert=""""%s" Already Exist""" % username)
 
         if username == '':
-            return redirect(url_for("Home"))
+            return False
 
         if password == '':
-            return redirect(url_for("Home"))
+            return False
 
         new_user = Sign_Up(username=username, password=password)
         db.session.add(new_user)
         db.session.commit()
 
-        SignUp = User.SignUp()
-
-        SignUp.setUsername(username)
-        SignUp.setPassword(password)
-
-        User.setUsername(username)
-        User.setPassword(password)
+        app.config["username"] = username
+        app.config["password"] = password
 
         return redirect(url_for("Home"))
-
     return render_template("signup.html")
 
 
@@ -87,35 +76,24 @@ def login():
         if password == '':
             return False
 
-        SignUp = User.SignUp()
+        try:
+            table = Sign_Up.query.filter_by(username=username).first()
 
-        table = Sign_Up.query.filter_by(username=username).first()
+            if password == table.password:
+                user = Login(username=username, password=password)
+                db.session.add(user)
+                db.session.commit()
 
-        LOGIN = User.Login()
+                app.config['username'] = username
+                app.config['password'] = password
 
-        if password == table.password:
-            "Required"
-
-            user = Login(username=username, password=password)
-            db.session.add(user)
-            db.session.commit()
-
-            User.setUsername(username)
-            User.setPassword(password)
-
-            LOGIN.setUsername(username)
-            LOGIN.setPassword(password)
-
-            return redirect(url_for("Home"))
-        else:
+                return redirect(url_for("Home"))
+            else:
+                return render_template("alert_error.html", alert='There was a problem with your login.')
+        except:
             return render_template("alert_error.html", alert='There was a problem with your login.')
 
     return render_template("login.html")
-
-
-@app.route("/image/search_icon.png")
-def search_icon_png():
-    return redirect(url_for("static", filename='image/searchicon.png'))
 
 
 @app.route("/article/<name>")
@@ -124,11 +102,32 @@ def article(name):
     return render_template("article.html", name=name, table=table)
 
 
+@app.route("/news")
+def news():
+    return render_template("news.html")
+
+
+@app.errorhandler(404)
+def halaman_tidak_ditemukan(e):
+    return redirect(url_for("Home"))
+
+
+@app.route("/")
+def Home():
+    # Table
+    username = app.config["username"]
+
+    tables = Article.query.filter_by(user=username)
+
+    return render_template("home.html", tables=tables)
+
+
 @app.route("/new", methods=['GET', 'POST'])
 def new():
     if request.method == 'POST':
         content = request.form['content']
         name = request.form['title']
+        background = request.form['background']
 
         exist = db.session.query(db.exists().where(Article.name == name)).scalar()
 
@@ -141,31 +140,12 @@ def new():
         if content == "":
             return False
 
-        new_article = Article(name=name, content=content, user=User.getUsername())
+        new_article = Article(name=name, content=content, user=app.config["username"], background=background)
         db.session.add(new_article)
         db.session.commit()
         return redirect("/article/%s" % name)
 
     return render_template("new.html")
-
-
-@app.route("/image/error.png")
-def error_png():
-    return redirect(url_for("static", filename='image/error.png'))
-
-
-@app.errorhandler(404)
-def halaman_tidak_ditemukan(e):
-    return redirect(url_for("Home"))
-
-
-@app.route("/")
-def Home():
-    # Table
-    username = User.getUsername()
-    table = Article.query.filter_by(user=username)
-
-    return render_template("home.html", tables=table)
 
 
 from app.image import *

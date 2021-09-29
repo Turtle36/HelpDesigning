@@ -2,9 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ name }} | Edit</title>
+    <title>Internalium</title>
     <link rel="icon" href="{{ url_for('icon') }}" type="image/icon type">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+    <script>
+        function validateForm() {
+            let content = document.forms['newPageForm']['content'].value;
+
+            if (content === "" || content === null) {
+                document.getElementById("title").style.border = "1px solid black";
+                document.getElementById("content").style.border = "1px solid red";
+                return false;
+            }
+        }
+    </script>
     <script>
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
@@ -23,36 +35,57 @@
             document.getElementById("loading_page").style.display = "none";
         }
     </script>
-    <script>
-        function validateForm() {
-            let content = document.forms['newPageForm']['content'].value;
 
-
-            if (content === "" || content === null) {
-                document.getElementById("content").style.border = "1px solid red";
-                return false;
-            }
-        }
-    </script>
 </head>
-<body style="background-color: lightgray">
+<body onload="checkCookie()">
 <div id="loading_page" style="display: none;">
     <center>
         <div class="loader"></div>
     </center>
 </div>
 <div id="body">
-    <div class="masuk" style="display: block">
-        <form class="modal-content animate" method="post" name="newPageForm" id="newPageForm"
-              onsubmit="return validateForm()">
-            <div class="container">
-                <label for="content"><b>Content</b></label><br>
-                <textarea placeholder="Please enter a content" style="width: 100%; resize: none; outline: none;" name="content"
-                          id="content">{{ content }}</textarea>
-                <br>
-                <button type="submit">Edit</button>
+    <div class="horizontal-menu">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/news">News</a></li>
+            <li><a href="/new">New Article</a></li>
+            <li class="right"><a href="/login" onclick="exit()">Exit</a></li>
+            <li class="right"><a class="active">Edit</a></li>
+            <script>
+                function exit() {
+                    deleteCookie('username')
+                    open("/login", '_top')
+                }
+            </script>
+        </ul>
+        <div class="container">
+            <div class="masuk" style="display: block;">
+                <form class="modal-content animate" method="post" name="newPageForm" id="newPageForm"
+                      onsubmit="return validateForm()">
+                    <div class="container">
+                        <label for="content"><b>Content</b></label><br>
+                        <textarea placeholder="Please enter a content" style="width: 100%; resize: none; outline: none;"
+                                  name="content"
+                                  id="content">{{ content }}</textarea>
+                        <label for="background"><b>Background</b></label><br>
+                        <select name="background" id="background">
+                            <option style="background: White;" selected>White</option>
+                            <option style="background: Green;">Green</option>
+                            <option style="background: Blue;">Blue</option>
+                            <option style="background: Lime;">Lime</option>
+                            <option style="background: Yellow;">Yellow</option>
+                            <option style="background: Red;">Red</option>
+                            <option style="background: Magenta;">Magenta</option>
+                            <option style="background: Cyan;">Cyan</option>
+                            <option style="background: Gold;">Gold</option>
+                            <option style="background: Silver;">Silver</option>
+                        </select>
+
+                        <button type="submit">Edit</button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 </body>

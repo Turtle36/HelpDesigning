@@ -1,4 +1,4 @@
-<html lang="en" translate="yes">
+<html lang="en">
 <head>
     <script data-ad-client="ca-pub-9082544303103022" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -6,6 +6,7 @@
     <script async custom-element="amp-auto-ads"
             src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;900&amp;display=swap"
@@ -40,11 +41,6 @@
             }
         }
     </style>
-    <div id="loading_page" style="display: none;">
-        <center>
-            <div class="loader"></div>
-        </center>
-    </div>
     <script>
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
@@ -67,7 +63,6 @@
     <link href="{{ url_for('static', filename='css/dashboard.css') }}" rel="stylesheet">
 </head>
 <body onload="checkCookie()">
-
 <div id="loading_page" style="display: none;">
     <center>
         <div class="loader"></div>
@@ -78,142 +73,93 @@
                   data-ad-client="ca-pub-9082544303103022">
     </amp-auto-ads>
 
-    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">Internalium</a>
-        <button aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler position-absolute d-md-none collapsed" data-bs-target="#sidebarMenu"
-                data-bs-toggle="collapse" type="button">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </header>
+    <div class="horizontal-menu">
+        <ul>
+            <li><a class="active" href="/">Home</a></li>
+            <li><a href="/news">News</a></li>
+            <li><a href="/new">New Article</a></li>
+            <li class="right"><a href="/login" onclick="exit()">Exit</a></li>
+            <script>
+                function exit() {
+                    deleteCookie('username')
+                    open("/login", '_top')
+                }
+            </script>
+        </ul>
+        <div class="container">
+            <input type="text" class="searchArticle" name="search" id="search"><button class="btn-search bg-primary" onclick="searchTable()">Search</button>
+            <br><br>
+            <div class="w3-responsive">
+                <table class="w3-table-all w3-centered" id="table">
+                    <thead>
+                    <tr class="w3-pale-green">
+                        <th>Title</th>
+                        <th colspan="2">Actions</th>
+                        <th>Open</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for table in tables %}
+                        <tr>
+                            <td>{{ table.name }}</td>
 
-    <div class="container-fluid">
-        <div class="row">
-            <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse w3-responsive" id="sidebarMenu">
-                <div class="position-sticky pt-3 w3-responsive">
-                    <ul class="nav flex-column w3-responsive">
+                            <!--actions-->
+                            <td><a class="link edit-link" href="/edit/{{ table.name }}">Edit</a></td>
+                            <td><a class="link delete-link" onclick="deleteArticle()">Delete</a></td>
 
-                        <li class="nav-item">
-                            <a aria-current="page" class="nav-link active" href="/">
-                                Home
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a aria-current="page" class="nav-link" href="/new">
-                                New Article
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/support">
-                                Support
-                            </a>
-                        </li>
-                        <hr/>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/" onclick="Exit()">
-                                Exit
-                            </a>
-                        </li>
-                    </ul>
-                    <script>
-                        function Exit() {
-                            deleteCookie('username')
-                            deleteCookie('password')
-                            open("/", "_top")
-                        }
-                    </script>
-                </div>
-            </nav>
+                            <script>
+                                function deleteArticle() {
+                                    document.getElementById("deleteArticle").style.display = 'block';
+                                }
+                            </script>
 
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Home</h1>
-                </div>
-                <div id="content">
-                    <!--Search-->
-                    <label>Search:
-                        <input type="text" class="searchArticle" name="search" list="MenuSearch" placeholder="Search" id="search"
-                               onkeyup="searchTable()"></label>
-                    <datalist id="MenuSearch">
-                        {% for table in tables %}
-                            <option value="{{ table.name }}">
-                        {% endfor %}
-                    </datalist>
-                    <br><br>
-                    <div class="w3-responsive">
-                        <table class="w3-table-all w3-centered" id="table">
-                            <thead>
-                            <tr class="w3-pale-green">
-                                <th>Title</th>
-                                <th colspan="2">Actions</th>
-                                <th>Open</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for table in tables %}
-                                <tr>
-                                    <td>{{ table.name }}</td>
+                            <!--open-->
+                            <td><a class="link link-color" href="/article/{{ table.name }}" target="_blank">Open</a></td>
 
-                                    <!--actions-->
-                                    <td><a class="link edit-link" href="/edit/{{ table.name }}">Edit</a></td>
-                                    <td><a class="link delete-link" onclick="deleteArticle()">Delete</a></td>
-
-                                    <script>
-                                        function deleteArticle() {
-                                            document.getElementById("deleteArticle").style.display = 'block';
-                                        }
-                                    </script>
-
-                                    <!--open-->
-                                    <td><a class="link link-color" href="/article/{{ table.name }}">Open</a></td>
-
-                                    <div id="deleteArticle" class="delete">
-                                        <div class="modal-content animate">
-                                            <div class="container" id="DeleteArticle">
-                                                <center><h6>Are you sure want to delete this article?</h6></center>
-                                                <br>
-                                                <button onclick="hideDeleteArticle()">Cancel</button>
-                                                <input type="button" value="Delete" class="btn-cancel"
-                                                       onclick="DeleteThisArticle()">
-                                                <script>
-                                                    function searchTable() {
-                                                        var input, filter, table, tr, td, i, txtValue;
-                                                        input = document.getElementById("search");
-                                                        filter = input.value.toUpperCase();
-                                                        table = document.getElementById("table");
-                                                        tr = table.getElementsByTagName("tr");
-                                                        for (i = 0; i < tr.length; i++) {
-                                                            td = tr[i].getElementsByTagName("td")[0];
-                                                            if (td) {
-                                                                txtValue = td.textContent || td.innerText;
-                                                                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                                                    tr[i].style.display = "";
-                                                                } else {
-                                                                    tr[i].style.display = "none";
-                                                                }
-                                                            }
+                            <div id="deleteArticle" class="delete">
+                                <div class="modal-content animate">
+                                    <div class="container" id="DeleteArticle">
+                                        <center><h6>Are you sure want to delete this article?</h6></center>
+                                        <br>
+                                        <button onclick="hideDeleteArticle()">Cancel</button>
+                                        <input type="button" value="Delete" class="btn-cancel"
+                                               onclick="DeleteThisArticle()">
+                                        <script>
+                                            function searchTable() {
+                                                var input, filter, table, tr, td, i, txtValue;
+                                                input = document.getElementById("search");
+                                                filter = input.value.toUpperCase();
+                                                table = document.getElementById("table");
+                                                tr = table.getElementsByTagName("tr");
+                                                for (i = 0; i < tr.length; i++) {
+                                                    td = tr[i].getElementsByTagName("td")[0];
+                                                    if (td) {
+                                                        txtValue = td.textContent || td.innerText;
+                                                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                                            tr[i].style.display = "";
+                                                        } else {
+                                                            tr[i].style.display = "none";
                                                         }
                                                     }
+                                                }
+                                            }
 
-                                                    function DeleteThisArticle() {
-                                                        open("/delete/{{ table.name }}", "_top")
-                                                    }
+                                            function DeleteThisArticle() {
+                                                open("/delete/{{ table.name }}", "_top")
+                                            }
 
-                                                    function hideDeleteArticle() {
-                                                        document.getElementById("deleteArticle").style.display = "none";
-                                                    }
-                                                </script>
-                                            </div>
-                                        </div>
+                                            function hideDeleteArticle() {
+                                                document.getElementById("deleteArticle").style.display = "none";
+                                            }
+                                        </script>
                                     </div>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <br><br>
-            </main>
+                                </div>
+                            </div>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

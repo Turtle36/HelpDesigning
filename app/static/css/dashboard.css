@@ -55,8 +55,9 @@ body {
   background-color: royalblue;
 }
 
+
 #sidebarMenu {
-  border-right: 1px solid black;
+  border-right: 1px solid #cccccc;
 }
 
 .sidebar .nav-link:hover .feather,
