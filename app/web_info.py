@@ -2,7 +2,8 @@ import urllib.request
 import urllib.parse
 import colorama
 
-print(colorama.Back.LIGHTWHITE_EX + colorama.Fore.WHITE + "______" + colorama.Fore.LIGHTBLUE_EX + "WEBINFO" + colorama.Fore.WHITE + "______")
+print(
+    colorama.Back.LIGHTWHITE_EX + colorama.Fore.WHITE + "______" + colorama.Fore.LIGHTBLUE_EX + "WEBINFO" + colorama.Fore.WHITE + "______")
 jawab = 'y'
 while (jawab == 'y'):
     post_url = input(colorama.Fore.LIGHTBLACK_EX + "URL: ")
@@ -13,10 +14,9 @@ while (jawab == 'y'):
     running = True
     while running:
         a = input("ulang lagi (y/n): ")
-        if a == 'y': running = False
-        elif a == 'n': jawab = 'n'; running=False
-        else: running=True
-
-
-
-
+        if a == 'y':
+            running = False
+        elif a == 'n':
+            jawab = 'n'; running = False
+        else:
+            running = True

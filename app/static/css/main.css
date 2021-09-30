@@ -208,7 +208,7 @@
         color: #15c415;
     }
 
-    .delete input[type=text], input[type=password] {
+    .delete input[type=text], .delete input[type=password] {
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
@@ -345,6 +345,14 @@
         text-transform: lowercase;
     }
 
+    .horizontal-line {
+        position: relative;
+        top: 0;
+        width: 2px;
+        height: 100%;
+        background-color: #383737;
+    }
+
     .horizontal-menu ul {
         list-style-type: none;
         margin: 0;
@@ -373,8 +381,9 @@
 
     .horizontal-menu li a.active {
         color: white;
-        background-color: #04AA6D;
+        background-color: limegreen;
     }
+
     .horizontal-menu .container {
         padding: 16px;
     }
@@ -386,6 +395,7 @@
         padding: 14px 16px;
         text-decoration: none;
     }
+
 
     .horizontal-menu li.right {
         float: right;
@@ -475,12 +485,20 @@
     }
 
     /* Modal Content/Box */
-    .modal-content {
+    .delete .modal-content {
         background-color: #fefefe;
         margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
         border: 1px solid #888;
         width: 80%; /* Could be more or less, depending on screen size */
     }
+
+    .masuk .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+    }
+
 
     /* Add Zoom Animation */
     .animate {
@@ -506,6 +524,10 @@
         }
     }
 
+
+    .height .max {
+        height: 100%;
+    }
 
     .message-link {
         color: royalblue;

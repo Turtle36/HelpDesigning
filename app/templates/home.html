@@ -6,7 +6,10 @@
     <script async custom-element="amp-auto-ads"
             src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
     </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;900&amp;display=swap"
@@ -16,14 +19,15 @@
     <title>Internalium</title>
     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <link href="https://getbootstrap.com/docs/5.0/examples/dashboard/" rel="canonical">
 
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 
     <style>
         .bd-placeholder-img {
@@ -71,7 +75,6 @@
     <amp-auto-ads type="adsense"
                   data-ad-client="ca-pub-9082544303103022">
     </amp-auto-ads>
-
     <div class="horizontal-menu">
         <ul>
             <li><a class="active" href="/">Home</a></li>
@@ -116,8 +119,14 @@
             </script>
         </div>
         <div class="container">
-            <input type="text" class="searchArticle" name="search" id="search">
-            <button class="btn-search bg-primary" onclick="searchTable()">Search</button>
+            <div class="w3-responsive">
+                <div class="input-group mb-3">
+                    <input type="text" class="Border-1px" style="font-size: medium;" name="search" id="search">
+                    <div class="input-group-append">
+                        <button onclick="searchTable()" class="btn btn-success">Search</button>
+                    </div>
+                </div>
+            </div>
             <br><br>
             <div class="w3-responsive">
                 <table class="w3-table-all w3-centered" id="table">
@@ -139,7 +148,7 @@
 
                             <script>
                                 function deleteArticle() {
-                                    document.getElementById("deleteArticle").style.display = 'block';
+                                    document.getElementById("deleteArticle{{ table.name }}").style.display = 'block';
                                 }
                             </script>
 
@@ -147,9 +156,9 @@
                             <td><a class="link link-color" href="/article/{{ table.name }}" target="_blank">Open</a>
                             </td>
 
-                            <div id="deleteArticle" class="delete">
+                            <div id="deleteArticle{{ table.name }}" class="delete">
                                 <div class="modal-content animate">
-                                    <div class="container" id="DeleteArticle">
+                                    <div class="container" id="DeleteArticle{{ table.name }}">
                                         <center><h6>Are you sure want to delete this article?</h6></center>
                                         <br>
                                         <button onclick="hideDeleteArticle()">Cancel</button>
@@ -180,7 +189,7 @@
                                             }
 
                                             function hideDeleteArticle() {
-                                                document.getElementById("deleteArticle").style.display = "none";
+                                                document.getElementById("deleteArticle{{ table.name }}").style.display = "none";
                                             }
                                         </script>
                                     </div>
