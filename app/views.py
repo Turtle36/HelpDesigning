@@ -90,7 +90,7 @@ def halaman_tidak_ditemukan(e):
     return redirect(url_for("Home"))
 
 
-@app.route("/")
+@app.route("/home")
 def Home():
     # Table
     try:
@@ -101,6 +101,11 @@ def Home():
         return render_template("home.html", tables=tables, username=username)
     except KeyError:
         return redirect(url_for("login"))
+
+
+@app.route("/")
+def homepage():
+    return redirect(url_for("Home"))
 
 
 @app.route("/edit/<name>", methods=['GET', 'POST'])
