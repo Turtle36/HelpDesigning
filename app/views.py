@@ -1,6 +1,6 @@
 from flask import *
 from app.main import app
-from app.models import db, article as Article, sign_up as Sign_Up, login as Login
+from app.models import db, article as Article, sign_up as Sign_Up, login as Login, team as Team
 
 
 @app.route("/delete/<name>")
@@ -125,7 +125,7 @@ def edit(name):
     return render_template("edit.html", name=name, tables=table, content=content)
 
 
-@app.route("/new", methods=['GET', 'POST'])
+@app.route("/new/article", methods=['GET', 'POST'])
 def new():
     if request.method == 'POST':
         content = request.form['content']

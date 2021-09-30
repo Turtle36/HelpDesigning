@@ -7,6 +7,32 @@
         display: none;
     }
 
+    .team {
+        overflow: auto;
+        padding-left: 16px;
+        padding-right: 16px;
+        border: 1px solid #ccc;
+    }
+
+    .team .title {
+        text-align: center;
+        color: black;
+    }
+
+    .center-text {
+        text-align: center;
+    }
+
+    .team .description {
+        color: lightslategrey;
+        padding-left: 6px;
+        padding-right: 6px;
+        border: none;
+        background-color: transparent;
+        resize: none;
+        outline: none;
+    }
+
     .Border-1-white {
         border: 1px solid white;
     }

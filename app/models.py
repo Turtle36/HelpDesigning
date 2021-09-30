@@ -1,6 +1,13 @@
 from app.main import db
-from sqlalchemy import INTEGER, String, TEXT, TIME
+from sqlalchemy import INTEGER, String, TIME
 from sqlalchemy.schema import FetchedValue
+
+
+class team(db.Model):
+    __tablename__ = "team"
+    name = db.Column(String(), primary_key=True)  # Name | String
+    description = db.Column(String())  # Description | String
+    user = db.Column(String())  # User | String
 
 
 class article(db.Model):
