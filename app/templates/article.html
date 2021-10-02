@@ -31,7 +31,7 @@
                 <div class="panel-body"
                      style="background: {% for tables in table %}{{ tables.background }}{% endfor %};">
                     {% for tables in table %}
-                        <textarea id="content{{ tables.name }}" rows="3" class="message Content"
+                        <textarea id="content{{ tables.name }}" rows="16" class="message Content"
                                   readonly>{{ tables.content }}</textarea>
                     {% endfor %}
                 </div>

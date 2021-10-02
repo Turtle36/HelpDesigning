@@ -84,11 +84,7 @@ def article(name):
         for MyTables in tables:
             MyTables.customer += 1
     db.session.commit()
-    try:
-        username = app.config["username"]
-        return render_template("article.html", name=name, table=table)
-    except:
-        return redirect(url_for("login"))
+    return render_template("article.html", name=name, table=table)
 
 
 @app.route("/news")
