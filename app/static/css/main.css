@@ -7,6 +7,22 @@
         display: none;
     }
 
+    .i-table {
+        font-family: arial, sans-serif;
+        border: 1px solid #dddddd;
+        text-align: center;
+        width: 100%;
+    }
+
+    .i-table td, th {
+        border: 1px solid #dddddd;
+        padding: 8px;
+    }
+
+    .i-table tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
     .center-text {
         text-align: center;
     }
