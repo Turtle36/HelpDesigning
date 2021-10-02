@@ -90,6 +90,29 @@
                     <center><p style="font-size: medium;">{{ customer }}</p></center>
                 </div>
             </div>
+            <br><br>
+            <div class="bg-light">
+                <div class="container">
+                    <div class="table-responsive">
+                        <table class="i-table">
+                            <thead>
+                            <tr class="bg-success">
+                                <th>Name</th>
+                                <th>Total opened</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for table in tables %}
+                                <tr>
+                                    <td>{{ table.name }}</td>
+                                    <td>{{ table.customer }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

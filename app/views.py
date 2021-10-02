@@ -80,6 +80,7 @@ def login():
 def article(name):
     table = Article.query.filter_by(name=name)
     for Table in table:
+        Table.customer += 1
         tables = Customers.query.filter_by(user=Table.user)
         for MyTables in tables:
             MyTables.customer += 1
@@ -182,9 +183,10 @@ def new():
 def customers():
     try:
         tables = Customers.query.filter_by(user=app.config["username"])
+        article = Article.query.filter_by(user=app.config["username"])
         for table in tables:
             customer = table.customer
-            return render_template("customers.html", customer=customer)
+            return render_template("customers.html", customer=customer, tables=article)
     except:
         return redirect(url_for("login"))
 

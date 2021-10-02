@@ -23,9 +23,11 @@ class article(db.Model):
     content = db.Column(String())  # Content | String
     user = db.Column(String())  # User | String
     background = db.Column(String())  # Background | String
+    customer = db.Column(INTEGER())  # Customer | String
 
-    def __init__(self, name, content, user, background="White"):
+    def __init__(self, name, content, user, background="White", customer=0):
         self.name = name
+        self.customer = customer
         self.content = content
         self.user = user
         self.background = background
