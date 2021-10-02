@@ -3,11 +3,18 @@ from sqlalchemy import INTEGER, String, TIME
 from sqlalchemy.schema import FetchedValue
 
 
-class team(db.Model):
-    __tablename__ = "team"
-    name = db.Column(String(), primary_key=True)  # Name | String
-    description = db.Column(String())  # Description | String
+class customers(db.Model):
+    __tablename__ = 'customers'
+    id = db.Column(INTEGER(), primary_key=True)  # ID | Integer
+    customer = db.Column(String())  # Customer | String
     user = db.Column(String())  # User | String
+
+    def __init__(self, customer, user):
+        self.customer = customer
+        self.user = user
+
+    def __repr__(self):
+        return '<id {}>'.format(self.id)
 
 
 class article(db.Model):

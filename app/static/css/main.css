@@ -7,30 +7,12 @@
         display: none;
     }
 
-    .team {
-        overflow: auto;
-        padding-left: 16px;
-        padding-right: 16px;
-        border: 1px solid #ccc;
-    }
-
-    .team .title {
-        text-align: center;
-        color: black;
-    }
-
     .center-text {
         text-align: center;
     }
 
-    .team .description {
-        color: lightslategrey;
-        padding-left: 6px;
-        padding-right: 6px;
-        border: none;
-        background-color: transparent;
-        resize: none;
-        outline: none;
+    .description {
+        color: #777;
     }
 
     .Border-1-white {
@@ -350,6 +332,13 @@
         width: 50%;
     }
 
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+
     .news .title {
         font-size: medium;
     }
@@ -414,11 +403,11 @@
         padding: 16px;
     }
 
-    .horizontal-menu li a[href="/login"] {
+    .horizontal-menu .exit {
         display: block;
-        color: red;
+        color: #666;
         text-align: center;
-        padding: 14px 16px;
+        float: right;
         text-decoration: none;
     }
 

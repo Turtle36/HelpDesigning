@@ -12,6 +12,11 @@ def error_png():
     return redirect(url_for("static", filename='image/error.png'))
 
 
+@app.route("/image/business.png")
+def business_png():
+    return redirect(url_for("static", filename='image/business.png'))
+
+
 @app.route("/image/search_icon.svg")
 def search_icon_svg():
     return redirect(url_for("static", filename='image/search_icon.svg'))

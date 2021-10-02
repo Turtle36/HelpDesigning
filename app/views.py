@@ -1,6 +1,6 @@
 from flask import *
 from app.main import app
-from app.models import db, article as Article, sign_up as Sign_Up, login as Login, team as Team
+from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers
 
 
 @app.route("/delete/<name>")
@@ -32,7 +32,9 @@ def sign_up():
             return False
 
         new_user = Sign_Up(username=username, password=password)
+        new_row = Customers(customer=0, user=username)
         db.session.add(new_user)
+        db.session.add(new_row)
         db.session.commit()
 
         app.config["username"] = username
@@ -77,6 +79,11 @@ def login():
 @app.route("/article/<name>")
 def article(name):
     table = Article.query.filter_by(name=name)
+    for Table in table:
+        tables = Customers.query.filter_by(user=Table.user)
+        for MyTables in tables:
+            MyTables.customer += 1
+    db.session.commit()
     return render_template("article.html", name=name, table=table)
 
 
@@ -105,7 +112,10 @@ def Home():
 
 @app.route("/")
 def homepage():
-    return redirect(url_for("Home"))
+    try:
+        return render_template("homepage.html", username=app.config["username"])
+    except:
+        return redirect(url_for("login"))
 
 
 @app.route("/edit/<name>", methods=['GET', 'POST'])
@@ -114,20 +124,21 @@ def edit(name):
         content = request.form['content']
         background = request.form['background']
 
-        table = Article.query.filter_by(name=name).first()
-
-        table.content = content
-        table.background = background
+        table = Article.query.filter_by(name=name)
+        for tables in table:
+            tables.content = content
+            tables.background = background
 
         db.session.commit()
 
         return redirect("/article/%s" % (name))
 
-    table = Article.query.filter_by(name=name).first()
+    table = Article.query.filter_by(name=name)
 
-    content = table.content
+    for tables in table:
+        content = tables.content
 
-    return render_template("edit.html", name=name, tables=table, content=content)
+        return render_template("edit.html", name=name, tables=table, content=content)
 
 
 @app.route("/new/article", methods=['GET', 'POST'])
@@ -153,7 +164,23 @@ def new():
         db.session.commit()
         return redirect("/article/%s" % (name))
 
-    return render_template("new.html")
+    try:
+        username = app.config["username"]
+
+        return render_template("new.html")
+    except:
+        return redirect(url_for("login"))
+
+
+@app.route("/customers")
+def customers():
+    try:
+        tables = Customers.query.filter_by(user=app.config["username"])
+        for table in tables:
+            customer = table.customer
+            return render_template("customers.html", customer=customer)
+    except:
+        return redirect(url_for("login"))
 
 
 from app.image import *

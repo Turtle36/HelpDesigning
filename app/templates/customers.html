@@ -1,11 +1,6 @@
 <html lang="en">
 <head>
-    <script data-ad-client="ca-pub-9082544303103022" async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <link rel="icon" href="{{ url_for('icon') }}" type="image/icon type">
-    <script async custom-element="amp-auto-ads"
-            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,6 +11,10 @@
     <title>Internalium</title>
     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 
 
     <link href="https://getbootstrap.com/docs/5.0/examples/dashboard/" rel="canonical">
@@ -68,16 +67,12 @@
     </center>
 </div>
 <div id="body">
-    <amp-auto-ads type="adsense"
-                  data-ad-client="ca-pub-9082544303103022">
-    </amp-auto-ads>
-
     <div class="horizontal-menu">
         <ul>
             <li><a href="/home">Home</a></li>
-            <li><a href="/news" class="active">News</a></li>
+            <li><a href="/news">News</a></li>
             <li><a href="/new/article">New Article</a></li>
-            <li><a href="/customers">Customers</a></li>
+            <li><a href="/customers" class="active">Customers</a></li>
             <li class="exit"><a href="/login" onclick="exit()">Exit</a></li>
             <script>
                 function exit() {
@@ -86,44 +81,17 @@
                 }
             </script>
         </ul>
-        <div class="left">
-            <script async
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9082544303103022"
-                    crossorigin="anonymous"></script>
-            <!-- vertical-ads -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9082544303103022"
-                 data-ad-slot="3704263213"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        <div class="right">
-            <script async
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9082544303103022"
-                    crossorigin="anonymous"></script>
-            <!-- vertical-ads -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9082544303103022"
-                 data-ad-slot="3704263213"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-
         <div class="container">
-            <div class="row">
-                <div class="col-sm-4 news">
-                    <h3><img class="image center" src="/image/bucket_paint.png"></h3>
-                    <hr>
-                    <p class="title">Set custom background in your article</p>
-                    <p class="date">28/9/2021</p>
+            <div class="bg-light">
+                <div class="container">
+                    <h3 class="center-text">Total Opened</h3>
+                    <p class="description center-text">All Article</p>
+                    <p class="description left" id="number-left">0</p>
+                    <p class="description right" id="number-right">100</p>
+                    <br>
+                    <div class="progress" style="border-radius: 0; height: 27px; width: 100%;">
+                        <div id="myCustomer" class="progress-bar bg-success" style="width: {{ customer }}%;"></div>
+                    </div>
                 </div>
             </div>
         </div>
