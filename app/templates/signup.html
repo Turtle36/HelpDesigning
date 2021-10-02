@@ -13,16 +13,16 @@
     <form class="modal-content animate" method="post" id="loginForm">
         <div class="container">
             <label for="username"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" id="username" name="username" required>
+            <input type="text" placeholder="Enter Username" id="username" name="username" oninvalid="this.setCustomValidity('Please enter username')" oninput="setCustomValidity('')" required>
 
             <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" id="password" required>
+            <input type="password" placeholder="Enter Password" oninvalid="this.setCustomValidity('Please enter password')" oninput="setCustomValidity('')" name="password" id="password" required>
 
             <button type="submit">Sign Up</button>
         </div>
 
         <div class="container" style="background-color:#f1f1f1">
-            <span class="right">Already Have an Account? <a href="/login" class="link link-color">Login</a></span>
+            <span>Already Have an Account? <a href="/login" class="link link-color">Login</a></span>
         </div>
     </form>
 </div>
