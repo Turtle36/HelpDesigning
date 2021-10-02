@@ -123,17 +123,6 @@ def homepage():
     return render_template("homepage.html")
 
 
-@app.route("/article")
-def all_article():
-    try:
-        username = app.config["username"]
-        tables = Article.query.all()
-
-        return render_template("all_article.html", tables=tables)
-    except:
-        return redirect(url_for("login"))
-
-
 @app.route("/edit/<name>", methods=['GET', 'POST'])
 def edit(name):
     if request.method == 'POST':
