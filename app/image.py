@@ -3,7 +3,7 @@ from flask import url_for, redirect
 
 
 @app.route("/image/icon.png")
-def icon_png():
+def icon():
     return redirect(url_for("static", filename='image/icon.png'))
 
 
