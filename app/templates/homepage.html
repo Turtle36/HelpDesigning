@@ -128,7 +128,7 @@
             </script>
         </div>
         <div class="container">
-            <div id="myCarousel" class="carousel slide center" data-ride="carousel">
+            <div id="myCarousel" class="carousel slide center bg-light" data-ride="carousel">
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                     <div class="item active" onclick="home()">
@@ -146,31 +146,21 @@
                             open("/home", "_top")
                         }
                     </script>
-                    <div class="item" onclick="business()">
+                    <div class="item">
                         <img src="/image/business.png" class="center">
                         <div class="carousel-caption">
                             <h3 style="color: black;">Business</h3>
-                            <p style="color: #777777;">Create business for free</p>
+                            <p style="color: #777777;">Increase your business for free</p>
                         </div>
                     </div>
-                    <script>
-                        function business() {
-                            open("/customers", "_top")
-                        }
-                    </script>
 
-                    <div class="item" onclick="newArticle()">
+                    <div class="item">
                         <img src="/image/gold.png" class="center">
                         <div class="carousel-caption">
                             <h3 style="color: black;">Article</h3>
-                            <p style="color: #777777;">Create a good article</p>
+                            <p style="color: #777777;">Create a very good article and share</p>
                         </div>
                     </div>
-                    <script>
-                        function newArticle() {
-                            open("/new/article", "_top")
-                        }
-                    </script>
                 </div>
 
                 <!-- Left and right controls -->

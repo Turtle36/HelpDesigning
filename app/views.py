@@ -94,7 +94,7 @@ def news():
 
 @app.errorhandler(404)
 def halaman_tidak_ditemukan(e):
-    return redirect(url_for("Home"))
+    return redirect(url_for("homepage"))
 
 
 @app.route("/home")
@@ -112,10 +112,7 @@ def Home():
 
 @app.route("/")
 def homepage():
-    try:
-        return render_template("homepage.html", username=app.config["username"])
-    except:
-        return redirect(url_for("login"))
+    return render_template("homepage.html")
 
 
 @app.route("/edit/<name>", methods=['GET', 'POST'])
