@@ -108,7 +108,7 @@ def all_article():
         username = app.config["username"]
 
         # Table
-        tables = Article.query.filter_by(user=username)
+        tables = Article.query.all()
 
         return render_template("all_article.html", tables=tables, username=username)
     except KeyError:
