@@ -13,7 +13,7 @@ def error_png():
 
 
 @app.route("/image/increase_business.png")
-def business_png():
+def increase_business_png():
     return redirect(url_for("static", filename='image/increase_business.png'))
 
 
