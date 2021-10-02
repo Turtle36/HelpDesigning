@@ -102,12 +102,25 @@ def halaman_tidak_ditemukan(e):
     return redirect(url_for("homepage"))
 
 
-@app.route("/home")
-def Home():
-    # Table
+@app.route("/article")
+def all_article():
     try:
         username = app.config["username"]
 
+        # Table
+        tables = Article.query.filter_by(user=username)
+
+        return render_template("all_article.html", tables=tables, username=username)
+    except KeyError:
+        return redirect(url_for("login"))
+
+
+@app.route("/home")
+def Home():
+    try:
+        username = app.config["username"]
+
+        # Table
         tables = Article.query.filter_by(user=username)
 
         return render_template("home.html", tables=tables, username=username)
