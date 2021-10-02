@@ -1,9 +1,9 @@
-from app.main import *
+from app.main import app
 from flask import url_for, redirect
 
 
 @app.route("/image/icon.png")
-def icon():
+def icon_png():
     return redirect(url_for("static", filename='image/icon.png'))
 
 
@@ -12,9 +12,9 @@ def error_png():
     return redirect(url_for("static", filename='image/error.png'))
 
 
-@app.route("/image/business.png")
+@app.route("/image/increase_business.png")
 def business_png():
-    return redirect(url_for("static", filename='image/business.png'))
+    return redirect(url_for("static", filename='image/increase_business.png'))
 
 
 @app.route("/image/search_icon.svg")

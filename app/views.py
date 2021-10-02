@@ -64,8 +64,8 @@ def login():
                 db.session.add(user)
                 db.session.commit()
 
-                app.config['username'] = username
-                app.config['password'] = password
+                app.config["username"] = username
+                app.config["password"] = password
 
                 return render_template("setCookie.html", username=username, password=password)
             else:
@@ -84,12 +84,20 @@ def article(name):
         for MyTables in tables:
             MyTables.customer += 1
     db.session.commit()
-    return render_template("article.html", name=name, table=table)
+    try:
+        username = app.config["username"]
+        return render_template("article.html", name=name, table=table)
+    except:
+        return redirect(url_for("login"))
 
 
 @app.route("/news")
 def news():
-    return render_template("news.html")
+    try:
+        username = app.config["username"]
+        return render_template("news.html")
+    except:
+        return redirect(url_for("login"))
 
 
 @app.errorhandler(404)
@@ -112,11 +120,7 @@ def Home():
 
 @app.route("/")
 def homepage():
-    try:
-        username = app.config["username"]
-        return render_template("homepage.html")
-    except:
-        return redirect(url_for("login"))
+    return render_template("homepage.html")
 
 
 @app.route("/edit/<name>", methods=['GET', 'POST'])
@@ -138,6 +142,11 @@ def edit(name):
 
     for tables in table:
         content = tables.content
+
+        try:
+            username = app.config["username"]
+        except:
+            return redirect(url_for("Home"))
 
         return render_template("edit.html", name=name, tables=table, content=content)
 
