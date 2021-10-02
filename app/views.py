@@ -112,7 +112,11 @@ def Home():
 
 @app.route("/")
 def homepage():
-    return render_template("homepage.html")
+    try:
+        username = app.config["username"]
+        return render_template("homepage.html")
+    except:
+        return redirect(url_for("login"))
 
 
 @app.route("/edit/<name>", methods=['GET', 'POST'])
