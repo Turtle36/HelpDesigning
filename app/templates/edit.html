@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <title>Internalium</title>
     <link rel="icon" href="{{ url_for('icon') }}" type="image/icon type">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9082544303103022"
-     crossorigin="anonymous"></script>
+    <script data-ad-client="ca-pub-9082544303103022" async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script async custom-element="amp-auto-ads"
+            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
     <script>
@@ -46,6 +49,9 @@
     </center>
 </div>
 <div id="body">
+    <amp-auto-ads type="adsense"
+                  data-ad-client="ca-pub-9082544303103022">
+    </amp-auto-ads>
     <div class="horizontal-menu">
         <ul>
             <li><a href="/home">Home</a></li>
