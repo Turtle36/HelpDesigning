@@ -13,7 +13,7 @@ while (jawab == 'y'):
 
     running = True
     while running:
-        a = input("ulang lagi (y/n): ")
+        a = input(colorama.Fore.LIGHTBLACK_EX + "ulang lagi (y/n): ")
         if a == 'y':
             running = False
         elif a == 'n':

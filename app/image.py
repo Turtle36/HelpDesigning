@@ -17,9 +17,9 @@ def increase_business_png():
     return redirect(url_for("static", filename='image/increase_business.png'))
 
 
-@app.route("/image/search_icon.svg")
+@app.route("/image/search_icon.png")
 def search_icon_svg():
-    return redirect(url_for("static", filename='image/search_icon.svg'))
+    return redirect(url_for("static", filename='image/search_icon.png'))
 
 
 @app.route("/image/gold.png")

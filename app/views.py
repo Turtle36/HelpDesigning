@@ -130,7 +130,7 @@ def Home():
 
 @app.route("/")
 def homepage():
-    return redirect(url_for("Home"))
+    return render_template("homepage.html")
 
 
 @app.route("/edit/<name>", methods=['GET', 'POST'])
