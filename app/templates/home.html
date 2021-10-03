@@ -82,7 +82,6 @@
             <li><a class="active" href="/home">Home</a></li>
             <li><a href="/news">News</a></li>
             <li><a href="/new/article">New Article</a></li>
-            <li><a href="/customers">Customers</a></li>
             <li><a href="/article">Article</a></li>
             <li class="exit"><a href="/login" onclick="exit()">Exit</a></li>
             <script>
@@ -123,89 +122,7 @@
             </script>
         </div>
         <div class="container">
-            <div class="input-group">
-                <input type="text" id="search" name="search" class="form-control" placeholder="Search" onkeyup="searchTable()" aria-describedby>
-            </div>
-            <br><br>
-            <div class="table-responsive">
-                <table class="i-table" id="table">
-                    <thead>
-                    <tr class="bg-primary">
-                        <th>Title</th>
-                        <th colspan="2">Actions</th>
-                        <th>Open</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <p class="center text-secondary" id="noArticleFound" style="display: none;">No Article Found</p>
-                    {% for table in tables %}
-                        <tr>
-                            <td>{{ table.name }}</td>
 
-                            <!--actions-->
-                            <td><a class="link edit-link" href="/edit/{{ table.name }}">Edit</a></td>
-                            <td><a class="link delete-link" onclick="deleteArticle()">Delete</a></td>
-
-                            <script>
-                                function deleteArticle() {
-                                    document.getElementById("deleteArticle{{ table.name }}").style.display = 'block';
-                                }
-                            </script>
-
-                            <!--open-->
-                            <td><a class="link link-color" href="/article/{{ table.name }}" target="_blank">Open</a>
-                            </td>
-
-                            <div id="deleteArticle{{ table.name }}" class="delete">
-                                <div class="modal-content animate">
-                                    <div class="container" id="DeleteArticle{{ table.name }}">
-                                        <center><h6>Are you sure want to delete this article?</h6></center>
-                                        <br>
-                                        <button onclick="hideDeleteArticle()">Cancel</button>
-                                        <input type="button" value="Delete" class="btn-cancel"
-                                               onclick="DeleteThisArticle()">
-                                        <script>
-                                            function searchTable() {
-                                                var input, filter, table, tr, td, i, txtValue;
-                                                input = document.getElementById("search");
-                                                filter = input.value.toUpperCase();
-                                                table = document.getElementById("table");
-                                                tr = table.getElementsByTagName("tr");
-                                                for (i = 0; i < tr.length; i++) {
-                                                    td = tr[i].getElementsByTagName("td")[0];
-                                                    if (td) {
-                                                        txtValue = td.textContent || td.innerText;
-                                                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                                            tr[i].style.display = "";
-                                                        } else {
-                                                            tr[i].style.display = "none";
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-                                            function DeleteThisArticle() {
-                                                open("/delete/{{ table.name }}", "_top")
-                                            }
-
-                                            function hideDeleteArticle() {
-                                                document.getElementById("deleteArticle{{ table.name }}").style.display = "none";
-                                            }
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-                <script>
-                    var table = document.getElementById("table");
-                    if (table.rows.length === 1) {
-                        document.getElementById("noArticleFound").style.display = "block";
-                    }
-                </script>
-            </div>
         </div>
     </div>
 </div>
