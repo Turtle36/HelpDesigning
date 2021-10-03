@@ -86,7 +86,7 @@
             </script>
         </div>
         <div class="container">
-            <button class="right btn btn-light" onclick="login()" style="border: 1px solid black;">Login</button>
+            <button class="right btn btn-outline-dark" onclick="login()">Login</button>
             <h1 class="center">Internalium</h1>
             <hr>
             <div class="container py-4">
@@ -99,6 +99,8 @@
                             Before doing activity <a href="/login" class="link link-color">Login</a> or <a
                                 class="link link-color" href="/sign-up">Sign Up</a> first
                         </p>
+                        <button class="btn btn-outline-primary" onclick="signUp()">Sign Up</button>
+                        <br>
                     </div>
                 </div>
                 <div class="row align-items-md-stretch">
@@ -129,6 +131,10 @@
 <script>
     function login() {
         open("/login", "_top")
+    }
+
+    function signUp() {
+        open("/sign-up", "_top")
     }
 </script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
