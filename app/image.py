@@ -12,9 +12,9 @@ def error_png():
     return redirect(url_for("static", filename='image/error.png'))
 
 
-@app.route("/image/increase_business.png")
+@app.route("/image/up_business.png")
 def increase_business_png():
-    return redirect(url_for("static", filename='image/increase_business.png'))
+    return redirect(url_for("static", filename='image/up_business.png'))
 
 
 @app.route("/image/new_article.png")
