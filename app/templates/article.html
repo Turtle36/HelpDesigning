@@ -4,6 +4,7 @@
     <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ url_for('icon') }}" type="image/icon type">
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -25,8 +26,60 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <span>{{ name }}</span>
+                    <svg style="float: right;" onclick="copyLink()" xmlns="http://www.w3.org/2000/svg" width="16"
+                         height="16"
+                         fill="currentColor"
+                         class="bi bi-share-fill" viewBox="0 0 16 16">
+                        <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/>
+                    </svg>
                 </h4>
             </div>
+            <script>
+
+            </script>
+
+            <div id="modal" class="w3-modal d-none">
+                <div class="w3-modal-content">
+                    <header class="w3-container">
+                        <h2>Share</h2>
+                        <hr>
+                    </header>
+                    <div class="w3-container">
+                        <p>Link Copied</p>
+                    </div>
+                    <footer class="w3-container">
+                        <button type="button" onclick="closeModal()" class="btn btn-success right">OK</button>
+                    </footer>
+                    <br>
+                </div>
+            </div>
+            <input type="text" id="link" style="display: none;">
+            <script>
+                function copyLink() {
+                    var Link = document.getElementById("link");
+                    Link.value = location.href;
+
+                    var copyText = document.getElementById("link");
+
+                    /* Select the text field */
+                    copyText.select();
+                    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+                    /* Copy the text inside the text field */
+                    navigator.clipboard.writeText(copyText.value);
+
+                    /* Alert the copied text */
+                    openModal()
+                }
+
+                function openModal() {
+                    document.getElementById('modal').style.display = 'block';
+                }
+
+                function closeModal() {
+                    document.getElementById('modal').style.display = 'none';
+                }
+            </script>
             <div id="packtpubcollapse2" class="panel-collapse">
                 <div class="panel-body"
                      style="background: {% for tables in table %}{{ tables.background }}{% endfor %};">
