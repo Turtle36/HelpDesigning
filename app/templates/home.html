@@ -137,6 +137,7 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <p class="center text-secondary" id="noArticleFound" style="display: none;">No Article Found</p>
                     {% for table in tables %}
                         <tr>
                             <td>{{ table.name }}</td>
@@ -198,6 +199,12 @@
                     {% endfor %}
                     </tbody>
                 </table>
+                <script>
+                    var table = document.getElementById("table");
+                    if (table.rows.length === 1) {
+                        document.getElementById("noArticleFound").style.display = "block";
+                    }
+                </script>
             </div>
         </div>
     </div>
