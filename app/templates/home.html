@@ -122,49 +122,55 @@
             </script>
         </div>
         <div class="container">
-            <div class="bg-light">
-                <div class="container">
-                    <h5>Statistics</h5>
-                    <br>
-                    <table class="i-table bg-white">
-                        <tr>
-                            <td><img src="/image/user.png" style="width: 50px;"></td>
-                            <td><img src="/image/article.png" style="width: 50px;"></td>
-                        </tr>
-                        <tr>
-                            <td><p style="font-size: medium;" class="center text-dark">{{ customer }}</p></td>
-                            <td><p style="font-size: medium;" class="center text-dark" id="lengthArticle"></p></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <br><br>
-            <div class="bg-light">
-                <div class="container">
-                    <h5>Article</h5>
-                    <br>
-                    <div class="w3-responsive">
-                        <table class="i-table bg-white" id="table">
-                            <thead>
-                            <tr class="bg-primary">
-                                <th>Title</th>
-                                <th>Actions</th>
-                                <th>Customer</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for table in tables %}
-                                <tr>
-                                    <td>{{ table.name }}</td>
-                                    <td><a class="link text-success" href="/edit/{{ table.name }}">Edit</a></td>
-                                    <td>{{ table.customer }}</td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+            <div class="container py-4">
+                <div class="row align-items-md-stretch">
+                    <div class="col-md-6">
+                        <div class="h-100 p-5 bg-light">
+                            <h4>Statistics</h4>
+                            <br>
+                            <div class="w3-responsive">
+                                <table class="i-table">
+                                    <tr>
+                                        <td><img src="/image/article.png" style="width: 50px;"></td>
+                                        <td><img src="/image/user.png" style="width: 50px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><p style="font-size: medium;" class="text-dark center" id="lengthArticle"></p></td>
+                                        <td><p style="font-size: medium;" class="text-dark center">{{ customer }}</p></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="h-100 p-5 bg-light">
+                            <h4>Article</h4>
+                            <br>
+                            <div class="w3-responsive">
+                                <table class="i-table" id="table">
+                                    <thead>
+                                        <tr class="bg-primary">
+                                            <th>Title</th>
+                                            <th>Actions</th>
+                                            <th>Customer</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for table in tables %}
+                                            <tr>
+                                                <td>{{ table.name }}</td>
+                                                <td><a href="/edit/{{ table.name }}" class="link text-success">Edit</a></td>
+                                                <td>{{ table.customer }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
