@@ -69,9 +69,9 @@ def login():
 
                 return render_template("setCookie.html", username=username, password=password)
             else:
-                return render_template("alert_error.html", alert='There was a problem with your login.')
+                return render_template("alert_error.html", alert='Invalid password')
         except:
-            return render_template("alert_error.html", alert='There was a problem with your login.')
+            return render_template("alert_error.html", alert='User not found')
 
     return render_template("login.html")
 
