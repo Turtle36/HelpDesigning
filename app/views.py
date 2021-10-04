@@ -14,6 +14,36 @@ def delete(name):
     return redirect(url_for("Home"))
 
 
+@app.route("/sign-up", methods=['GET', 'POST'])
+def sign_up():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        exist = db.session.query(db.exists().where(Sign_Up.username == username)).scalar()
+
+        if exist == True:
+            return render_template("alert_error.html", alert=""""%s" Already Exist""" % username)
+
+        if username == '':
+            return False
+
+        if password == '':
+            return False
+
+        new_user = Sign_Up(username=username, password=password)
+        new_row = Customers(customer=0, user=username)
+        db.session.add(new_user)
+        db.session.add(new_row)
+        db.session.commit()
+
+        app.config["username"] = username
+        app.config["password"] = password
+
+        return render_template("setCookie.html", username=username, password=password)
+    return render_template("signup.html")
+
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -44,36 +74,6 @@ def login():
             return render_template("alert_error.html", alert='There was a problem with your login.')
 
     return render_template("login.html")
-
-
-@app.route("/sign-up", methods=['GET', 'POST'])
-def sign_up():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-
-        exist = db.session.query(db.exists().where(Sign_Up.username == username)).scalar()
-
-        if exist == True:
-            return render_template("alert_error.html", alert=""""%s" Already Exist""" % username)
-
-        if username == '':
-            return False
-
-        if password == '':
-            return False
-
-        new_user = Sign_Up(username=username, password=password)
-        new_row = Customers(customer=0, user=username)
-        db.session.add(new_user)
-        db.session.add(new_row)
-        db.session.commit()
-
-        app.config["username"] = username
-        app.config["password"] = password
-
-        return render_template("setCookie.html", username=username, password=password)
-    return render_template("signup.html")
 
 
 @app.route("/article/<name>")
