@@ -3,6 +3,17 @@ from app.main import app
 from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers
 
 
+@app.route("/delete/<name>")
+def delete(name):
+    row = Article.query.filter_by(name=name)
+
+    row.delete()
+
+    db.session.commit()
+
+    return redirect(url_for("Home"))
+
+
 @app.route("/sign-up", methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
