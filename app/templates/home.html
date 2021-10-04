@@ -122,6 +122,23 @@
             </script>
         </div>
         <div class="container">
+                        <div class="bg-light right">
+                <div class="container">
+                    <h5>Statistics</h5>
+                    <br>
+                    <table class="i-table bg-white">
+                        <tr>
+                            <td><img src="/image/user.png" style="width: 50px;"></td>
+                            <td><img src="/image/article.png" style="width: 50px;"></td>
+                        </tr>
+                        <tr>
+                            <td><p style="font-size: medium;" class="center text-dark">{{ customer }}</p></td>
+                            <td><p style="font-size: medium;" class="center text-dark" id="lengthArticle"></p></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
             <div class="bg-light left">
                 <div class="container">
                     <h5>Article</h5>
@@ -149,29 +166,13 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-light right">
-                <div class="container">
-                    <h5>Statistics</h5>
-                    <br>
-                    <table class="i-table bg-white">
-                        <tr>
-                            <td><img src="/image/user.png" style="width: 50px;"></td>
-                            <td><img src="/image/article.png" style="width: 50px;"></td>
-                        </tr>
-                        <tr>
-                            <td><p style="font-size: medium;" class="center text-dark">{{ customer }}</p></td>
-                            <td><p style="font-size: medium;" class="center text-dark" id="lengthArticle"></p></td>
-                            <script>
-                                var table = document.getElementById("table");
-                                document.getElementById("lengthArticle").innerHTML = table.rows.length - 1;
-                            </script>
-                        </tr>
-                    </table>
-                </div>
-            </div>
         </div>
     </div>
 </div>
+<script>
+    var table = document.getElementById("table");
+    document.getElementById("lengthArticle").innerHTML = table.rows.length - 1;
+</script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 
