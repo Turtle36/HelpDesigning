@@ -122,7 +122,54 @@
             </script>
         </div>
         <div class="container">
-
+            <div class="bg-light left">
+                <div class="container">
+                    <h5>Article</h5>
+                    <br>
+                    <div class="w3-responsive">
+                        <table class="i-table bg-white" id="table">
+                            <thead>
+                            <tr class="bg-primary">
+                                <th>Title</th>
+                                <th colspan="2">Actions</th>
+                                <th>Customer</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for table in tables %}
+                                <tr>
+                                    <td>{{ table.name }}</td>
+                                    <td><a class="link text-danger" href="/delete/{{ table.name }}">Delete</a></td>
+                                    <td><a class="link text-success" href="/edit/{{ table.name }}">Edit</a></td>
+                                    <td>{{ table.customer }}</td>
+                                    <td><a class="link text-primary" href="/article/{{ table.name }}">Open</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-light right">
+                <div class="container">
+                    <h5>Statistics</h5>
+                    <br>
+                    <table class="i-table bg-white">
+                        <tr>
+                            <td><img src="/image/user.png" style="width: 50px;"></td>
+                            <td><img src="/image/article.png" style="width: 50px;"></td>
+                        </tr>
+                        <tr>
+                            <td><p style="font-size: medium;" class="center text-dark">{{ customer }}</p></td>
+                            <td><p style="font-size: medium;" class="center text-dark" id="lengthArticle"></p></td>
+                            <script>
+                                var table = document.getElementById("table");
+                                document.getElementById("lengthArticle").innerHTML = table.rows.length - 1;
+                            </script>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

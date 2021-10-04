@@ -120,10 +120,12 @@ def Home():
     try:
         username = app.config["username"]
 
-        # Table
+        Tables = Customers.query.filter_by(user=username)
         tables = Article.query.filter_by(user=username)
+        for table in Tables:
+            customer = table.customer
 
-        return render_template("home.html", tables=tables, username=username)
+            return render_template("home.html", tables=tables, username=username, customer=customer)
     except KeyError:
         return redirect(url_for("login"))
 
@@ -188,18 +190,6 @@ def new():
         username = app.config["username"]
 
         return render_template("new.html")
-    except:
-        return redirect(url_for("login"))
-
-
-@app.route("/customers")
-def customers():
-    try:
-        tables = Customers.query.filter_by(user=app.config["username"])
-        article = Article.query.filter_by(user=app.config["username"])
-        for table in tables:
-            customer = table.customer
-            return render_template("customers.html", customer=customer, tables=article)
     except:
         return redirect(url_for("login"))
 
