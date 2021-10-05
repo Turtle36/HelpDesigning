@@ -77,98 +77,108 @@
     <amp-auto-ads type="adsense"
                   data-ad-client="ca-pub-9082544303103022">
     </amp-auto-ads>
-    <div class="horizontal-menu">
-        <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/news">News</a></li>
-            <li><a href="/new/article">New Article</a></li>
-            <li><a href="/article" class="active">Article</a></li>
-            <li class="exit"><a href="/login" onclick="exit()">Exit</a></li>
-            <script>
-                function exit() {
-                    deleteCookie('username')
-                    open("/login", '_top')
-                }
-            </script>
-        </ul>
-        <div class="left">
-            <script async
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9082544303103022"
-                    crossorigin="anonymous"></script>
-            <!-- vertical-ads -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9082544303103022"
-                 data-ad-slot="3704263213"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        <div class="right">
-            <script async
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9082544303103022"
-                    crossorigin="anonymous"></script>
-            <!-- vertical-ads -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9082544303103022"
-                 data-ad-slot="3704263213"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        <div class="container">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search" name="search" id="search" onkeyup="searchTable()" aria-describedby>
+    <div class="w3-bar w3-light-grey">
+        <a href="/home" class="w3-bar-item w3-button">Home</a>
+        <a href="/news" class="w3-bar-item w3-button">News</a>
+        <div class="w3-dropdown-hover">
+            <button class="w3-button">More
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                </svg>
+            </button>
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <a href="/new/article" class="w3-bar-item w3-button">New Article</a>
+                <a href="/article" class="w3-bar-item w3-button bg-primary">Article</a>
             </div>
-            <br><br>
-            <div class="table-responsive">
-                <table class="i-table" id="table">
-                    <thead>
-                    <tr class="bg-primary">
-                        <th>Title</th>
-                        <th>Open</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for table in tables %}
-                        <tr>
-                            <td>{{ table.name }}</td>
+        </div>
+        <a style="float: right;" class="w3-bar-item w3-button text-danger" onclick="Exit()">Exit</a>
+        <script>
+            function Exit() {
+                deleteCookie("username")
+                open("/login", "_top")
+            }
+        </script>
+    </div>
 
-                            <!--open-->
-                            <td><a class="link link-color" href="/article/{{ table.name }}" target="_blank">Open</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <script>
-                function searchTable() {
-                    var input, filter, table, tr, td, i, txtValue;
-                    input = document.getElementById("search");
-                    filter = input.value.toUpperCase();
-                    table = document.getElementById("table");
-                    tr = table.getElementsByTagName("tr");
-                    for (i = 0; i < tr.length; i++) {
-                        td = tr[i].getElementsByTagName("td")[0];
-                        if (td) {
-                            txtValue = td.textContent || td.innerText;
-                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                                tr[i].style.display = "";
-                            } else {
-                                tr[i].style.display = "none";
-                            }
+    <div class="left">
+        <script async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9082544303103022"
+                crossorigin="anonymous"></script>
+        <!-- vertical-ads -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9082544303103022"
+             data-ad-slot="3704263213"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    <div class="right">
+        <script async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9082544303103022"
+                crossorigin="anonymous"></script>
+        <!-- vertical-ads -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9082544303103022"
+             data-ad-slot="3704263213"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    <div class="container">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search" name="search" id="search"
+                   onkeyup="searchTable()" aria-describedby>
+        </div>
+        <br><br>
+        <div class="table-responsive">
+            <table class="i-table bg-white" id="table">
+                <thead>
+                <tr class="bg-primary">
+                    <th>Title</th>
+                    <th>Open</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for table in tables %}
+                    <tr>
+                        <td>{{ table.name }}</td>
+
+                        <!--open-->
+                        <td><a class="link link-color" href="/article/{{ table.name }}" target="_blank">Open</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <script>
+            function searchTable() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("search");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("table");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
                         }
                     }
                 }
-            </script>
+            }
+        </script>
 
-        </div>
     </div>
 </div>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>

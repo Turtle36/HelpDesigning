@@ -193,11 +193,9 @@
     .error {
         color: black;
         display: none;
-        border: 1px solid black;
-        width: 300px;
-        background: lightcoral;
-        position: relative;
-        bottom: 15px;
+        border: 1px solid red;
+        width: 100%;
+        background: orangered;
     }
 
     .scrollTop {

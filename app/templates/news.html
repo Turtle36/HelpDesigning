@@ -73,19 +73,29 @@
     </amp-auto-ads>
 
     <div class="horizontal-menu">
-        <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/news" class="active">News</a></li>
-            <li><a href="/new/article">New Article</a></li>
-            <li><a href="/article">Article</a></li>
-            <li class="exit"><a href="/login" onclick="exit()">Exit</a></li>
+        <div class="w3-bar w3-light-grey">
+            <a href="/home" class="w3-bar-item w3-button">Home</a>
+            <a href="/news" class="w3-bar-item w3-button bg-primary">News</a>
+            <div class="w3-dropdown-hover">
+                <button class="w3-button">More
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                        <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                    </svg>
+                </button>
+                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                    <a href="/new/article" class="w3-bar-item w3-button">New Article</a>
+                    <a href="/article" class="w3-bar-item w3-button">Article</a>
+                </div>
+            </div>
+            <a style="float: right;" class="w3-bar-item w3-button text-danger" onclick="Exit()">Exit</a>
             <script>
-                function exit() {
-                    deleteCookie('username')
-                    open("/login", '_top')
+                function Exit() {
+                    deleteCookie("username")
+                    open("/login", "_top")
                 }
             </script>
-        </ul>
+        </div>
         <div class="left">
             <script async
                     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9082544303103022"

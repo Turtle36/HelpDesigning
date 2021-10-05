@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-<div class="container" id="Article">
+<div class="container" id="Article" style="display: block;">
     <div class="panel-group">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -41,5 +41,20 @@
     </div>
     <strong>By {% for tables in table %}{{ tables.user }} {% endfor %}</strong>
 </div>
+<div id="notFound" style="display: none;">
+    <div class="container">
+        <p style="color: red;">Article Not Found</p>
+    </div>
+</div>
+<script>
+    var a = "{% for tables in table %}{{ tables.content }}{% endfor %}"
+    if (a === "") {
+        document.getElementById("Article").style.display = "none";
+        document.getElementById("notFound").style.display = "block";
+    } else {
+        document.getElementById("Article").style.display = "block";
+        document.getElementById("notFound").style.display = "none";
+    }
+</script>
 </body>
 </html>

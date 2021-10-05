@@ -69,9 +69,9 @@ def login():
 
                 return render_template("setCookie.html", username=username, password=password)
             else:
-                return render_template("alert_error.html", alert='Invalid password')
+                return render_template("alert_error.html", alert='Invalid password', route="login")
         except:
-            return render_template("alert_error.html", alert='User not found')
+            return render_template("alert_error.html", alert='User not found', route="login")
 
     return render_template("login.html")
 
@@ -79,12 +79,15 @@ def login():
 @app.route("/article/<name>")
 def article(name):
     table = Article.query.filter_by(name=name)
-    for Table in table:
-        Table.customer += 1
-        tables = Customers.query.filter_by(user=Table.user)
-        for MyTables in tables:
-            MyTables.customer += 1
-    db.session.commit()
+    try:
+        username = app.config["username"]
+    except:
+        for Table in table:
+            Table.customer += 1
+            tables = Customers.query.filter_by(user=Table.user)
+            for MyTables in tables:
+                MyTables.customer += 1
+        db.session.commit()
     return render_template("article.html", name=name, table=table)
 
 
@@ -180,6 +183,14 @@ def new():
 
         if content == "":
             return False
+
+        if "/" in name:
+                return render_template("alert_error.html", route="new/article",
+                                       alert="You cannot enter a '?' or '/' in title")
+
+        if "?" in name:
+                return render_template("alert_error.html", route="new/article",
+                                       alert="You cannot enter a '?' or '/' in title")
 
         new_article = Article(name=name, content=content, user=app.config["username"], background=background)
         db.session.add(new_article)
