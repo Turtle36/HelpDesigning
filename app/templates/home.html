@@ -156,7 +156,7 @@
                     <div class="h-100 p-5 bg-light">
                         <h4>Article</h4>
                         <br>
-                        <div class="w3-responsive">
+                        <div style="overflow-y: auto; overflow-x: auto; display: block; height: 70px;">
                             <table class="i-table bg-white" id="table">
                                 <thead>
                                 <tr class="bg-primary">
@@ -165,7 +165,7 @@
                                     <th>Customer</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody style="">
                                 {% for table in tables %}
                                     <tr>
                                         <td>{{ table.name }}</td>
