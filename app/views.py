@@ -3,7 +3,7 @@ from app.main import app
 from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers
 
 
-@app.route("/delete/<name>")
+@app.route("/delete/article/<name>")
 def delete(name):
     row = Article.query.filter_by(name=name)
 
@@ -142,12 +142,10 @@ def homepage():
 def edit(name):
     if request.method == 'POST':
         content = request.form['content']
-        background = request.form['background']
 
         table = Article.query.filter_by(name=name)
         for tables in table:
             tables.content = content
-            tables.background = background
 
         db.session.commit()
 

@@ -89,7 +89,7 @@
             </button>
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
                 <a href="/new/article" class="w3-bar-item w3-button">New Article</a>
-               <a href="/article" class="w3-bar-item w3-button">Article</a>
+                <a href="/article" class="w3-bar-item w3-button">Article</a>
             </div>
         </div>
         <a style="float: right;" class="w3-bar-item w3-button text-danger" onclick="Exit()">Exit</a>
@@ -170,11 +170,12 @@
                                     <tr>
                                         <td>{{ table.name }}</td>
                                         <td><a href="/edit/{{ table.name }}" class="link text-success">Edit</a></td>
-                                        <td><a onclick="deleteArticle{{ table.name }}()" class="link text-danger">Delete</a></td>
+                                        <td><a onclick="deleteArticle{{ table.name }}()"
+                                               class="link text-danger">Delete</a></td>
                                         <td>{{ table.customer }}</td>
                                         <script>
                                             function deleteArticle{{ table.name }}() {
-                                                open("/delete/{{ table.name }}", '_top')
+                                                open("/delete/article/{{ table.name }}", '_top')
                                             }
                                         </script>
                                     </tr>
@@ -186,7 +187,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 <script>

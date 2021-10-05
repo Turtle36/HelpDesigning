@@ -572,9 +572,14 @@
         border: 1px solid black;
     }
 
+    .color {
+        border: none;
+        background-color: white;
+        cursor: pointer;
+    }
 
     .Button {
-        border: 0;
+        border: 1px solid black;
         color: black;
         background-color: white;
         cursor: pointer;
