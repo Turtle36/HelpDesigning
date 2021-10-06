@@ -135,7 +135,8 @@ def Home():
 
 @app.route("/")
 def homepage():
-    return render_template("homepage.html")
+    tables = Article.query.all()
+    return render_template("homepage.html", tables=tables)
 
 
 @app.route("/edit/<name>", methods=['GET', 'POST'])

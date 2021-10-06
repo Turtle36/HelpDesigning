@@ -107,17 +107,33 @@
                             <h2>Article</h2>
                             <p>
                                 <img src="/image/gold.png" class="right" style="width: 100px;">
-                                Create a good article and share your article
+                                Create a good articles for many customers
                             </p>
+                            <button class="btn btn-outline-primary" onclick="showAllArticle()">Show All Article</button>
+                            <br>
+                            <div class="container" id="allArticle" style="display: none;">
+                                <div style="overflow-y: auto; overflow-x: auto; display: block; height: 70px;">
+                                    <table class="i-table bg-white">
+                                        {% for table in tables %}
+                                            <tr>
+                                                <td>{{ table.name }}</td>
+                                                <td><a class="link link-color" href="/article/{{ table.name }}">Open</a></td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                            <br><br>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="h-100 p-5 bg-light">
-                            <h2>Business</h2>
-                            <img src="/image/up_business.png" class="right" style="width: 100px;">
+                            <h2>Customers</h2>
+                            <img src="/image/user.png" class="right" style="width: 100px;">
                             <p>
-                                Create and increase your business for free in internalium
+                                A lot of customers is good
                             </p>
+                            <button class="btn btn-outline-primary" onclick="customers()">Show Customers</button>
                             <br><br>
                         </div>
                     </div>
@@ -149,6 +165,14 @@
 
     function signUp() {
         open("/sign-up", "_top")
+    }
+
+    function customers() {
+        open("/home", "_top")
+    }
+
+    function showAllArticle() {
+        document.getElementById("allArticle").style.display = "block";
     }
 </script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
