@@ -165,12 +165,13 @@
                                     <th>Customer</th>
                                 </tr>
                                 </thead>
-                                <tbody style="">
+                                <tbody>
                                 {% for table in tables %}
                                     <tr>
                                         <td>{{ table.name }}</td>
                                         <td><a href="/edit/{{ table.name }}" class="link text-success">Edit</a></td>
-                                        <td><a href="/delete/article/{{ table.name }}" class="link text-danger">Delete</a></td>
+                                        <td><a onclick="deleteArticle('{{ table.name }}')"
+                                               class="link text-danger">Delete</a></td>
                                         <td>{{ table.customer }}</td>
                                     </tr>
                                 {% endfor %}
@@ -180,6 +181,11 @@
                     </div>
                 </div>
             </div>
+            <script>
+                function deleteArticle(name) {
+                    open("/delete/article/" + name, "_top")
+                }
+            </script>
         </div>
     </div>
 </div>
