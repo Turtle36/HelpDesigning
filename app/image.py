@@ -52,7 +52,12 @@ def gold_png():
     return redirect(url_for("static", filename='image/gold.png'))
 
 
-@app.route("/image/bucket_paint.png")
+@app.route("/image/news/text_about.png")
+def text_about_png():
+    return redirect(url_for("static", filename='image/news/text_about.png'))
+
+
+@app.route("/image/news/bucket_paint.png")
 def bucket_paint_png():
-    return redirect(url_for("static", filename='image/bucket_paint.png'))
+    return redirect(url_for("static", filename='image/news/bucket_paint.png'))
 

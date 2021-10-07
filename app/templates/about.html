@@ -78,7 +78,7 @@
                   data-ad-client="ca-pub-9082544303103022">
     </amp-auto-ads>
     <div class="w3-bar w3-light-grey">
-        <a href="/home" class="w3-bar-item w3-button bg-primary">Home</a>
+        <a href="/home" class="w3-bar-item w3-button">Home</a>
         <a href="/news" class="w3-bar-item w3-button">News</a>
         <div class="w3-dropdown-hover">
             <button class="w3-button">More
@@ -90,7 +90,7 @@
             <div class="w3-dropdown-content w3-bar-block w3-card-4">
                 <a href="/new/article" class="w3-bar-item w3-button">New Article</a>
                 <a href="/article" class="w3-bar-item w3-button">Article</a>
-                <a href="/about" class="w3-bar-item w3-button">About</a>
+                <a href="/about" class="w3-bar-item w3-button bg-primary">About</a>
             </div>
         </div>
         <a style="float: right;" class="w3-bar-item w3-button text-danger" onclick="Exit()">Exit</a>
@@ -132,76 +132,16 @@
         </script>
     </div>
     <div class="container">
-        <div class="container py-4">
-            <div class="row align-items-md-stretch">
-                <div class="col-md-6">
-                    <div class="h-100 p-5 bg-light">
-                        <h4>Statistics</h4>
-                        <br>
-                        <div class="w3-responsive">
-                            <table class="i-table bg-white">
-                                <tr>
-                                    <td><img src="/image/article.png" style="width: 50px;"></td>
-                                    <td><img src="/image/user.png" style="width: 50px;"></td>
-                                </tr>
-                                <tr>
-                                    <td><p style="font-size: medium;" class="text-dark center" id="lengthArticle"></p>
-                                    </td>
-                                    <td><p style="font-size: medium;" class="text-dark center">{{ customer }}</p></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="h-100 p-5 bg-light">
-                        <h4>Article</h4>
-                        <br>
-                        <div style="overflow-y: auto; overflow-x: auto; display: block; height: 70px;">
-                            <table class="i-table bg-white" id="table">
-                                <thead>
-                                <tr class="bg-primary">
-                                    <th>Title</th>
-                                    <th colspan="2">Actions</th>
-                                    <th>Customer</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for table in tables %}
-                                    <tr>
-                                        <td>{{ table.name }}</td>
-
-                                        <td><a href="/edit/{{ table.name }}" class="link text-success">Edit</a></td>
-                                        <td><a onclick="deleteArticle('{{ table.name }}')"
-                                               class="link text-danger">Delete</a></td>
-                                        <td>{{ table.customer }}</td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                        <p id="ArticleEmpty" style="font-size: medium; display: none;" class="center-text comment">You don't have article</p>
-                    </div>
-                </div>
+        <h1 class="center-text">About</h1>
+        <div class="bg-light">
+            <div class="container">
+                Internalium is website for creating article<br>
+                You can delete or edit article<br>
+                Others people can't delete and edit your article can only see your article<br>
             </div>
-            <script>
-                function deleteArticle(name) {
-                    open("/delete/article/" + name, "_top")
-                }
-            </script>
         </div>
     </div>
 </div>
-<script>
-    var table = document.getElementById("table");
-    var length_article = table.rows.length - 1;
-
-    if (length_article === 0) {
-        document.getElementById("ArticleEmpty").style.display = "block";
-    }
-
-    document.getElementById("lengthArticle").innerHTML = length_article;
-</script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 

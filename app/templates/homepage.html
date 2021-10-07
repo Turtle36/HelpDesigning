@@ -117,7 +117,8 @@
                                         {% for table in tables %}
                                             <tr>
                                                 <td>{{ table.name }}</td>
-                                                <td><a class="link link-color" href="/article/{{ table.name }}">Open</a></td>
+                                                <td><a class="link link-color" href="/article/{{ table.name }}">Open</a>
+                                                </td>
                                             </tr>
                                         {% endfor %}
                                     </table>
@@ -135,6 +136,31 @@
                             </p>
                             <button class="btn btn-outline-primary" onclick="customers()">Show Customers</button>
                             <br><br>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row align-items-md-stretch">
+                    <div class="col-md-6">
+                        <div class="h-100 p-5 bg-light">
+                            <h2>News</h2>
+                            <br>
+                            <p>
+                                See News
+                            </p>
+                            <button class="btn btn-outline-primary" onclick="news()">News</button>
+                            <br><br>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="h-100 p-5 bg-light">
+                            <h2>About</h2>
+                            <br>
+                            <p>
+                                Internalium is website for creating article<br>
+                                You can delete or edit article<br>
+                                Others people can't delete and edit your article can only see your article<br>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -169,6 +195,10 @@
 
     function customers() {
         open("/home", "_top")
+    }
+
+    function news() {
+        open("/news", "_top")
     }
 
     function showAllArticle() {

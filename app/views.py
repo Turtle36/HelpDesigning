@@ -44,6 +44,16 @@ def sign_up():
     return render_template("signup.html")
 
 
+@app.route("/about")
+def about():
+    try:
+        username = app.config["username"]
+
+        return render_template("about.html")
+    except:
+        return redirect(url_for("login"))
+
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -184,12 +194,12 @@ def new():
             return False
 
         if "/" in name:
-                return render_template("alert_error.html", route="new/article",
-                                       alert="You cannot enter a '?' or '/' in title")
+            return render_template("alert_error.html", route="new/article",
+                                   alert="You cannot enter a '?' or '/' in title")
 
         if "?" in name:
-                return render_template("alert_error.html", route="new/article",
-                                       alert="You cannot enter a '?' or '/' in title")
+            return render_template("alert_error.html", route="new/article",
+                                   alert="You cannot enter a '?' or '/' in title")
 
         new_article = Article(name=name, content=content, user=app.config["username"], background=background)
         db.session.add(new_article)

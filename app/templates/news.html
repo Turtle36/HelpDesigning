@@ -126,19 +126,43 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
-
         <div class="container">
-            <div class="row">
-                <div class="col-sm-4 news">
-                    <h3><img class="image center" src="/image/bucket_paint.png"></h3>
-                    <hr>
+            <div class="news">
+                <h3><img class="image center" src="/image/news/bucket_paint.png"></h3>
+                <br><br>
+                <div class="container">
                     <p class="title">Set custom background in your article</p>
+                    <button class="btn btn-success" onclick="newArticle()">Learn More</button>
+                    <br>
                     <p class="date">28/9/2021</p>
+                    <br>
+                </div>
+            </div>
+            <br><br>
+            <div class="news">
+                <h3><img class="image center" src="/image/news/text_about.png"></h3>
+                <br><br>
+                <div class="container">
+                    <p class="title">About</p>
+                    <button class="btn btn-success" onclick="about()">Learn More</button>
+                    <br>
+                    <p class="date">7/10/2021</p>
+                    <br>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function about() {
+        open("/about", "_top")
+    }
+
+    function newArticle() {
+        open("/new/article", "_top")
+    }
+</script>
 <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
 
