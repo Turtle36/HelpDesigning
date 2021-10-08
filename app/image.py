@@ -7,16 +7,6 @@ def icon():
     return redirect(url_for("static", filename='image/icon.png'))
 
 
-@app.route("/image/home.png")
-def home_png():
-    return redirect(url_for("static", filename='image/home.png'))
-
-
-@app.route("/image/news.png")
-def news_png():
-    return redirect(url_for("static", filename='image/news.png'))
-
-
 @app.route("/image/user.png")
 def user_png():
     return redirect(url_for("static", filename='image/user.png'))
