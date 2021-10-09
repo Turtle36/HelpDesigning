@@ -41,6 +41,7 @@
         }
 
         async function checkCookie() {
+            document.getElementById("creator").value = getCookie("username");
             document.getElementById("body").style.display = "none";
             document.getElementById("loading_page").style.display = "block";
             let username = getCookie("username");
@@ -84,8 +85,6 @@
                 deleteCookie("username")
                 open("/", "_top")
             }
-
-            document.getElementById("creator").value = getCookie("username");
         </script>
     </div>
     <div class="left">
@@ -132,7 +131,7 @@
                               id="content"></textarea>
                     <label for="background"><b>Background</b></label><br>
                     <input class="color" value="#ffffff" type="color" name="background" id="background"/>
-                    <input type="text" name="creator" id="creator" readonly style="display: none;">
+                    <input type="text" name="creator" id="creator" readonly>
                     <button type="submit">Create</button>
                 </div>
             </form>
