@@ -1,6 +1,6 @@
 from flask import *
 from app.main import app
-from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers
+from app.models import db, article as Article, sign_up as Sign_Up, login as Login
 
 
 @app.route("/delete/article/<name>")
@@ -32,26 +32,11 @@ def sign_up():
             return False
 
         new_user = Sign_Up(username=username, password=password)
-        new_row = Customers(customer=0, user=username)
         db.session.add(new_user)
-        db.session.add(new_row)
         db.session.commit()
-
-        app.config["username"] = username
-        app.config["password"] = password
 
         return render_template("setCookie.html", username=username, password=password)
     return render_template("signup.html")
-
-
-@app.route("/about")
-def about():
-    try:
-        username = app.config["username"]
-
-        return render_template("about.html")
-    except:
-        return redirect(url_for("login"))
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -74,9 +59,6 @@ def login():
                 db.session.add(user)
                 db.session.commit()
 
-                app.config["username"] = username
-                app.config["password"] = password
-
                 return render_template("setCookie.html", username=username, password=password)
             else:
                 return render_template("alert_error.html", alert='Invalid password', route="login")
@@ -86,28 +68,23 @@ def login():
     return render_template("login.html")
 
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
 @app.route("/article/<name>")
 def article(name):
     table = Article.query.filter_by(name=name)
-    try:
-        username = app.config["username"]
-    except:
-        for Table in table:
-            Table.customer += 1
-            tables = Customers.query.filter_by(user=Table.user)
-            for MyTables in tables:
-                MyTables.customer += 1
-        db.session.commit()
+    for Table in table:
+        Table.customer += 1
+    db.session.commit()
     return render_template("article.html", name=name, table=table)
 
 
 @app.route("/news")
 def news():
-    try:
-        username = app.config["username"]
-        return render_template("news.html")
-    except:
-        return redirect(url_for("login"))
+    return render_template("news.html")
 
 
 @app.errorhandler(404)
@@ -117,30 +94,16 @@ def halaman_tidak_ditemukan(e):
 
 @app.route("/article")
 def all_article():
-    try:
-        username = app.config["username"]
+    # Table
+    tables = Article.query.all()
 
-        # Table
-        tables = Article.query.all()
-
-        return render_template("all_article.html", tables=tables, username=username)
-    except KeyError:
-        return redirect(url_for("login"))
+    return render_template("all_article.html", tables=tables)
 
 
 @app.route("/home")
 def Home():
-    try:
-        username = app.config["username"]
-
-        Tables = Customers.query.filter_by(user=username)
-        tables = Article.query.filter_by(user=username)
-        for table in Tables:
-            customer = table.customer
-
-            return render_template("home.html", tables=tables, username=username, customer=customer)
-    except KeyError:
-        return redirect(url_for("login"))
+    tables = Article.query.all()
+    return render_template("home.html", tables=tables)
 
 
 @app.route("/")
@@ -167,11 +130,6 @@ def edit(name):
     for tables in table:
         content = tables.content
 
-        try:
-            username = app.config["username"]
-        except:
-            return redirect(url_for("Home"))
-
         return render_template("edit.html", name=name, tables=table, content=content)
 
 
@@ -181,6 +139,7 @@ def new():
         content = request.form['content']
         name = request.form['title']
         background = request.form['background']
+        creator = request.form['creator']
 
         exist = db.session.query(db.exists().where(Article.name == name)).scalar()
 
@@ -201,17 +160,12 @@ def new():
             return render_template("alert_error.html", route="new/article",
                                    alert="You cannot enter a '?' or '/' in title")
 
-        new_article = Article(name=name, content=content, user=app.config["username"], background=background)
+        new_article = Article(name=name, content=content, background=background, user=creator)
         db.session.add(new_article)
         db.session.commit()
         return redirect("/article/%s" % (name))
 
-    try:
-        username = app.config["username"]
-
-        return render_template("new.html")
-    except:
-        return redirect(url_for("login"))
+    return render_template("new.html")
 
 
 from app.image import *
