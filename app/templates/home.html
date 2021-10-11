@@ -29,7 +29,8 @@
             let username = getCookie("username");
             if (username !== "") {
             } else {
-                open("/login", "_top")
+                document.getElementById("Username").innerHTML = "Anonymous";
+                document.getElementById("username").value = "fkdjalkjeaoj:AKJFE:IJA;fa;jeilJALKFJEIO#*&#(*!;KDJ:Akj!(!!R3892JDKDK:Ad;kdkd;AKKA389*";
             }
 
             var input, filter, table, tr, td, i, txtValue;
@@ -322,7 +323,6 @@
 <!-- Page level custom scripts -->
 <script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
-
 </body>
 
 </html>
