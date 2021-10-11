@@ -132,28 +132,19 @@
                             <h6 class="dropdown-header">
                                 Alert
                             </h6>
-                            <a class="dropdown-item d-flex align-items-center">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-primary">
-                                        <i class="fas fa-info text-white"></i>
+                            {% for News in news %}
+                                <a class="dropdown-item d-flex align-items-center">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-info text-white"></i>
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">October 11, 2021</div>
-                                    Update!
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-primary">
-                                        <i class="fas fa-info text-white"></i>
+                                    <div>
+                                        <div class="small text-gray-500">{{ News.date }}</div>
+                                        {{ News.alert }}
                                     </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">September 28, 2021</div>
-                                    Set custom background in your article
-                                </div>
-                            </a>
+                                </a>
+                            {% endfor %}
                         </div>
                     </li>
 

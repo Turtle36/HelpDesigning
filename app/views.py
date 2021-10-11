@@ -1,6 +1,6 @@
 from flask import *
 from app.main import app
-from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers
+from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers, news as News
 
 
 @app.route("/delete/article/<name>")
@@ -18,8 +18,9 @@ def delete(name):
 def home():
     customers = Customers.query.all()
     article = Article.query.all()
+    news = News.query.all()
 
-    return render_template("home.html", customers=customers, article=article)
+    return render_template("home.html", customers=customers, article=article, news=news)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -85,7 +86,8 @@ def homepage():
 @app.route("/article")
 def all_article():
     article = Article.query.all()
-    return render_template("all_article.html", article=article)
+    news = News.query.all()
+    return render_template("all_article.html", article=article, news=news)
 
 
 @app.route("/article/<name>")
@@ -120,7 +122,10 @@ def edit(name):
         content = tables.content
         background = tables.background
 
-        return render_template("edit_article.html", name=name, tables=table, content=content, background=background)
+        news = News.query.all()
+
+        return render_template("edit_article.html", name=name, tables=table, content=content, background=background,
+                               news=news)
 
 
 @app.route("/new/article", methods=['GET', 'POST'])
@@ -155,7 +160,14 @@ def new():
         db.session.commit()
         return redirect("/article/%s" % (name))
 
-    return render_template("new_article.html")
+    news = News.query.all()
+
+    return render_template("new_article.html", news=news)
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return redirect(url_for("home"))
 
 
 from app.image import *

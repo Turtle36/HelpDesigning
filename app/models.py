@@ -62,3 +62,17 @@ class customers(db.Model):
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
+
+
+class news(db.Model):
+    __tablename__ = 'news'
+    id = db.Column(INTEGER(), primary_key=True)  # ID | Integer
+    date = db.Column(String())  # Date | String
+    alert = db.Column(String())  # Alert | String
+
+    def __init__(self, date, alert):
+        self.date = date
+        self.alert = alert
+
+    def __repr__(self):
+        return '<id {}>'.format(self.id)

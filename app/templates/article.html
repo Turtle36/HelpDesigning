@@ -47,9 +47,10 @@
                 var content = document.getElementById("content");
 
                 content_replace = content.innerHTML;
-                 content_replace = content_replace.replace(/\n/g, "<br>")
-                content_replace = content_replace.replace(/(https?:\/\/[^\s]+)/g, "<a class='link link-color' href=\"$1\" target=\"_blank\">$1</a>")
-
+                content_replace = content_replace.replace(/\n/g, "<br>")
+                content_replace = content_replace.replace(/(https?:\/\/[^\s]+)/g, "<p class='Text-primary'>$1</p>")
+                content_replace = content_replace.replace(/(http?:\/\/[^\s]+)/g, "<p class='Text-primary'>$1</p>")
+                content_replace = content_replace.replace(/(www?.[^\s]+)/g, "<p class='Text-primary'>$1</p>")
                 document.getElementById("content").innerHTML = content_replace;
             </script>
         </div>
