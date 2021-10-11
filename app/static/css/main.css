@@ -1,4 +1,33 @@
 @media {
+    .link {
+        text-decoration: none;
+    }
+
+    .link .primary {
+        color: #2e2ee7;
+    }
+
+    .link .danger {
+        color: #ff2b2b;
+    }
+
+    .link .warning {
+        color: #f9bb04;
+    }
+
+    .link .success {
+        color: #32b232;
+    }
+
+    .link .secondary {
+        color: #7e7c7c;
+    }
+
+    .link .light {
+        color: #f8f9fc;
+    }
+
+
     .vertical-menu {
         width: 200px;
     }

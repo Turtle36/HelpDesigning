@@ -48,3 +48,17 @@ class login(db.Model):
 
     def __repr__(self):
         return '<id {}>'.format(self.id)
+
+
+class customers(db.Model):
+    __tablename__ = 'customers'
+    id = db.Column(INTEGER(), primary_key=True)  # ID | Integer
+    username = db.Column(String())  # Username | String
+    customer = db.Column(INTEGER())  # Customer | Integer
+
+    def __init__(self, username, customer):
+        self.username = username
+        self.customer = customer
+
+    def __repr__(self):
+        return '<id {}>'.format(self.id)

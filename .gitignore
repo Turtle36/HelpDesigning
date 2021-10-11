@@ -4,3 +4,4 @@ app/__pycache__/
 app/test.txt
 .env
 .idea
+Git-Ignore/

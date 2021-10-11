@@ -1,65 +1,44 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <script data-ad-client="ca-pub-9082544303103022" async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="icon" href="{{ url_for('icon') }}" type="image/icon type">
-    <script async custom-element="amp-auto-ads"
-            src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
-    </script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="/image/icon.png">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;900&amp;display=swap"
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;1,300&amp;display=swap"
-          rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
     <title>Internalium</title>
-    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <link href="https://getbootstrap.com/docs/5.0/examples/dashboard/" rel="canonical">
+    <!--ads--->
+    <script data-ad-client="ca-pub-9082544303103022" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
+    <!-- Custom fonts for this template-->
+    <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
 
-    <!-- Bootstrap core CSS -->
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
+    <!-- Custom styles for this template-->
+    <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
     <script>
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
+        function checkCookie() {
+            document.getElementById("username").value = getCookie("username");
+            document.getElementById("Username").innerHTML = getCookie("username");
 
-        async function checkCookie() {
+            let username = getCookie("username");
+            if (username !== "") {
+            } else {
+                open("/login", "_top")
+            }
+
             var input, filter, table, tr, td, i, txtValue;
-            document.getElementById("search").value = getCookie("username")
-            input = document.getElementById("search");
+            input = document.getElementById("username");
             filter = input.value.toUpperCase();
-            table = document.getElementById("table");
+            table = document.getElementById("customers");
             tr = table.getElementsByTagName("tr");
+
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[4];
+                td = tr[i].getElementsByTagName("td")[1];
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -69,141 +48,300 @@
                     }
                 }
             }
+            var input2, filter2, table2, tr2, td2, i2, txtValue2;
+            input2 = document.getElementById("username");
+            filter2 = input2.value.toUpperCase();
+            table2 = document.getElementById("article");
+            tr2 = table2.getElementsByTagName("tr");
 
-
-            document.getElementById("body").style.display = "none";
-            document.getElementById("loading_page").style.display = "block";
-            let username = getCookie("username");
-            if (username !== "") {
-            } else {
-                open("/login", "_top")
+            for (i2 = 0; i2 < tr2.length; i2++) {
+                td2 = tr2[i2].getElementsByTagName("td")[1];
+                if (td2) {
+                    txtValue2 = td2.textContent || td2.innerText;
+                    if (txtValue2.toUpperCase().indexOf(filter2) > -1) {
+                        tr2[i2].style.display = "";
+                    } else {
+                        tr2[i2].style.display = "none";
+                    }
+                }
             }
-            await sleep(3000)
-            document.getElementById("body").style.display = "block";
-            document.getElementById("loading_page").style.display = "none";
         }
     </script>
-    <!-- Custom styles for this template -->
-    <link href="{{ url_for('static', filename='css/dashboard.css') }}" rel="stylesheet">
 </head>
-<body onload="checkCookie()">
-<div id="loading_page" style="display: none;">
-    <center>
-        <div class="loader"></div>
-    </center>
-</div>
-<div id="body">
-    <amp-auto-ads type="adsense"
-                  data-ad-client="ca-pub-9082544303103022">
-    </amp-auto-ads>
-    <div class="w3-bar w3-light-grey">
-        <a href="/home" class="w3-bar-item w3-button bg-primary">Home</a>
-        <a href="/news" class="w3-bar-item w3-button">News</a>
-        <div class="w3-dropdown-hover">
-            <button class="w3-button">More
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-                </svg>
-            </button>
-            <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                <a href="/new/article" class="w3-bar-item w3-button">New Article</a>
-                <a href="/article" class="w3-bar-item w3-button">Article</a>
-                <a href="/about" class="w3-bar-item w3-button">About</a>
+
+<body id="page-top" onload="checkCookie()">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-text mx-3"><small>Internalium</small></div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="/home">
+                <span>Home</span></a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Article
+        </div>
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="/article">
+                <span>Article</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/new/article">
+                <span>New Article</span></a>
+        </li>
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+    </ul>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Nav Item - Alerts -->
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" id="alertsDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-bell fa-fw"></i>
+                            <!-- Counter - Alerts -->
+                        </a>
+                        <!-- Dropdown - Alerts -->
+                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="alertsDropdown">
+                            <h6 class="dropdown-header">
+                                Alert
+                            </h6>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-primary">
+                                        <i class="fas fa-file-alt text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">December 12, 2019</div>
+                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-success">
+                                        <i class="fas fa-donate text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">December 7, 2019</div>
+                                    $290.29 has been deposited into your account!
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-warning">
+                                        <i class="fas fa-exclamation-triangle text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">December 2, 2019</div>
+                                    Spending Alert: We've noticed unusually high spending for your account.
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="Username"></span>
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+                            <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                            <script>
+                                function logOut() {
+                                    deleteCookie("username")
+                                    open("/login")
+                                }
+                            </script>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Home</h1>
+                </div>
+                <!-- Content Row -->
+                <div class="row">
+
+                    <!-- Area Chart -->
+                    <div class="col-xl-8 col-lg-7">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Article</h6>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div style="overflow-y: auto; overflow-x: auto; display: block; height: 420px;">
+                                    <table class="w3-table w3-bordered w3-border" id="article">
+                                        <thead>
+                                        <tr class="bg-primary" style="color: black;">
+                                            <th>Title</th>
+                                            <th colspan="2">Actions</th>
+                                            <th>Customers</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for articles in article %}
+                                            <tr>
+                                                <td>{{ articles.name }}</td>
+                                                <td style="display: none;">{{ articles.user }}</td>
+                                                <td><a onclick="deleteArticle('{{ articles.name }}')"
+                                                       class="text-decoration-none text-danger">Delete</a></td>
+                                                <td><a onclick="editArticle('{{ articles.name }}')"
+                                                       class="text-decoration-none text-success">Edit</a></td>
+                                                <td>{{ articles.customer }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="username" name="username">
+
+                    <!-- Pie Chart -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Customers</h6>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body" style="overflow: auto;">
+                                <table id="customers">
+                                    <tbody>
+                                    {% for customer in customers %}
+                                        <tr>
+                                            <td>{{ customer.customer }}</td>
+                                            <td style="display: none;">{{ customer.username }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <a style="float: right;" class="w3-bar-item w3-button text-danger" onclick="Exit()">Exit</a>
-        <script>
-            function Exit() {
-                deleteCookie("username")
-                open("/", "_top")
-            }
-        </script>
-    </div>
-    <div class="left">
-        <script async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9082544303103022"
-                crossorigin="anonymous"></script>
-        <!-- vertical-ads -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-9082544303103022"
-             data-ad-slot="3704263213"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-    <div class="right">
-        <script async
-                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9082544303103022"
-                crossorigin="anonymous"></script>
-        <!-- vertical-ads -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-9082544303103022"
-             data-ad-slot="3704263213"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-    <div class="container">
-        <div class="container py-4">
-            <div style="overflow-y: auto; overflow-x: auto; display: block; height: 420px;">
-                <table class="i-table bg-white" id="table">
-                    <thead>
-                    <tr class="bg-primary">
-                        <th>Title</th>
-                        <th colspan="2">Actions</th>
-                        <th>Customer</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for table in tables %}
-                        <tr>
-                            <td>{{ table.name }}</td>
 
-                            <td><a href="/edit/{{ table.name }}" class="link text-success">Edit</a></td>
-                            <td><a onclick="deleteArticle('{{ table.name }}')"
-                                   class="link text-danger">Delete</a></td>
-                            <td>{{ table.customer }}</td>
-                            <td style="display: none;">{{ table.user }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <br>
             </div>
-            <p id="ArticleEmpty" style="font-size: medium; display: none;" class="center-text comment">You
-                don't have article</p>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-danger" onclick="logOut()">Logout</button>
+            </div>
         </div>
     </div>
 </div>
-<script>
-    function deleteArticle(name) {
-        open("/delete/article/" + name, "_top")
-    }
-</script>
-<input type="text" id="search" name="search" style="display: none;">
-<script>
-    var table = document.getElementById("table");
-    var length_article = table.rows.length - 1
 
-    if (length_article === 0) {
-        document.getElementById("ArticleEmpty").style.display = "block";
-    }
+<!-- Bootstrap core JavaScript-->
+<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-    document.getElementById("lengthArticle").innerHTML = length_article;
-</script>
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
-<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+<!-- Core plugin JavaScript-->
+<script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-<script crossorigin="anonymous" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
-        src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
-<script crossorigin="anonymous" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha"
-        src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+<!-- Custom scripts for all pages-->
+<script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+
+<!-- Page level plugins -->
+<script src="{{ url_for('static', filename='vendor/chart.js/Chart.min.js') }}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
+<script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
+
 </body>
+
 </html>
