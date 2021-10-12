@@ -60,6 +60,9 @@ def sign_up():
 
         exist = db.session.query(db.exists().where(Sign_Up.username == username)).scalar()
 
+        if username == 'Anonymous':
+            return render_template("alert_error.html", alert="Username Cannot \"Anonymous\"", route="sign_up")
+
         if exist == True:
             return render_template("alert_error.html", alert=""""%s" Already Exist""" % username)
 
