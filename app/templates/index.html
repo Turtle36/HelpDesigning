@@ -112,7 +112,7 @@
                             <img src="/image/gold.png" style="width: 100px; float: right;">
                             Create a good articles for many customers
                         </p>
-                        <button class="btn btn-outline-primary" onclick="w3.toggleShow('#allArticle')">Show All
+                        <button class="btn btn-outline-primary" onclick="AllArticle()">Show All
                             Article
                         </button>
                         <br>
@@ -137,6 +137,10 @@
     </div>
 </div>
 <script>
+    function AllArticle() {
+        open("/article", "_top")
+    }
+
     function login() {
         open("/login", "_top")
     }

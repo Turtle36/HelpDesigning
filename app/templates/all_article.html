@@ -28,7 +28,7 @@
             let username = getCookie("username");
             if (username !== "") {
             } else {
-                open("/login", "_top")
+                document.getElementById("Username").innerHTML = "Anonymous";
             }
         }
     </script>
