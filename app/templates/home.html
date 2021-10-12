@@ -32,6 +32,7 @@
                 document.getElementById("Username").innerHTML = "Anonymous";
                 document.getElementById("username").value = "Anonymous";
                 document.getElementById("forAnonymous").style.display = "block";
+                document.getElementById("forNoAnonymous").style.display = "none";
             }
 
             var input, filter, table, tr, td, i, txtValue;
@@ -182,10 +183,11 @@
                                     Sign Up
                                 </a>
                             </div>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
-                                Logout
-                            </a>
+                            <div id="forNoAnonymous" style="display: block;">
+                                <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                                    Logout
+                                </a>
+                            </div>
                             <script>
                                 function logOut() {
                                     deleteCookie("username")
