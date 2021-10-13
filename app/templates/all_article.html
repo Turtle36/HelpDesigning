@@ -29,6 +29,8 @@
             if (username !== "") {
             } else {
                 document.getElementById("Username").innerHTML = "Anonymous";
+                document.getElementById("forAnonymous").style.display = "block";
+                document.getElementById("forNoAnonymous").style.display = "none";
             }
         }
     </script>
@@ -73,7 +75,7 @@
 
         <li class="nav-item">
             <a class="nav-link" href="/new/article">
-                <i class="fas fa-fw fa-file"></i>
+                <i class="fas fa-fw fa-plus-circle"></i>
                 <span>New Article</span></a>
         </li>
 
@@ -139,10 +141,29 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
-                            </a>
+                            <div id="forAnonymous" style="display: none;">
+                                <a class="dropdown-item" href="/login">
+                                    Login
+                                </a>
+                                <a class="dropdown-item" href="/sign_up">
+                                    Sign Up
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/">
+                                    Exit
+                                </a>
+                            </div>
+                            <div id="forNoAnonymous" style="display: block">
+                                <a class="dropdown-item" href="/profile">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
                             <script>
                                 function logOut() {
                                     deleteCookie("username")
