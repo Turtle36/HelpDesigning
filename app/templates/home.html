@@ -236,11 +236,11 @@
                             <!-- Card Body -->
                             <div class="card-body">
                                 <div style="overflow-y: auto; overflow-x: auto; display: block; height: 420px;">
-                                    <table class="w3-table w3-bordered w3-border" id="article">
+                                    <table class="w3-table w3-bordered w3-border w3-centered" id="article">
                                         <thead>
                                         <tr class="bg-primary" style="color: black;">
                                             <th>Title</th>
-                                            <th colspan="2">Actions</th>
+                                            <th>Actions</th>
                                             <th>Customers</th>
                                         </tr>
                                         </thead>
@@ -249,8 +249,6 @@
                                             <tr>
                                                 <td>{{ articles.name }}</td>
                                                 <td style="display: none;">{{ articles.user }}</td>
-                                                <td><a onclick="deleteArticle('{{ articles.name }}')"
-                                                       class="text-decoration-none text-danger">Delete</a></td>
                                                 <td><a onclick="editArticle('{{ articles.name }}')"
                                                        class="text-decoration-none text-success">Edit</a></td>
                                                 <td>{{ articles.customer }}</td>

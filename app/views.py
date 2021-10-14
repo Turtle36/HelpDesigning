@@ -8,17 +8,6 @@ def profile():
     return render_template("profile.html")
 
 
-@app.route("/delete/article/<name>")
-def delete(name):
-    row = Article.query.filter_by(name=name)
-
-    row.delete()
-
-    db.session.commit()
-
-    return redirect(url_for("home"))
-
-
 @app.route("/home")
 def home():
     customers = Customers.query.all()
