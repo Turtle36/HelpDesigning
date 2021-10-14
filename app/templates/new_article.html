@@ -238,7 +238,7 @@
                                             var reader = new FileReader();
 
                                             reader.onloadend = function () {
-                                                preview.value += "IMAGE" + reader.result;
+                                                preview.value += "\n" + reader.result + "Picture" + "\n";
                                             }
 
                                             if (file) {

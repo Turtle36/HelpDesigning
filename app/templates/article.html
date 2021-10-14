@@ -48,7 +48,7 @@
                 var content = document.getElementById("content");
 
                 content_replace = content.innerHTML;
-                content_replace = content_replace.replace(/IMAGE(.?[^\s]+)/g, "<img src=\"$1\">")
+                content_replace = content_replace.replace(/([^\s]+)Picture/g, "<img src=\"$1\">")
                 document.getElementById("content").innerHTML = content_replace;
                 content_replace_2 = document.getElementById("content").innerHTML;
                 content_replace_2 = content_replace_2.replace(/\n/g, "<br>")
