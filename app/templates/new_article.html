@@ -218,6 +218,34 @@
                                     <input class="color" value="#ffffff" type="color" name="background"
                                            id="background"/>
                                     <input type="text" name="creator" id="creator" style="display: none;" readonly>
+                                    <br><br>
+                                    <div class="fileinputs">
+                                        <input type="file" id="file" onchange="previewFile()" style="width: 100%; height: 40px;" class="file" name="file"
+                                               accept="image/png"/>
+                                        <div class="fakefile">
+                                            <div style="border: 1px solid black; width: 100%; height: 40px;margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%); padding-left: 6px;">
+                                                <none style="margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%);">
+                                                    Photos
+                                                </none>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <script>
+                                        function previewFile() {
+                                            var preview = document.getElementById("Content")
+                                            var file = document.getElementById("file").files[0];
+                                            var reader = new FileReader();
+
+                                            reader.onloadend = function () {
+                                                preview.value += "IMAGE" + reader.result;
+                                            }
+
+                                            if (file) {
+                                                reader.readAsDataURL(file);
+                                            }
+                                        }
+                                    </script>
                                     <button type="submit">Create</button>
                                 </div>
                             </form>

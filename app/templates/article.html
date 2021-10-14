@@ -6,7 +6,8 @@
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
     <!--ads--->
-    <script data-ad-client="ca-pub-9082544303103022" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script data-ad-client="ca-pub-9082544303103022" async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -44,14 +45,15 @@
                 </div>
             </div>
             <script>
-//              var content = document.getElementById("content");
+                var content = document.getElementById("content");
 
-//              content_replace = content.innerHTML;
-//              content_replace = content_replace.replace(/\n/g, "<br>")
-//              content_replace = content_replace.replace(/(https?:\/\/[^\s]+)/g, "<p class='Text-primary'>$1</p>")
-//              content_replace = content_replace.replace(/(http?:\/\/[^\s]+)/g, "<p class='Text-primary'>$1</p>")
-//              content_replace = content_replace.replace(/(www?.[^\s]+)/g, "<p class='Text-primary'>$1</p>")
-//              document.getElementById("content").innerHTML = content_replace;
+                content_replace = content.innerHTML;
+                content_replace = content_replace.replace(/IMAGE(.?[^\s]+)/g, "<img src=\"$1\">")
+                document.getElementById("content").innerHTML = content_replace;
+                content_replace_2 = document.getElementById("content").innerHTML;
+                content_replace_2 = content_replace_2.replace(/\n/g, "<br>")
+
+                document.getElementById("content").innerHTML = content_replace_2;
             </script>
         </div>
     </div>
