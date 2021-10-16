@@ -3,11 +3,6 @@ from app.main import app
 from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers, news as News
 
 
-@app.route("/profile")
-def profile():
-    return render_template("profile.html")
-
-
 @app.route("/home")
 def home():
     customers = Customers.query.all()
