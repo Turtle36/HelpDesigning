@@ -131,7 +131,7 @@ def new():
         exist = db.session.query(db.exists().where(Article.name == name)).scalar()
 
         if exist == True:
-            return render_template("error_already_exist.html", name=name)
+            return render_template("alert_error.html", alert="Name \"%s\" Already Exist" % name, route="new/article")
 
         if name == "":
             return False
