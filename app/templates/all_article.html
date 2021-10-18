@@ -19,6 +19,13 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
 
+    <!--ajax-->
+    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+
     <!-- Custom styles for this template-->
     <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
     <script>
@@ -186,6 +193,7 @@
                     <div
                             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Article</h6>
+                        <button id="refresh" class="right btn btn-outline-primary">Refresh</button>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
@@ -213,6 +221,8 @@
                                 </tbody>
                             </table>
                         </div>
+                        <br><br>
+                        <h1 id="result"></h1>
                     </div>
                 </div>
             </div>
@@ -295,6 +305,18 @@
 <script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
 
+<script type=text/javascript>
+    $(function () {
+        $('button#refresh').bind('click', function () {
+            $.getJSON($SCRIPT_ROOT + '/server/', {
+                    ID: 11,
+            }, function (data) {
+                $("#result").text(data.ID);
+            });
+            return false;
+        });
+    });
+</script>
 </body>
 
 </html>

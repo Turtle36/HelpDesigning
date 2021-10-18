@@ -5,7 +5,8 @@ from sqlalchemy.schema import FetchedValue
 
 class article(db.Model):
     __tablename__ = 'article'
-    name = db.Column(String(), primary_key=True)  # Name | String
+    id = db.Column(INTEGER(), autoincrement=True, primary_key=True)
+    name = db.Column(String(), unique=True)  # Name | String
     content = db.Column(String())  # Content | String
     user = db.Column(String())  # User | String
     background = db.Column(String())  # Background | String
