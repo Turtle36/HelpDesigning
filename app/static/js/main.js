@@ -11,6 +11,7 @@ if (document.addEventListener) {
     }, false);
 }
 
+
 function editArticle(article_name) {
     open("/edit/article/" + article_name, "_top")
 }
