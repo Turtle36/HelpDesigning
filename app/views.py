@@ -41,12 +41,6 @@ def login():
     return render_template("login.html")
 
 
-@app.route('/server/')
-def server():
-    ID = request.args.get('ID', 0, type=int)
-    return jsonify(ID=ID)
-
-
 @app.route("/sign_up", methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
