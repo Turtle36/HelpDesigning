@@ -24,12 +24,10 @@
     <script>
         function checkCookie() {
             document.getElementById("username").value = getCookie("username");
-            document.getElementById("Username").innerHTML = getCookie("username");
 
             let username = getCookie("username");
             if (username !== "") {
             } else {
-                document.getElementById("Username").innerHTML = "Anonymous";
                 document.getElementById("username").value = "Anonymous";
                 document.getElementById("forAnonymous").style.display = "block";
                 document.getElementById("forNoAnonymous").style.display = "none";
@@ -167,13 +165,11 @@
                         </div>
                     </li>
 
-                    <div class="topbar-divider d-none d-sm-block"></div>
-
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="Username"></span>
+                            <i class="fas fa-user fa-fw"></i>
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
