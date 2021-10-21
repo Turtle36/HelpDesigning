@@ -8,10 +8,6 @@
     <script async custom-element="amp-auto-ads"
             src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
     </script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;900&amp;display=swap"
@@ -28,28 +24,6 @@
 
     <meta name="description"
           content="Internalium is website for creating article you can delete or edit article before doing activity login or sign up first."/>
-
-    <!-- Bootstrap core CSS -->
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
-
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="{{ url_for('static', filename='css/dashboard.css') }}" rel="stylesheet">
 
     <!--Check Cookie-->
     <script>
@@ -70,76 +44,46 @@
     <amp-auto-ads type="adsense"
                   data-ad-client="ca-pub-9082544303103022">
     </amp-auto-ads>
-    <div class="horizontal-menu">
-        <div class="left">
-            <script async
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9082544303103022"
-                    crossorigin="anonymous"></script>
-            <!-- vertical-ads -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9082544303103022"
-                 data-ad-slot="3704263213"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        <div class="right">
-            <script async
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9082544303103022"
-                    crossorigin="anonymous"></script>
-            <!-- vertical-ads -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9082544303103022"
-                 data-ad-slot="3704263213"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        <div class="container">
-            <div class="center"><h1 class="center">Internalium</h1></div>
-            <hr>
-            <div class="container py-4">
-                <div class="p-5 mb-4 bg-light rounded-3">
-                    <div class="container-fluid py-5">
-                        <h1 class="display-5 fw-bold">Internalium</h1>
-                        <p class="col-md-8 fs-4">
-                            Internalium is website for creating article<br>
-                            You can delete or edit article<br>
-                        </p>
-                        <br>
-                        <button class="btn btn-outline-primary" onclick="demo()"><none id="TextButton">Try Demo</none></button>
-                    </div>
+    <div class="container">
+        <div class="center"><h1 class="center">Internalium</h1></div>
+        <hr>
+        <div class="container py-4">
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <div class="container-fluid py-5">
+                    <h1 class="display-5 fw-bold">Internalium</h1>
+                    <p class="col-md-8 fs-4">
+                        Internalium is website for creating article<br>
+                        You can delete or edit article<br>
+                    </p>
+                    <br>
+                    <button class="btn btn-outline-primary" onclick="demo()">
+                        <none id="TextButton">Try Demo</none>
+                    </button>
                 </div>
-                <div class="p-5 mb-4 bg-light rounded-3">
-                    <div class="container-fluid py-5">
-                        <h2>Article</h2>
-                        <p>
-                            <img src="/image/gold.png" style="width: 100px; float: right;">
-                            Create a good articles for many customers
-                        </p>
-                        <button class="btn btn-outline-primary" onclick="AllArticle()">Show All
-                            Article
-                        </button>
-                        <br>
-                        <div class="container" id="allArticle" style="display: none;">
-                            <br><br>
-                            <div style="overflow-y: auto; overflow-x: auto; display: block; height: 70px;">
-                                <table class="w3-table-all bg-white">
-                                    {% for table in tables %}
-                                        <tr>
-                                            <td>{{ table.name }}</td>
-                                            <td><a class="Text-primary" href="/article/{{ table.name }}">Open</a>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                </table>
-                            </div>
+            </div>
+            <div class="p-5 mb-4 bg-light rounded-3">
+                <div class="container-fluid py-5">
+                    <h2>Article</h2>
+                    <p>
+                        <img src="/image/gold.png" style="width: 100px; float: right;">
+                        Create a good articles for many customers
+                    </p>
+                    <button class="btn btn-outline-primary" onclick="AllArticle()">Show All
+                        Article
+                    </button>
+                    <br>
+                    <div class="container" id="allArticle" style="display: none;">
+                        <br><br>
+                        <div style="overflow-y: auto; overflow-x: auto; display: block; height: 70px;">
+                            <table class="w3-table-all bg-white">
+                                {% for table in tables %}
+                                    <tr>
+                                        <td>{{ table.name }}</td>
+                                        <td><a class="Text-primary" href="/article/{{ table.name }}">Open</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
                         </div>
                     </div>
                 </div>
