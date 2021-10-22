@@ -230,7 +230,7 @@
                                             var reader = new FileReader();
 
                                             reader.onloadend = function () {
-                                                preview.value += "\n" + "(" + reader.result + ")" + "[Picture]" + "\n\n";
+                                                preview.value += "\n" + reader.result + "[Picture]" + "\n\n";
 
                                                 var textarea = document.getElementById('Content');
                                                 textarea.scrollTop = textarea.scrollHeight;
