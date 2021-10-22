@@ -47,7 +47,7 @@
             <script>
                 // replace 1
                 content_replace = document.getElementById("content").innerHTML;
-                content_replace = content_replace.replace(/(\([^\s]+\))\[Picture]/g, "<img src=\"$1\">")
+                content_replace = content_replace.replace(/([^\s]+)Picture/g, "<img src=\"$1\">")
 
                 document.getElementById("content").innerHTML = content_replace;
 
