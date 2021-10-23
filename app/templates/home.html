@@ -212,70 +212,67 @@
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Home</h1>
                 </div>
-                <!-- Content Row -->
-                <div class="row">
 
-                    <!-- Area Chart -->
-                    <div class="col-xl-8 col-lg-7">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Article</h6>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <div style="overflow-y: auto; overflow-x: auto; display: block; height: 420px;">
-                                    <table class="w3-table w3-bordered w3-border w3-centered" id="article">
-                                        <thead>
-                                        <tr class="bg-primary" style="color: black;">
-                                            <th>Title</th>
-                                            <th>Actions</th>
-                                            <th>Customers</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {% for articles in article %}
-                                            <tr>
-                                                <td>{{ articles.name }}</td>
-                                                <td style="display: none;">{{ articles.user }}</td>
-                                                <td><a onclick="editArticle('{{ articles.name }}')"
-                                                       class="text-decoration-none text-success">Edit</a></td>
-                                                <td>{{ articles.customer }}</td>
-                                            </tr>
-                                        {% endfor %}
-                                        </tbody>
-                                    </table>
+                <!-- Earnings (Monthly) Card Example -->
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Customers
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <input type="hidden" id="username" name="username">
-
-                    <!-- Pie Chart -->
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Customers</h6>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body" style="overflow: auto;">
                                 <table id="customers">
                                     <tbody>
                                     {% for customer in customers %}
                                         <tr>
-                                            <td>{{ customer.customer }}</td>
+                                            <td class="h5 mb-0 font-weight-bold text-gray-800">{{ customer.customer }}</td>
                                             <td style="display: none;">{{ customer.username }}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="col-auto">
+                                <i class="fas fa-users fa-2x text-gray-300"></i>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <br><br>
+                <!-- Content Row -->
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div
+                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Article</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div style="overflow-y: auto; overflow-x: auto; display: block; height: 420px;">
+                            <table class="w3-table w3-bordered w3-border w3-centered" id="article">
+                                <thead>
+                                <tr class="bg-primary" style="color: black;">
+                                    <th>Title</th>
+                                    <th>Actions</th>
+                                    <th>Customers</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for articles in article %}
+                                    <tr>
+                                        <td>{{ articles.name }}</td>
+                                        <td style="display: none;">{{ articles.user }}</td>
+                                        <td><a onclick="editArticle('{{ articles.name }}')"
+                                               class="text-decoration-none text-success">Edit</a></td>
+                                        <td>{{ articles.customer }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="username" name="username">
                 </div>
             </div>
         </div>
