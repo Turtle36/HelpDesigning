@@ -24,9 +24,12 @@
     <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
     <script>
         function checkCookie() {
-            document.getElementById("creator").value = getCookie("username");
+            var USERNAME = getCookie("username");
+            USERNAME = USERNAME.replace(/.*𝖆(.*)/gm, "__usm")
 
-            let username = getCookie("username");
+            document.getElementById("creator").value = USERNAME;
+
+            let username = getCookie("__usm");
             if (username !== "") {
             } else {
                 open("/login", "_top")
