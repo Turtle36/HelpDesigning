@@ -134,10 +134,6 @@
         padding: 8px;
     }
 
-    .center-text {
-        text-align: center;
-    }
-
     .description {
         color: #777;
     }
@@ -440,54 +436,6 @@
         width: 100%;
     }
 
-    .news {
-        border: 1px solid black;
-        overflow: auto;
-    }
-
-    .news .image {
-        height: 50%;
-        width: 50%;
-    }
-
-    .news .center {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
-    }
-
-    .center {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
-    }
-
-    .news .title {
-        font-size: medium;
-    }
-
-    .news .text {
-        text-decoration: none;
-        padding: 3px 3px;
-    }
-
-    .news .link {
-        padding: 3px 3px;
-        color: royalblue;
-    }
-
-    .news .comment {
-        text-decoration: none;
-        padding: 3px 3px;
-        color: rgba(148, 148, 148, 0.76);
-    }
-
-    .comment {
-        color: rgba(148, 148, 148, 0.76);
-    }
-
     .horizontal-line {
         position: relative;
         width: 2px;
@@ -543,12 +491,18 @@
         float: right;
     }
 
-    .news .date {
-        text-decoration: none;
-        padding: 3px 3px;
-        color: rgba(148, 148, 148, 0.89);
-        text-transform: lowercase;
-        float: right;
+    .horizontal-center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .vertical-center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
     }
 
     /* Full-width input fields */
@@ -595,24 +549,6 @@
     .container {
         padding: 16px;
     }
-
-    .btn-search {
-        background: #ffffff;
-        border: 1px solid black;
-    }
-
-    .Text-decoration-none {
-        text-decoration: none;
-    }
-
-    .header {
-        height: 50px;
-    }
-
-    .bg-black {
-        background: black;
-    }
-
 
     /* The Modal (background) */
     .masuk {
@@ -664,23 +600,6 @@
         height: 100%;
     }
 
-    .message-link {
-        color: royalblue;
-        text-decoration: none;
-    }
-
-    .btn-message {
-        background-color: royalblue;
-        border: 1px solid black;
-        cursor: pointer;
-    }
-
-    .message {
-        position: relative;
-        bottom: 5px;
-        display: inline;
-    }
-
     .Border-1px {
         border: 1px solid black;
     }
@@ -690,40 +609,4 @@
         background-color: white;
         cursor: pointer;
     }
-
-    .Button {
-        border: 1px solid black;
-        color: black;
-        background-color: white;
-        cursor: pointer;
-    }
-
-
-    .Title h1 {
-        font-size: 48px;
-        font-family: "Montserrat", sans-serif;
-        font-weight: 200;
-
-        text-align: center;
-        line-height: 59px;
-
-        padding: 0 64px;
-        margin: 0;
-    }
-
-    .Title {
-        display: grid;
-        justify-items: center;
-        grid-row-gap: 23px;
-        width: 100%;
-        padding-top: 25px;
-    }
-
-    .gold {
-        font-weight: 900;
-
-        color: #f2c94c;
-        text-shadow: 4px 0 0 #fff, 0 0 100px #f2c94c;
-    }
-
 }
