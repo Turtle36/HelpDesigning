@@ -11,6 +11,7 @@
     <title>Internalium</title>
 
     <!--ads--->
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
     <script data-ad-client="ca-pub-9082544303103022" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -72,10 +73,17 @@
 </head>
 
 <body id="page-top" onload="checkCookie()">
+<amp-ad width="100vw" height="320"
+     type="adsense"
+     data-ad-client="ca-pub-9082544303103022"
+     data-ad-slot="8857706916"
+     data-auto-format="rspv"
+     data-full-width="">
+  <div overflow=""></div>
+</amp-ad>
 
 <!-- Page Wrapper -->
 <div id="wrapper">
-
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -150,17 +158,17 @@
                                 Alert
                             </h6>
                             {% for News in news %}
-                                <a class="dropdown-item d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-info text-white"></i>
-                                        </div>
+                            <a class="dropdown-item d-flex align-items-center">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-primary">
+                                        <i class="fas fa-info text-white"></i>
                                     </div>
-                                    <div>
-                                        <div class="small text-gray-500">{{ News.date }}</div>
-                                        {{ News.alert }}
-                                    </div>
-                                </a>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">{{ News.date }}</div>
+                                    {{ News.alert }}
+                                </div>
+                            </a>
                             {% endfor %}
                         </div>
                     </li>
@@ -223,10 +231,10 @@
                                 <table id="customers">
                                     <tbody>
                                     {% for customer in customers %}
-                                        <tr>
-                                            <td class="h5 mb-0 font-weight-bold text-gray-800">{{ customer.customer }}</td>
-                                            <td style="display: none;">{{ customer.username }}</td>
-                                        </tr>
+                                    <tr>
+                                        <td class="h5 mb-0 font-weight-bold text-gray-800">{{ customer.customer }}</td>
+                                        <td style="display: none;">{{ customer.username }}</td>
+                                    </tr>
                                     {% endfor %}
                                     </tbody>
                                 </table>
@@ -258,13 +266,13 @@
                                 </thead>
                                 <tbody>
                                 {% for articles in article %}
-                                    <tr>
-                                        <td>{{ articles.name }}</td>
-                                        <td style="display: none;">{{ articles.user }}</td>
-                                        <td><a onclick="editArticle('{{ articles.name }}')"
-                                               class="text-decoration-none text-success">Edit</a></td>
-                                        <td>{{ articles.customer }}</td>
-                                    </tr>
+                                <tr>
+                                    <td>{{ articles.name }}</td>
+                                    <td style="display: none;">{{ articles.user }}</td>
+                                    <td><a onclick="editArticle('{{ articles.name }}')"
+                                           class="text-decoration-none text-success">Edit</a></td>
+                                    <td>{{ articles.customer }}</td>
+                                </tr>
                                 {% endfor %}
                                 </tbody>
                             </table>
