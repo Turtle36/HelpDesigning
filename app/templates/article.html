@@ -1,0 +1,81 @@
+<html>
+<head>
+    <title>{{ name }} | Internalium</title>
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('icon_png') }}" type="image/icon type">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <!--ads--->
+    <script data-ad-client="ca-pub-9082544303103022" async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        .Content {
+            border: none;
+            background-color: transparent;
+            resize: none;
+            outline: none;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="Article" style="display: block;">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <span>{{ name }}</span>
+                </h4>
+            </div>
+            <div id="packtpubcollapse2" class="panel-collapse">
+                <div class="panel-body"
+                     style="background: {% for tables in table %}{{ tables.background }}{% endfor %};">
+                    <div id="content">
+                        {% for tables in table %}
+                            {{ tables.content }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <script>
+                // replace 1
+                content_replace = document.getElementById("content").innerHTML;
+                content_replace = content_replace.replace(/([^\s]+)Picture/g, "<img src=\"$1\">")
+
+                document.getElementById("content").innerHTML = content_replace;
+
+
+                // replace 2
+                content_replace_2 = document.getElementById("content").innerHTML;
+                content_replace_2 = content_replace_2.replace(/\n/g, "<br>")
+
+                document.getElementById("content").innerHTML = content_replace_2;
+            </script>
+        </div>
+    </div>
+    <strong>By {% for tables in table %}{{ tables.user }}{% endfor %}</strong>
+</div>
+<div id="notFound" style="display: none;">
+    <div class="container">
+        <p style="color: red;">Article Not Found</p>
+    </div>
+</div>
+<script>
+    var a = "{% for tables in table %}{{ tables.content }}{% endfor %}"
+    if (a === "") {
+        document.getElementById("Article").style.display = "none";
+        document.getElementById("notFound").style.display = "block";
+    } else {
+        document.getElementById("Article").style.display = "block";
+        document.getElementById("notFound").style.display = "none";
+    }
+</script>
+</body>
+</html>
