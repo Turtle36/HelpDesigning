@@ -16,6 +16,10 @@ function editArticle(article_name) {
     open("/edit/article/" + article_name, "_top")
 }
 
+function deleteArticle(article_name) {
+    open("/delete/article/" + article_name, "_top")
+}
+
 function deleteCookie(cname) {
     const d = new Date(0);
     d.setTime(d.getTime());
