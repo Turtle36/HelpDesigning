@@ -151,17 +151,17 @@
                                 Alert
                             </h6>
                             {% for News in news %}
-                            <a class="dropdown-item d-flex align-items-center">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-primary">
-                                        <i class="fas fa-info text-white"></i>
+                                <a class="dropdown-item d-flex align-items-center">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-info text-white"></i>
+                                        </div>
                                     </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">{{ News.date }}</div>
-                                    {{ News.alert }}
-                                </div>
-                            </a>
+                                    <div>
+                                        <div class="small text-gray-500">{{ News.date }}</div>
+                                        {{ News.alert }}
+                                    </div>
+                                </a>
                             {% endfor %}
                         </div>
                     </li>
@@ -224,10 +224,10 @@
                                 <table id="customers">
                                     <tbody>
                                     {% for customer in customers %}
-                                    <tr>
-                                        <td class="h5 mb-0 font-weight-bold text-gray-800">{{ customer.customer }}</td>
-                                        <td style="display: none;">{{ customer.username }}</td>
-                                    </tr>
+                                        <tr>
+                                            <td class="h5 mb-0 font-weight-bold text-gray-800">{{ customer.customer }}</td>
+                                            <td style="display: none;">{{ customer.username }}</td>
+                                        </tr>
                                     {% endfor %}
                                     </tbody>
                                 </table>
@@ -253,19 +253,23 @@
                                 <thead>
                                 <tr class="bg-primary" style="color: black;">
                                     <th>Title</th>
-                                    <th>Actions</th>
+                                    <th colspan="2">Actions</th>
                                     <th>Customers</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 {% for articles in article %}
-                                <tr>
-                                    <td>{{ articles.name }}</td>
-                                    <td style="display: none;">{{ articles.user }}</td>
-                                    <td><a onclick="editArticle('{{ articles.name }}')"
-                                           class="text-decoration-none text-success">Edit</a></td>
-                                    <td>{{ articles.customer }}</td>
-                                </tr>
+                                    <tr>
+                                        <td>{{ articles.name }}</td>
+                                        <td style="display: none;">{{ articles.user }}</td>
+                                        <td><a onclick="editArticle('{{ articles.name }}')"
+                                               class="text-decoration-none text-success">Edit</a></td>
+                                        <td><a onclick="deleteArticle('{{ articles.name }}')"
+                                               class="text-decoration-none text-danger">
+                                            Delete
+                                        </a></td>
+                                        <td>{{ articles.customer }}</td>
+                                    </tr>
                                 {% endfor %}
                                 </tbody>
                             </table>

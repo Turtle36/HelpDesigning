@@ -3,6 +3,19 @@ from app.main import app
 from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers, news as News
 
 
+@app.route("/delete/article/<name>")
+def delete(name):
+    row = Article.query.filter_by(name=name)
+    for rows in row:
+        Customer = Customers.query.filter_by(username=rows.user)
+        for customers in Customer:
+            customers.customer -= rows.customer
+            Article.query.filter_by(name=name).delete()
+            db.session.commit()
+
+            return redirect(url_for("home"))
+
+
 @app.route("/home")
 def home():
     customers = Customers.query.all()
