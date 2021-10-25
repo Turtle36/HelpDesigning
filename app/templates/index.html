@@ -23,21 +23,19 @@
     <link href="https://getbootstrap.com/docs/5.0/examples/dashboard/" rel="canonical">
 
     <meta name="description"
-          content="Internalium is website for creating article you can delete or edit article before doing activity login or sign up first."/>
+          content="Internalium is website for creating article you can edit your article before doing activity login or sign up first."/>
 
     <!--Check Cookie-->
     <script>
         function checkCookie() {
             let username = getCookie("__usm");
             if (username !== "") {
-                document.getElementById("TextButton").innerHTML = "Home";
+                document.getElementById("homeButton").style.display = "block";
             } else {
+                document.getElementById("loginSignup").style.display = "block";
             }
         }
     </script>
-
-    <!--js-->
-    <script src="https://www.w3schools.com/w3js/w3.js"></script>
 </head>
 <body onload="checkCookie()">
 <div id="body">
@@ -53,39 +51,39 @@
                     <h1 class="display-5 fw-bold">Internalium</h1>
                     <p class="col-md-8 fs-4">
                         Internalium is website for creating article<br>
-                        You can delete or edit article<br>
+                        You can edit your article<br>
                     </p>
                     <br>
-                    <button class="btn btn-outline-primary" onclick="demo()">
-                        <none id="TextButton">Try Demo</none>
-                    </button>
+                    <div id="homeButton" style="display: none;">
+                        <button class="btn btn-primary" onclick="home()">Home</button>
+                    </div>
+                    <div id="loginSignup" style="display: none;">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <button class="btn btn-primary" onclick="signUp()">
+                                    Sign Up
+                                </button>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <button class="btn btn-primary" onclick="login()">
+                                    Login
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="p-5 mb-4 bg-light rounded-3">
                 <div class="container-fluid py-5">
                     <h2>Article</h2>
                     <p>
-                        <img src="/image/gold.png" style="width: 100px; float: right;">
-                        Create a good articles for many customers
+                        <img src="/image/article.png" style="width: 100px; float: right;">
+                        Click button in below for see all article
                     </p>
                     <button class="btn btn-outline-primary" onclick="AllArticle()">Show All
                         Article
                     </button>
-                    <br>
-                    <div class="container" id="allArticle" style="display: none;">
-                        <br><br>
-                        <div style="overflow-y: auto; overflow-x: auto; display: block; height: 70px;">
-                            <table class="w3-table-all bg-white">
-                                {% for table in tables %}
-                                    <tr>
-                                        <td>{{ table.name }}</td>
-                                        <td><a class="Text-primary" href="/article/{{ table.name }}">Open</a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </table>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -104,7 +102,7 @@
         open("/sign_up", "_top")
     }
 
-    function demo() {
+    function home() {
         open("/home", "_top")
     }
 </script>

@@ -15,3 +15,8 @@ def gold_png():
 @app.route("/image/user.png")
 def user_png():
     return redirect(url_for("static", filename='img/png/user.png'))
+
+
+@app.route("/image/article.png")
+def article_png():
+    return redirect(url_for("static", filename='img/png/article.png'))
