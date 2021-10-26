@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="/image/icon.png">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+        <meta name="description"
+          content="Create a good article for customers."/>
+
+    <title>Internalium</title>
+
+    <!--ads--->
+    <script data-ad-client="ca-pub-9082544303103022" async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+    <!-- Custom fonts for this template-->
+    <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <script>
+        function checkCookie() {
+            var USERNAME = getCookie("__usm");
+            USERNAME = USERNAME.replace(/.*uS3r(.*)/gm, "$1")
+
+            document.getElementById("username").value = USERNAME;
+
+            let username = getCookie("__usm");
+            if (username !== "") {
+            } else {
+                document.getElementById("username").value = "Anonymous";
+                document.getElementById("forAnonymous").style.display = "block";
+                document.getElementById("forNoAnonymous").style.display = "none";
+            }
+
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("username");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("customers");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+            var input2, filter2, table2, tr2, td2, i2, txtValue2;
+            input2 = document.getElementById("username");
+            filter2 = input2.value.toUpperCase();
+            table2 = document.getElementById("article");
+            tr2 = table2.getElementsByTagName("tr");
+
+            for (i2 = 0; i2 < tr2.length; i2++) {
+                td2 = tr2[i2].getElementsByTagName("td")[1];
+                if (td2) {
+                    txtValue2 = td2.textContent || td2.innerText;
+                    if (txtValue2.toUpperCase().indexOf(filter2) > -1) {
+                        tr2[i2].style.display = "";
+                    } else {
+                        tr2[i2].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body id="page-top" onload="checkCookie()">
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
+            <div class="sidebar-brand-text mx-3"><small>Internalium</small></div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="/home">
+                <i class="fas fa-fw fa-home"></i>
+                <span>Home</span></a>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Article
+        </div>
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="/article">
+                <i class="fas fa-fw fa-file"></i>
+                <span>Article</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/new/article">
+                <i class="fas fa-fw fa-plus-circle"></i>
+                <span>New Article</span></a>
+        </li>
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+    </ul>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Nav Item - Alerts -->
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" id="alertsDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-bell fa-fw"></i>
+                            <!-- Counter - Alerts -->
+                        </a>
+                        <!-- Dropdown - Alerts -->
+                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="alertsDropdown">
+                            <h6 class="dropdown-header">
+                                Alert
+                            </h6>
+                            {% for News in news %}
+                                <a class="dropdown-item d-flex align-items-center">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-info text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="small text-gray-500">{{ News.date }}</div>
+                                        {{ News.alert }}
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </li>
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user fa-fw"></i>
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+                            <div id="forAnonymous" style="display: none;">
+                                <a class="dropdown-item" href="/login">
+                                    Login
+                                </a>
+                                <a class="dropdown-item" href="/sign_up">
+                                    Sign Up
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/">
+                                    Exit
+                                </a>
+                            </div>
+                            <div id="forNoAnonymous" style="display: block;">
+                                <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                                    Logout
+                                </a>
+                            </div>
+                            <script>
+                                function logOut() {
+                                    deleteCookie("__usm")
+                                    open("/", "_top")
+                                }
+                            </script>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Home</h1>
+                </div>
+
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Customers
+                                </div>
+                                <table id="customers">
+                                    <tbody>
+                                    {% for customer in customers %}
+                                        <tr>
+                                            <td class="h5 mb-0 font-weight-bold text-gray-800">{{ customer.customer }}</td>
+                                            <td style="display: none;">{{ customer.username }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-users fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <!-- Content Row -->
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div
+                            class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Article</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div style="overflow-y: auto; overflow-x: auto; display: block; height: 420px;">
+                            <table class="w3-table w3-bordered w3-border w3-centered" id="article">
+                                <thead>
+                                <tr class="bg-primary" style="color: black;">
+                                    <th>Title</th>
+                                    <th colspan="2">Actions</th>
+                                    <th>Customers</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for articles in article %}
+                                    <tr>
+                                        <td>{{ articles.name }}</td>
+                                        <td style="display: none;">{{ articles.user }}</td>
+                                        <td><a onclick="editArticle('{{ articles.name }}')"
+                                               class="text-decoration-none text-success">Edit</a></td>
+                                        <td><a onclick="deleteArticle('{{ articles.name }}')"
+                                               class="text-decoration-none text-danger">
+                                            Delete
+                                        </a></td>
+                                        <td>{{ articles.customer }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="username" name="username">
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <script async
+                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9082544303103022"
+                        crossorigin="anonymous"></script>
+                <!-- horizontal-ads -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-9082544303103022"
+                     data-ad-slot="8857706916"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-danger" onclick="logOut()">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+
+<!-- Page level plugins -->
+<script src="{{ url_for('static', filename='vendor/chart.js/Chart.min.js') }}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
+<script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
+</body>
+
+</html>
