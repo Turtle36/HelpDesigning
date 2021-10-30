@@ -20,3 +20,8 @@ def user_png():
 @app.route("/image/article.png")
 def article_png():
     return redirect(url_for("static", filename='img/png/article.png'))
+
+
+@app.route("/image/icon.ico")
+def icon_ico():
+    return redirect(url_for("static", filename='img/ico/icon.ico'))
