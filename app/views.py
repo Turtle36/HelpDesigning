@@ -121,13 +121,13 @@ def edit(name):
 
         db.session.commit()
 
-        return redirect("/article/%s" % (name))
+        return redirect("/article/%s" % (title))
 
     table = Article.query.filter_by(name=name)
 
     for tables in table:
         content = tables.content
-        title = tables.title
+        title = tables.name
         background = tables.background
 
         news = News.query.all()
