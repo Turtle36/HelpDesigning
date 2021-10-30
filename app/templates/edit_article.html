@@ -196,6 +196,10 @@
                             <form class="container" method="post" name="editArticleForm" id="editArticleForm"
                                   onsubmit="return validateForm()">
                                 <div class="container">
+                                    <label for="title"><b>Title</b></label>
+                                    <input type="text" value="{{ title }}" placeholder="Please enter a title" name="title" id="title"
+                                           maxlength="50">
+
                                     <label for="content"><b>Content</b></label><br>
                                     <textarea rows="15" placeholder="Please enter a content"
                                               style="width: 100%; resize: none; outline: none;"

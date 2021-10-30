@@ -111,11 +111,13 @@ def article(name):
 @app.route("/edit/article/<name>", methods=['GET', 'POST'])
 def edit(name):
     if request.method == 'POST':
+        title = request.form['title']
         content = request.form['content']
 
         table = Article.query.filter_by(name=name)
         for tables in table:
             tables.content = content
+            tables.name = title
 
         db.session.commit()
 
@@ -125,11 +127,12 @@ def edit(name):
 
     for tables in table:
         content = tables.content
+        title = tables.title
         background = tables.background
 
         news = News.query.all()
 
-        return render_template("edit_article.html", name=name, tables=table, content=content, background=background,
+        return render_template("edit_article.html", name=name, title=title, tables=table, content=content, background=background,
                                news=news)
 
 
