@@ -109,10 +109,15 @@ def article(name):
 
 
 @app.route("/edit/article/<name>", methods=['GET', 'POST'])
-def edit(name):
+def edit_article(name):
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
+
+        exist = db.session.query(db.exists().where(Article.name == title)).scalar()
+
+        if exist == True:
+            return render_template("alert_error.html", alert="Name \"%s\" Already Exist" % title, route="edit/article/%s" % name)
 
         table = Article.query.filter_by(name=name)
         for tables in table:
@@ -132,12 +137,13 @@ def edit(name):
 
         news = News.query.all()
 
-        return render_template("edit_article.html", name=name, title=title, tables=table, content=content, background=background,
+        return render_template("edit_article.html", name=name, title=title, tables=table, content=content,
+                               background=background,
                                news=news)
 
 
 @app.route("/new/article", methods=['GET', 'POST'])
-def new():
+def new_article():
     if request.method == 'POST':
         content = request.form['content']
         name = request.form['title']
