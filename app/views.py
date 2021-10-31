@@ -3,17 +3,25 @@ from app.main import app
 from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers, news as News
 
 
-@app.route("/delete/article/<name>")
+@app.route("/delete/article/<name>", methods=['GET', 'POST'])
 def delete(name):
-    row = Article.query.filter_by(name=name)
-    for rows in row:
-        Customer = Customers.query.filter_by(username=rows.user)
-        for customers in Customer:
-            customers.customer -= rows.customer
-            Article.query.filter_by(name=name).delete()
-            db.session.commit()
+    if request.method == "POST":
+        row = Article.query.filter_by(name=name)
+        for rows in row:
+            Customer = Customers.query.filter_by(username=rows.user)
+            for customers in Customer:
+                customers.customer -= rows.customer
+                Article.query.filter_by(name=name).delete()
+                db.session.commit()
 
-            return redirect(url_for("home"))
+                return redirect(url_for("home"))
+
+    table = Article.query.filter_by(name=name)
+
+    for tables in table:
+        creator = tables.user
+
+        return render_template("delete_article.html", creator=creator)
 
 
 @app.route("/home")
@@ -134,10 +142,11 @@ def edit_article(name):
         content = tables.content
         title = tables.name
         background = tables.background
+        creator = tables.user
 
         news = News.query.all()
 
-        return render_template("edit_article.html", name=name, title=title, tables=table, content=content,
+        return render_template("edit_article.html", creator=creator, name=name, title=title, tables=table, content=content,
                                background=background,
                                news=news)
 

@@ -35,19 +35,6 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <script>
-        function checkCookie() {
-            let username = getCookie("__usm");
-            if (username !== "") {
-            } else {
-                open("/login", "_top")
-            }
-
-            var USERNAME = getCookie("__usm")
-            USERNAME = USERNAME.replace(/.*uS3r(.*)/gm, "$1")
-            document.getElementById("creator").value = USERNAME;
-        }
-    </script>
 </head>
 
 <body id="page-top" onload="checkCookie()">
@@ -324,6 +311,8 @@
     </div>
 </div>
 
+<input type="text" value="{{ creator }}" style="display: none;" id="creator">
+
 <!-- Bootstrap core JavaScript-->
 <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -341,5 +330,25 @@
 <script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
 
+<!--Check Cookie-->
+<script>
+    function checkCookie() {
+        let username = getCookie("__usm");
+        if (username !== "") {
+        } else {
+            open("/login", "_top")
+        }
+
+        var creator = document.getElementById("creator");
+
+        var USERNAME = getCookie("__usm");
+        USERNAME = USERNAME.replace(/.*uS3r(.*)/gm, "$1");
+
+        if (creator.value === USERNAME) {}
+        else {
+            open("/page-not-found", "_top")
+        }
+    }
+</script>
 </body>
 </html>
