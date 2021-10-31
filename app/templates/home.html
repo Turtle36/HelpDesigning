@@ -74,6 +74,10 @@
             }
         }
     </script>
+    <style>
+        .counter {
+        }
+    </style>
 </head>
 <body id="page-top" onload="checkCookie()">
 <!-- Page Wrapper -->
@@ -229,7 +233,9 @@
                                     <tbody>
                                     {% for customer in customers %}
                                         <tr>
-                                            <td class="h5 mb-0 font-weight-bold text-gray-800">{{ customer.customer }}</td>
+                                            <td class="h5 mb-0 font-weight-bold text-gray-800">
+                                                <div class="counter" data-target="{{ customer.customer }}">0</div>
+                                            </td>
                                             <td style="display: none;">{{ customer.username }}</td>
                                         </tr>
                                     {% endfor %}
@@ -352,6 +358,28 @@
 <!-- Page level custom scripts -->
 <script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
+
+<!--counter-->
+<script>
+    // Selector
+    const counters = document.querySelectorAll('.counter');
+    // Main function
+    for (let n of counters) {
+        const updateCount = () => {
+            const target = +n.getAttribute('data-target');
+            const count = +n.innerText;
+            const speed = 5000; // change animation speed here
+            const inc = target / speed;
+            if (count < target) {
+                n.innerText = Math.ceil(count + inc);
+                setTimeout(updateCount, 1);
+            } else {
+                n.innerText = target;
+            }
+        }
+        updateCount();
+    }
+</script>
 </body>
 
 </html>
