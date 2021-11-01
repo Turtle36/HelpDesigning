@@ -3,9 +3,9 @@ from app.main import app
 from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers, news as News
 
 
-@app.route("/.well-known/pki-validation/5EE9BF5C9F6ACF4AD9B2F33FFA42C570.txt")
+@app.route("/.well-known/pki-validation/0A6770CDC9D9E3410017F348A8613AF9.txt")
 def TXT():
-    return render_template("txt/5EE9BF5C9F6ACF4AD9B2F33FFA42C570.txt")
+    return render_template("txt/0A6770CDC9D9E3410017F348A8613AF9.txt")
 
 
 @app.route("/delete/article/<name>", methods=['GET', 'POST'])
