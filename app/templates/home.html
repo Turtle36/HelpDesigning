@@ -32,6 +32,7 @@
 
             let username = getCookie("__usm");
             if (username !== "") {
+                document.getElementById("block1").style.display = "none";
             } else {
                 document.getElementById("username").value = "Anonymous";
                 document.getElementById("forAnonymous").style.display = "block";
