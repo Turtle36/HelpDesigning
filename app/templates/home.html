@@ -36,6 +36,7 @@
                 document.getElementById("username").value = "Anonymous";
                 document.getElementById("forAnonymous").style.display = "block";
                 document.getElementById("forNoAnonymous").style.display = "none";
+                document.getElementById("block1").style.display = "block";
             }
 
             var input, filter, table, tr, td, i, txtValue;
@@ -126,6 +127,14 @@
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+
+        <!-- Sidebar Message -->
+        <div class="sidebar-card d-none d-lg-flex" id="block1" style="display: none;">
+            <img class="sidebar-card-illustration mb-2" src="/image/rocket.png">
+            <p class="text-center mb-2">Create an account for create article!</p>
+            <a class="btn btn-success btn-sm" href="/sign_up">Sign Up Now</a>
         </div>
     </ul>
 
