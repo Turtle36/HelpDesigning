@@ -23,59 +23,6 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <script>
-        function checkCookie() {
-            var USERNAME = getCookie("__usm");
-            USERNAME = USERNAME.replace(/.*uS3r(.*)/gm, "$1")
-
-            document.getElementById("username").value = USERNAME;
-
-            let username = getCookie("__usm");
-            if (username !== "") {
-                document.getElementById("block1").style.display = "none";
-            } else {
-                document.getElementById("username").value = "Anonymous";
-                document.getElementById("forAnonymous").style.display = "";
-                document.getElementById("forNoAnonymous").style.display = "none";
-                document.getElementById("block1").style.display = "";
-            }
-
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("username");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("customers");
-            tr = table.getElementsByTagName("tr");
-
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-            var input2, filter2, table2, tr2, td2, i2, txtValue2;
-            input2 = document.getElementById("username");
-            filter2 = input2.value.toUpperCase();
-            table2 = document.getElementById("article");
-            tr2 = table2.getElementsByTagName("tr");
-
-            for (i2 = 0; i2 < tr2.length; i2++) {
-                td2 = tr2[i2].getElementsByTagName("td")[1];
-                if (td2) {
-                    txtValue2 = td2.textContent || td2.innerText;
-                    if (txtValue2.toUpperCase().indexOf(filter2) > -1) {
-                        tr2[i2].style.display = "";
-                    } else {
-                        tr2[i2].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
     <style>
         .counter {
         }
@@ -132,10 +79,12 @@
 
 
         <!-- Sidebar Message -->
-        <div class="sidebar-card d-none d-lg-flex" id="block1" style="display: none;">
-            <img class="sidebar-card-illustration mb-2" src="/image/rocket.png">
-            <p class="text-center mb-2">Create an account for create article!</p>
-            <a class="btn btn-success btn-sm" href="/sign_up">Sign Up Now</a>
+        <div id="block1" style="display: none;">
+            <div class="sidebar-card d-none d-lg-flex">
+                <img class="sidebar-card-illustration mb-2" src="/image/rocket.png">
+                <p class="text-center mb-2">Create an account for create article!</p>
+                <a class="btn btn-success btn-sm" href="/sign_up">Sign Up Now</a>
+            </div>
         </div>
     </ul>
 
@@ -386,6 +335,58 @@
             }
         }
         updateCount();
+    }
+</script>
+<script>
+    function checkCookie() {
+        var USERNAME = getCookie("__usm");
+        USERNAME = USERNAME.replace(/.*uS3r(.*)/gm, "$1")
+
+        document.getElementById("username").value = USERNAME;
+
+        let username = getCookie("__usm");
+        if (username !== "") {
+        } else {
+            document.getElementById("username").value = "Anonymous";
+            document.getElementById("forAnonymous").style.display = "block";
+            document.getElementById("forNoAnonymous").style.display = "none";
+            document.getElementById("block1").style.display = "block";
+        }
+
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("username");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("customers");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+        var input2, filter2, table2, tr2, td2, i2, txtValue2;
+        input2 = document.getElementById("username");
+        filter2 = input2.value.toUpperCase();
+        table2 = document.getElementById("article");
+        tr2 = table2.getElementsByTagName("tr");
+
+        for (i2 = 0; i2 < tr2.length; i2++) {
+            td2 = tr2[i2].getElementsByTagName("td")[1];
+            if (td2) {
+                txtValue2 = td2.textContent || td2.innerText;
+                if (txtValue2.toUpperCase().indexOf(filter2) > -1) {
+                    tr2[i2].style.display = "";
+                } else {
+                    tr2[i2].style.display = "none";
+                }
+            }
+        }
     }
 </script>
 </body>
