@@ -140,18 +140,35 @@
                         </div>
                     </li>
 
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                        <a class="nav-link dropdown-toggle" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="username2"></span>
                             <i class="fas fa-user-circle fa-fw"></i>
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
-                                Logout
-                            </a>
+                            <div id="forAnonymous" style="display: none;">
+                                <a class="dropdown-item" href="/login">
+                                    Login
+                                </a>
+                                <a class="dropdown-item" href="/sign_up">
+                                    Sign Up
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/">
+                                    Exit
+                                </a>
+                            </div>
+                            <div id="forNoAnonymous" style="display: block;">
+                                <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                                    Logout
+                                </a>
+                            </div>
                             <script>
                                 function logOut() {
                                     deleteCookie("__usm")
@@ -187,7 +204,8 @@
                                   onsubmit="return validateForm()">
                                 <div class="container">
                                     <label for="title"><b>Title</b></label>
-                                    <input type="text" value="{{ title }}" placeholder="Please enter a title" name="title" id="title"
+                                    <input type="text" value="{{ title }}" placeholder="Please enter a title"
+                                           name="title" id="title"
                                            maxlength="50">
 
                                     <label for="content"><b>Content</b></label><br>
@@ -344,8 +362,10 @@
         var USERNAME = getCookie("__usm");
         USERNAME = USERNAME.replace(/.*uS3r(.*)/gm, "$1");
 
-        if (creator.value === USERNAME) {}
-        else {
+        document.getElementById("username2").innerHTML = USERNAME;
+
+        if (creator.value === USERNAME) {
+        } else {
             open("/page-not-found", "_top")
         }
     }

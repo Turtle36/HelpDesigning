@@ -28,6 +28,7 @@
             USERNAME = USERNAME.replace(/.*uS3r(.*)/gm, "$1")
 
             document.getElementById("creator").value = USERNAME;
+            document.getElementById("username2").innerHTML = USERNAME;
 
             let username = getCookie("__usm");
             if (username !== "") {
@@ -156,18 +157,35 @@
                         </div>
                     </li>
 
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="username2"></span>
                             <i class="fas fa-user-circle fa-fw"></i>
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
-                                Logout
-                            </a>
+                            <div id="forAnonymous" style="display: none;">
+                                <a class="dropdown-item" href="/login">
+                                    Login
+                                </a>
+                                <a class="dropdown-item" href="/sign_up">
+                                    Sign Up
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/">
+                                    Exit
+                                </a>
+                            </div>
+                            <div id="forNoAnonymous" style="display: block;">
+                                <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                                    Logout
+                                </a>
+                            </div>
                             <script>
                                 function logOut() {
                                     deleteCookie("__usm")
@@ -219,7 +237,8 @@
                                     <br><br>
                                     <div class="fileinputs">
                                         <input type="file" id="file" onchange="previewFile()"
-                                               style="width: 100%; height: 40px;" class="file" name="file" accept="image/*">
+                                               style="width: 100%; height: 40px;" class="file" name="file"
+                                               accept="image/*">
                                         <div class="fakefile">
                                             <div style="border: 1px solid black; width: 100%; height: 40px;margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%); padding-left: 6px;">
                                                 <none style="margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%);">
