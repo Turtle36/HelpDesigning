@@ -1,6 +1,6 @@
 from flask import *
 from app.main import app
-from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers, news as News
+from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers, news as News, earnings as Earnings
 
 
 @app.route("/delete/article/<name>", methods=['GET', 'POST'])
@@ -83,7 +83,9 @@ def sign_up():
             return False
 
         new_user = Sign_Up(username=username, password=password)
+        new_row_in_table_customer = Customers(customer=0, username=username)
         db.session.add(new_user)
+        db.session.add(new_row_in_table_customer)
         db.session.commit()
 
         return render_template("setCookie.html", username=username, password=password)
