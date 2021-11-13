@@ -1,5 +1,0 @@
-print("Pertambahan\n")
-a = int(input("Masukkan Bilangan Ke-1: "))
-b = int(input("Masukkan Bilangan Ke-2: "))
-hasil = int(a) + int(b)
-print("%s + %s = " % (a, b), hasil)
