@@ -5,13 +5,6 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
-if (document.addEventListener) {
-    document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-    }, false);
-}
-
-
 function editArticle(article_name) {
     open("/edit/article/" + article_name, "_top")
 }
