@@ -121,22 +121,15 @@ def article(name):
 @app.route("/edit/article/<name>", methods=['GET', 'POST'])
 def edit_article(name):
     if request.method == 'POST':
-        title = request.form['title']
         content = request.form['content']
-
-        exist = db.session.query(db.exists().where(Article.name == title)).scalar()
-
-        if exist == True:
-            return render_template("alert_error.html", alert="Name \"%s\" Already Exist" % title, route="edit/article/%s" % name)
 
         table = Article.query.filter_by(name=name)
         for tables in table:
             tables.content = content
-            tables.name = title
 
         db.session.commit()
 
-        return redirect("/article/%s" % (title))
+        return redirect("/article/%s" % (name))
 
     table = Article.query.filter_by(name=name)
 
