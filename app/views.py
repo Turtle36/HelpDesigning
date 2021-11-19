@@ -122,10 +122,12 @@ def article(name):
 def edit_article(name):
     if request.method == 'POST':
         content = request.form['content']
+        background = request.form['background']
 
         table = Article.query.filter_by(name=name)
         for tables in table:
             tables.content = content
+            tables.background = background
 
         db.session.commit()
 
