@@ -16,12 +16,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <style type="text/css">
-        .Content {
-            border: none;
-            background-color: transparent;
-            resize: none;
-            outline: none;
-            width: 100%;
+        .content {
+            background-color: {% for tables in table %} {{ tables.background }} {% endfor %};
         }
     </style>
 </head>
@@ -37,7 +33,7 @@
             <div id="packtpubcollapse2" class="panel-collapse">
                 <div class="panel-body"
                      style="background: {% for tables in table %}{{ tables.background }}{% endfor %};">
-                    <div id="content">
+                    <div id="content" class="content">
                         {% for tables in table %}
                             {{ tables.content }}
                         {% endfor %}

@@ -1,19 +1,27 @@
 from flask import *
 from app.main import app
-from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers, news as News
+from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers, news as News, earnings as Earnings
 
 
-@app.route("/delete/article/<name>")
+@app.route("/delete/article/<name>", methods=['GET', 'POST'])
 def delete(name):
-    row = Article.query.filter_by(name=name)
-    for rows in row:
-        Customer = Customers.query.filter_by(username=rows.user)
-        for customers in Customer:
-            customers.customer -= rows.customer
-            Article.query.filter_by(name=name).delete()
-            db.session.commit()
+    if request.method == "POST":
+        row = Article.query.filter_by(name=name)
+        for rows in row:
+            Customer = Customers.query.filter_by(username=rows.user)
+            for customers in Customer:
+                customers.customer -= rows.customer
+                Article.query.filter_by(name=name).delete()
+                db.session.commit()
 
-            return redirect(url_for("home"))
+                return redirect(url_for("home"))
+
+    table = Article.query.filter_by(name=name)
+
+    for tables in table:
+        creator = tables.user
+
+        return render_template("delete_article.html", creator=creator)
 
 
 @app.route("/home")
@@ -75,7 +83,9 @@ def sign_up():
             return False
 
         new_user = Sign_Up(username=username, password=password)
+        new_row_in_table_customer = Customers(customer=0, username=username)
         db.session.add(new_user)
+        db.session.add(new_row_in_table_customer)
         db.session.commit()
 
         return render_template("setCookie.html", username=username, password=password)
@@ -109,19 +119,19 @@ def article(name):
 
 
 @app.route("/edit/article/<name>", methods=['GET', 'POST'])
-def edit(name):
+def edit_article(name):
     if request.method == 'POST':
-        title = request.form['title']
         content = request.form['content']
+        background = request.form['background']
 
         table = Article.query.filter_by(name=name)
         for tables in table:
             tables.content = content
-            tables.name = title
+            tables.background = background
 
         db.session.commit()
 
-        return redirect("/article/%s" % (title))
+        return redirect("/article/%s" % (name))
 
     table = Article.query.filter_by(name=name)
 
@@ -129,15 +139,17 @@ def edit(name):
         content = tables.content
         title = tables.name
         background = tables.background
+        creator = tables.user
 
         news = News.query.all()
 
-        return render_template("edit_article.html", name=name, title=title, tables=table, content=content, background=background,
+        return render_template("edit_article.html", creator=creator, name=name, title=title, tables=table, content=content,
+                               background=background,
                                news=news)
 
 
 @app.route("/new/article", methods=['GET', 'POST'])
-def new():
+def new_article():
     if request.method == 'POST':
         content = request.form['content']
         name = request.form['title']
