@@ -216,60 +216,68 @@
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <div class="masuk d-block">
-                            <form class="container" method="post" name="newArticleForm" id="newArticleForm"
-                                  onsubmit="return validateForm()">
-                                <div class="container">
-                                    <label for="title"><b>Title</b></label>
-                                    <input type="text" placeholder="Please enter a title" name="title" id="title"
-                                           maxlength="50">
-
-                                    <label for="content"><b>Content</b></label><br>
-                                    <textarea rows="15" placeholder="Please enter a content"
-                                              style="width: 100%; resize: none; outline: none;"
-                                              name="content"
-                                              id="Content"></textarea>
-                                    <label for="background"><b>Background</b></label><br>
-                                    <input class="color" value="#ffffff" type="color" name="background"
-                                           id="background"/>
-                                    <input type="text" name="creator" id="creator"
-                                           style="display: none;" readonly>
-                                    <br><br>
-                                    <div class="fileinputs">
-                                        <input type="file" id="file" onchange="previewFile()"
-                                               style="width: 100%; height: 40px;" class="file" name="file"
-                                               accept="image/*">
-                                        <div class="fakefile">
-                                            <div style="border: 1px solid black; width: 100%; height: 40px;margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%); padding-left: 6px;">
-                                                <none style="margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%);">
-                                                    Picture
-                                                </none>
-                                            </div>
+                        <form method="post" name="newArticleForm" id="newArticleForm"
+                              onsubmit="return validateForm()">
+                            <div class="container">
+                                <label><b>Title</b></label><br>
+                                <input type="text" style="width: 100%;" placeholder="Please enter a title" name="title"
+                                       id="title"
+                                       maxlength="50">
+                                <br><br>
+                                <label><b>Content</b></label><br>
+                                <textarea rows="15" placeholder="Please enter a content"
+                                          style="width: 100%; resize: none; outline: none;"
+                                          name="content"
+                                          id="Content"></textarea>
+                                <input type="text" name="creator" id="creator"
+                                       style="display: none;" readonly>
+                                <br><br>
+                                <div class="fileinputs">
+                                    <input type="file" id="file" onchange="previewFile()"
+                                           style="width: 100%; height: 40px;" class="file" name="file"
+                                           accept="image/*">
+                                    <div class="fakefile">
+                                        <div style="border: 1px solid black; width: 100%; height: 40px;margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%); padding-left: 6px;">
+                                            <none style="margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%);">
+                                                Picture
+                                            </none>
                                         </div>
                                     </div>
-                                    <br><br>
-                                    <script>
-                                        function previewFile() {
-                                            var preview = document.getElementById("Content")
-                                            var file = document.getElementById("file").files[0];
-                                            var reader = new FileReader();
-
-                                            reader.onloadend = function () {
-                                                preview.value += "\n" + reader.result + "Picture" + "\n\n";
-
-                                                var textarea = document.getElementById('Content');
-                                                textarea.scrollTop = textarea.scrollHeight;
-                                            }
-
-                                            if (file) {
-                                                reader.readAsDataURL(file);
-                                            }
-                                        }
-                                    </script>
-                                    <button type="submit">Create</button>
                                 </div>
-                            </form>
-                        </div>
+                                <div class="fileinputs">
+                                    <input type="color" id="background"
+                                           style="width: 100%; height: 40px;" class="file" name="background"
+                                           accept="image/*">
+                                    <div class="fakefile">
+                                        <div style="border: 1px solid black; width: 100%; height: 40px;margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%); padding-left: 6px;">
+                                            <none style="margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%);">
+                                                Background
+                                            </none>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br><br>
+                                <script>
+                                    function previewFile() {
+                                        var preview = document.getElementById("Content")
+                                        var file = document.getElementById("file").files[0];
+                                        var reader = new FileReader();
+
+                                        reader.onloadend = function () {
+                                            preview.value += "\n" + reader.result + "Picture" + "\n\n";
+
+                                            var textarea = document.getElementById('Content');
+                                            textarea.scrollTop = textarea.scrollHeight;
+                                        }
+
+                                        if (file) {
+                                            reader.readAsDataURL(file);
+                                        }
+                                    }
+                                </script>
+                                <button class="btn btn-primary">Create</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

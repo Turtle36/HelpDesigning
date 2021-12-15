@@ -94,8 +94,7 @@ def sign_up():
 
 @app.route("/")
 def homepage():
-    tables = Article.query.all()
-    return render_template("index.html", tables=tables)
+    return redirect(url_for("home"))
 
 
 @app.route("/article")

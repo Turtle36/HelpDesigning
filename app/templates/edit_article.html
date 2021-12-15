@@ -20,10 +20,28 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
 
+    <!-- Custom styles for this template-->
+    <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <script>
+        function checkCookie() {
+            var USERNAME = getCookie("__usm");
+            USERNAME = USERNAME.replace(/.*uS3r(.*)/gm, "$1")
+
+            document.getElementById("creator").value = USERNAME;
+            document.getElementById("username2").innerHTML = USERNAME;
+
+            let username = getCookie("__usm");
+            if (username !== "") {
+            } else {
+                open("/login", "_top")
+            }
+        }
+    </script>
+
     <!--Validate form-->
     <script>
         function validateForm() {
-            let content = document.forms['editArticleForm']['content'].value;
+            let content = document.forms['newArticleForm']['content'].value;
 
             if (content === "" || content === null) {
                 document.getElementById("Content").style.border = "1px solid red";
@@ -31,10 +49,6 @@
             }
         }
     </script>
-
-
-    <!-- Custom styles for this template-->
-    <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
 </head>
 
 <body id="page-top" onload="checkCookie()">
@@ -77,18 +91,12 @@
                 <span>Article</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="/new/article">
                 <i class="fas fa-fw fa-plus-circle"></i>
                 <span>New Article</span></a>
         </li>
 
-
-        <li class="nav-item active">
-            <a class="nav-link">
-                <i class="fas fa-fw fa-pencil-alt"></i>
-                <span>Edit Article</span></a>
-        </li>
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -188,65 +196,74 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Edit Article</h1>
+                    <h1 class="h3 mb-0 text-gray-800">New Article</h1>
                 </div>
                 <!-- Area Chart -->
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div
                             class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Edit Article</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">New Article</h6>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <div class="masuk d-block">
-                            <form class="container" method="post" name="editArticleForm" id="editArticleForm"
-                                  onsubmit="return validateForm()">
-                                <div class="container">
-                                    <label for="content"><b>Content</b></label><br>
-                                    <textarea rows="15" placeholder="Please enter a content"
-                                              style="width: 100%; resize: none; outline: none;"
-                                              name="content"
-                                              id="Content">{{ content }}</textarea>
-                                    <label for="background"><b>Background</b></label><br>
-                                    <input class="color" value="{{ background }}" type="color" name="background"
-                                           id="background"/>
-                                    <br><br>
-                                    <div class="fileinputs">
-                                        <input type="file" id="file" onchange="previewFile()"
-                                               style="width: 100%; height: 40px;" class="file" name="file"
-                                               accept="image/*">
-                                        <div class="fakefile">
-                                            <div style="border: 1px solid black; width: 100%; height: 40px;margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%); padding-left: 6px;">
-                                                <none style="margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%);">
-                                                    Picture
-                                                </none>
-                                            </div>
+                        <form method="post" name="newArticleForm" id="newArticleForm"
+                              onsubmit="return validateForm()">
+                            <div class="container">
+                                <label><b>Content</b></label><br>
+                                <textarea rows="15" placeholder="Please enter a content"
+                                          style="width: 100%; resize: none; outline: none;"
+                                          name="content"
+                                          id="Content"></textarea>
+                                <input type="text" name="creator" id="creator"
+                                       style="display: none;" readonly>
+                                <br><br>
+                                <div class="fileinputs">
+                                    <input type="file" id="file" onchange="previewFile()"
+                                           style="width: 100%; height: 40px;" class="file" name="file"
+                                           accept="image/*">
+                                    <div class="fakefile">
+                                        <div style="border: 1px solid black; width: 100%; height: 40px;margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%); padding-left: 6px;">
+                                            <none style="margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%);">
+                                                Picture
+                                            </none>
                                         </div>
                                     </div>
-                                    <br><br>
-                                    <script>
-                                        function previewFile() {
-                                            var preview = document.getElementById("Content")
-                                            var file = document.getElementById("file").files[0];
-                                            var reader = new FileReader();
-
-                                            reader.onloadend = function () {
-                                                preview.value += "\n" + reader.result + "Picture" + "\n\n";
-                                                var textarea = document.getElementById('Content');
-                                                textarea.scrollTop = textarea.scrollHeight;
-                                            }
-
-
-                                            if (file) {
-                                                reader.readAsDataURL(file);
-                                            }
-                                        }
-                                    </script>
-                                    <button type="submit" class="btn btn-primary">Edit</button>
                                 </div>
-                            </form>
-                        </div>
+                                <div class="fileinputs">
+                                    <input type="color" id="background"
+                                           style="width: 100%; height: 40px;" class="file" name="background"
+                                           accept="image/*">
+                                    <div class="fakefile">
+                                        <div style="border: 1px solid black; width: 100%; height: 40px;margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%); padding-left: 6px;">
+                                            <none style="margin: 0;position: absolute;top: 50%;-ms-transform: translateY(-50%);transform: translateY(-50%);">
+                                                Background
+                                            </none>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br><br>
+                                <script>
+                                    function previewFile() {
+                                        var preview = document.getElementById("Content")
+                                        var file = document.getElementById("file").files[0];
+                                        var reader = new FileReader();
+
+                                        reader.onloadend = function () {
+                                            preview.value += "\n" + reader.result + "Picture" + "\n\n";
+
+                                            var textarea = document.getElementById('Content');
+                                            textarea.scrollTop = textarea.scrollHeight;
+                                        }
+
+                                        if (file) {
+                                            reader.readAsDataURL(file);
+                                        }
+                                    }
+                                </script>
+                                <button class="btn btn-primary">Create</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -324,8 +341,6 @@
     </div>
 </div>
 
-<input type="text" value="{{ creator }}" style="display: none;" id="creator">
-
 <!-- Bootstrap core JavaScript-->
 <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -343,27 +358,5 @@
 <script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
 
-<!--Check Cookie-->
-<script>
-    function checkCookie() {
-        let username = getCookie("__usm");
-        if (username !== "") {
-        } else {
-            open("/login", "_top")
-        }
-
-        var creator = document.getElementById("creator");
-
-        var USERNAME = getCookie("__usm");
-        USERNAME = USERNAME.replace(/.*uS3r(.*)/gm, "$1");
-
-        document.getElementById("username2").innerHTML = USERNAME;
-
-        if (creator.value === USERNAME) {
-        } else {
-            open("/page-not-found", "_top")
-        }
-    }
-</script>
 </body>
 </html>
