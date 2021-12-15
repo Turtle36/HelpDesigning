@@ -1,6 +1,6 @@
+from sqlalchemy import INTEGER, String
+
 from app.main import db
-from sqlalchemy import INTEGER, String, TIME
-from sqlalchemy.schema import FetchedValue
 
 
 class earnings(db.Model):
