@@ -12,19 +12,14 @@ def rocket_png():
     return redirect(url_for("static", filename='img/png/rocket.png'))
 
 
-@app.route("/image/gold.png")
-def gold_png():
-    return redirect(url_for("static", filename='img/png/gold.png'))
+@app.route("/image/picture.png")
+def picture_png():
+    return redirect(url_for("static", filename='img/png/picture.png'))
 
 
-@app.route("/image/user.png")
-def user_png():
-    return redirect(url_for("static", filename='img/png/user.png'))
-
-
-@app.route("/image/article.png")
-def article_png():
-    return redirect(url_for("static", filename='img/png/article.png'))
+@app.route("/image/paint.png")
+def paint_png():
+    return redirect(url_for("static", filename='img/png/paint.png'))
 
 
 @app.route("/image/icon.ico")
