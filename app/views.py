@@ -1,6 +1,6 @@
 from flask import *
 from app.main import app
-from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers, news as News, earnings as Earnings
+from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers, news as News
 
 
 @app.route("/delete/article/<name>", methods=['GET', 'POST'])
@@ -26,11 +26,11 @@ def delete(name):
 
 @app.route("/home")
 def home():
-    customers = Customers.query.all()
+    customersTable = Customers.query.all()
     article = Article.query.all()
     news = News.query.all()
 
-    return render_template("home.html", customers=customers, article=article, news=news)
+    return render_template("home.html", customers=customersTable, article=article, news=news)
 
 
 @app.route("/login", methods=['GET', 'POST'])

@@ -3,20 +3,6 @@ from sqlalchemy import INTEGER, String
 from app.main import db
 
 
-class earnings(db.Model):
-    __tablename__ = 'earning'
-    id = db.Column(INTEGER(), autoincrement=True, primary_key=True)
-    earning = db.Column(INTEGER())  # Earning | Integer
-    user = db.Column(String())  # User | String
-
-    def __init__(self, earning, user):
-        self.earning = earning
-        self.user = user
-
-    def __repr__(self):
-        return '<id {}>'.format(self.id)
-
-
 class article(db.Model):
     __tablename__ = 'article'
     id = db.Column(INTEGER(), autoincrement=True, primary_key=True)
