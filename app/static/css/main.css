@@ -1,56 +1,68 @@
 @media {
-    .rate {
-        position: relative;
-        height: 50px;
-        width: 50px;
+    .rating {
+      display: inline-block;
+      position: relative;
+      height: 50px;
+      line-height: 50px;
+      font-size: 50px;
     }
 
-    .rate i, .rate i:hover ~ i {
-      color: #222;
-      text-shadow: none;
-      transition: color 200ms,
-                  text-shadow 200ms;
-      /* This will remove the delay when
-         moving the cursor left or right
-         within the set of stars. */
-      transition-delay: 0;
-    }
-
-    /* This is the style that will be
-       applied to all stars and then
-       subsequently removed from the stars
-       to the right of the one being
-       hovered. */
-    .rate:hover i {
-      color: #fc0;
-      text-shadow: #fc0 0 0 20px;
-    }
-
-    /* Make the effect apply one star at a
-       time. Limiting the selector to when
-       .rate is hovered removes the effect
-       without delay when cursor leaves
-       the .rate area. */
-    .rate:hover i:nth-child(2) {
-      transition-delay: 30ms;
-    }
-
-    .rate:hover i:nth-child(3) {
-      transition-delay: 60ms;
-    }
-
-    .rate:hover i:nth-child(4) {
-      transition-delay: 90ms;
-    }
-
-    .rate:hover i:nth-child(5) {
-      transition-delay: 120ms;
-    }
-
-    /* Miscellaneous styles. */
-    .rate i {
+    .rating label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 50px;
       cursor: pointer;
-      font-style: normal;
+    }
+
+    .rating label:last-child {
+      position: static;
+    }
+
+    .rating label:nth-child(1) {
+      z-index: 5;
+    }
+
+    .rating label:nth-child(2) {
+      z-index: 4;
+    }
+
+    .rating label:nth-child(3) {
+      z-index: 3;
+    }
+
+    .rating label:nth-child(4) {
+      z-index: 2;
+    }
+
+    .rating label:nth-child(5) {
+      z-index: 1;
+    }
+
+    .rating label input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+    }
+
+    .rating label .icon {
+      float: left;
+      color: transparent;
+    }
+
+    .rating label:last-child .icon {
+      color: #000;
+    }
+
+    .rating:not(:hover) label input:checked ~ .icon,
+    .rating:hover label:hover input ~ .icon {
+      color: #ffff00;
+    }
+
+    .rating label input:focus:not(:checked) ~ .icon:last-child {
+      color: #000;
+      text-shadow: 0 0 5px #ffff00;
     }
 
     div.fileinputs {

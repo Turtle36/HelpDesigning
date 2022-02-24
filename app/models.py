@@ -3,6 +3,20 @@ from sqlalchemy import INTEGER, String
 from app.main import db
 
 
+class comment(db.Model):
+    __tablename__ = 'article'
+    id = db.Column(INTEGER(), autoincrement=True, primary_key=True)
+    text = db.Column(String())
+    user = db.Column(String())
+
+    def __init__(self, user, text):
+        self.user = user
+        self.text =  text
+
+    def __repr__(self):
+        return '<id {}>'.format(self.name)
+
+
 class article(db.Model):
     __tablename__ = 'article'
     id = db.Column(INTEGER(), autoincrement=True, primary_key=True)

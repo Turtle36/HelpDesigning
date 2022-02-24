@@ -19,14 +19,6 @@
         .content {
             background-color: {% for tables in table %} {{ tables.background }} {% endfor %};
         }
-
-        .star {
-            width: 30px;
-            height: 30px;
-            position: relative;
-            bottom: 8px;
-            float: right;
-        }
     </style>
 </head>
 <body>
@@ -83,9 +75,39 @@
 <br><br>
 <hr>
 <div class="container">
-    <h1 class="rate"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></h1>
+    <form class="rating">
+      <label>
+        <input type="radio" name="stars" value="1" />
+        <span class="icon">★</span>
+      </label>
+      <label>
+        <input type="radio" name="stars" value="2" />
+        <span class="icon">★</span>
+        <span class="icon">★</span>
+      </label>
+      <label>
+        <input type="radio" name="stars" value="3" />
+        <span class="icon">★</span>
+        <span class="icon">★</span>
+        <span class="icon">★</span>
+      </label>
+      <label>
+        <input type="radio" name="stars" value="4" />
+        <span class="icon">★</span>
+        <span class="icon">★</span>
+        <span class="icon">★</span>
+        <span class="icon">★</span>
+      </label>
+      <label>
+        <input type="radio" name="stars" value="5" />
+        <span class="icon">★</span>
+        <span class="icon">★</span>
+        <span class="icon">★</span>
+        <span class="icon">★</span>
+        <span class="icon">★</span>
+      </label>
+    </form>
 </div>
-
 <br><br>
 </body>
 </html>
