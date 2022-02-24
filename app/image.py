@@ -25,3 +25,13 @@ def paint_png():
 @app.route("/image/icon.ico")
 def icon_ico():
     return redirect(url_for("static", filename='img/ico/icon.ico'))
+
+
+@app.route("/image/star_full.svg")
+def start_full_svg():
+    return redirect(url_for("static", filename='img/svg/Start_full.svg'))
+
+
+@app.route("/image/empty_star.svg")
+def empty_star_svg():
+    return redirect(url_for("static", filename='img/svg/Empty_Star.svg'))

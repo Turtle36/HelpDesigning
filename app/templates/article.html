@@ -36,23 +36,16 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <span>{{ name }}</span>
-                    <img name="star" class="star" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Empty_Star.svg">
-                    <img name="star" class="star" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Empty_Star.svg">
-                    <img name="star" class="star" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Empty_Star.svg">
-                    <img name="star" class="star" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Empty_Star.svg">
-                    <img name="star" class="star" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Empty_Star.svg">
+                    <img name="star" class="star" onclick="star()" src="/image/empty_star.svg">
+                    <img name="star" class="star" onclick="star()" src="/image/empty_star.svg">
+                    <img name="star" class="star" onclick="star()" src="/image/empty_star.svg">
+                    <img name="star" class="star" onclick="star()" src="/image/empty_star.svg">
+                    <img name="star" class="star" onclick="star()" src="/image/empty_star.svg">
                     <script>
-                        var star = document.getElementsByName("star")
-
-                        $('.star').click( function () {
-                            if (star.src === "https://upload.wikimedia.org/wikipedia/commons/e/e7/Empty_Star.svg") {
-                                star.src = "https://upload.wikimedia.org/wikipedia/commons/5/51/Star_full.svg";
-                            }
-
-                            if (star.src === "https://upload.wikimedia.org/wikipedia/commons/5/51/Star_full.svg") {
-                                star.src = "https://upload.wikimedia.org/wikipedia/commons/e/e7/Empty_Star.svg"
-                            }
-                        })
+                        function star() {
+                            var image = document.getElementsByName("star")
+                            image.src = "/image/star_full.svg"
+                        }
                     </script>
                 </h4>
             </div>
