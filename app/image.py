@@ -29,9 +29,9 @@ def icon_ico():
 
 @app.route("/image/star_full.svg")
 def start_full_svg():
-    return redirect(url_for("static", filename='img/svg/Start_full.svg'))
+    return redirect(url_for("static", filename='img/svg/star_full.svg'))
 
 
 @app.route("/image/empty_star.svg")
 def empty_star_svg():
-    return redirect(url_for("static", filename='img/svg/Empty_Star.svg'))
+    return redirect(url_for("static", filename='img/svg/empty_star.svg'))
