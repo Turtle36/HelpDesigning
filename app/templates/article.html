@@ -19,6 +19,14 @@
         .content {
             background-color: {% for tables in table %} {{ tables.background }} {% endfor %};
         }
+
+        .star {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            bottom: 8px;
+            float: right;
+        }
     </style>
 </head>
 <body>
@@ -28,11 +36,28 @@
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <span>{{ name }}</span>
+                    <img name="star" class="star" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Empty_Star.svg">
+                    <img name="star" class="star" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Empty_Star.svg">
+                    <img name="star" class="star" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Empty_Star.svg">
+                    <img name="star" class="star" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Empty_Star.svg">
+                    <img name="star" class="star" src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Empty_Star.svg">
+                    <script>
+                        var star = document.getElementsByName("star")
+
+                        $('.star').click( function () {
+                            if (star.src === "https://upload.wikimedia.org/wikipedia/commons/e/e7/Empty_Star.svg") {
+                                star.src = "https://upload.wikimedia.org/wikipedia/commons/5/51/Star_full.svg";
+                            }
+
+                            if (star.src === "https://upload.wikimedia.org/wikipedia/commons/5/51/Star_full.svg") {
+                                star.src = "https://upload.wikimedia.org/wikipedia/commons/e/e7/Empty_Star.svg"
+                            }
+                        })
+                    </script>
                 </h4>
             </div>
             <div id="packtpubcollapse2" class="panel-collapse">
-                <div class="panel-body"
-                     style="background: {% for tables in table %}{{ tables.background }}{% endfor %};">
+                <div class="panel-body">
                     <div id="content" class="content">
                         {% for tables in table %}
                             {{ tables.content }}
