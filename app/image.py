@@ -35,3 +35,8 @@ def start_full_svg():
 @app.route("/image/empty_star.svg")
 def empty_star_svg():
     return redirect(url_for("static", filename='img/svg/empty_star.svg'))
+
+
+@app.route("/image/user.png")
+def user_png():
+    return redirect(url_for("static", filename='img/png/user.png'))
