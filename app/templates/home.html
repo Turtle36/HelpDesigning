@@ -334,11 +334,11 @@
         let username = getCookie("__usm");
         if (username !== "") {
         } else {
-            document.getElementById("username").value = "Anonymous";
+            document.getElementById("username").value = "Guest";
             document.getElementById("forAnonymous").style.display = "block";
             document.getElementById("forNoAnonymous").style.display = "none";
             document.getElementById("block1").style.display = "block";
-            document.getElementById("username2").innerHTML = "Anonymous";
+            document.getElementById("username2").innerHTML = "Guest";
         }
 
         var input, filter, table, tr, td, i, txtValue;
