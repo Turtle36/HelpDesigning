@@ -1,6 +1,6 @@
 from flask import *
 from app.main import app
-from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers, news as News
+from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers, news as News, comment as Comment
 
 
 @app.route("/delete/article/<name>", methods=['GET', 'POST'])
@@ -107,6 +107,7 @@ def all_article():
 @app.route("/article/<name>")
 def article(name):
     table = Article.query.filter_by(name=name)
+    tComment = Comment.query.filter_by(articleName=name)
     for Table in table:
         Table.customer += 1
         Customer = Customers.query.filter_by(username=Table.user)
@@ -114,7 +115,7 @@ def article(name):
             customer.customer += 1
 
     db.session.commit()
-    return render_template("article.html", name=name, table=table)
+    return render_template("article.html", name=name, table=table, TComment=tComment)
 
 
 @app.route("/edit/article/<name>", methods=['GET', 'POST'])

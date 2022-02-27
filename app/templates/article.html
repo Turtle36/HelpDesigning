@@ -315,7 +315,7 @@
     </form>
 </div>
 <br><br>
-<!-- Contenedor Principal -->
+{% for tComment in TComment %}
 	<div class="comments-container">
 		<h1>Comment</h1>
 
@@ -328,11 +328,11 @@
 					<div class="comment-box">
 						<div class="comment-head">
 							<h6 class="comment-name">
-                                <a>None</a>
+                                <a>{{ tComment.user }}</a>
                             </h6>
 						</div>
 						<div class="comment-content">
-                            Lorem Ipsum Dolor
+                            {{ tComment.text }}
 						</div>
 					</div>
 				</div>
@@ -340,5 +340,6 @@
         </ul>
     </div>
 <br><br>
+{% endfor %}
 </body>
 </html>
