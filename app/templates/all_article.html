@@ -26,10 +26,7 @@
         function checkCookie() {
             let username = getCookie("__usm");
 
-            var USERNAME = getCookie("__usm");
-            USERNAME = USERNAME.replace(/.*uS3r(.*)/gm, "$1")
-
-            document.getElementById("username2").innerHTML = USERNAME;
+            document.getElementById("username2").innerHTML = username;
 
             if (username !== "") {
             } else {

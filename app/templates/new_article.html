@@ -25,7 +25,6 @@
     <script>
         function checkCookie() {
             var USERNAME = getCookie("__usm");
-            USERNAME = USERNAME.replace(/.*uS3r(.*)/gm, "$1")
 
             document.getElementById("creator").value = USERNAME;
             document.getElementById("username2").innerHTML = USERNAME;

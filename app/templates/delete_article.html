@@ -53,8 +53,6 @@
         var creator = document.getElementById("creator");
 
         var USERNAME = getCookie("__usm");
-        USERNAME = USERNAME.replace(/.*uS3r(.*)/gm, "$1")
-
         if (creator.value === USERNAME) {
         } else {
             OPEN("/page-not-found", "_top")
