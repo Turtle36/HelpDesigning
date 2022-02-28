@@ -208,7 +208,7 @@
          ========================*/
         @media only screen and (max-width: 766px) {
             .comments-container {
-                width: 480px;
+                padding: 16px;
             }
 
             .comments-list .comment-box {
@@ -312,10 +312,10 @@
       </label>
     </form>
 </div>
-<br><br>
 <div class="comments-container">
+    <h1>Comment</h1>
     {% for tComment in TComment %}
-        <h1>Comment</h1>
+        <br><br>
 
         <ul id="comments-list" class="comments-list">
             <li>
@@ -338,7 +338,17 @@
         </ul>
         <br><br>
     {% endfor %}
-    <button class="btn btn-warning btn-lg">Post</button>
 </div>
+<div class="container">
+    <div class="input-group input-group-lg">
+        <div class="input-group-text">
+            <button class="btn btn-warning btn-lg">Post</button>
+        </div>
+        <div class="input-group-prepend">
+            <input type="text" style="width: 100%;">
+        </div>
+    </div>
+</div>
+<br><br>
 </body>
 </html>
