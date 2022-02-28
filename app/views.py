@@ -104,8 +104,18 @@ def all_article():
     return render_template("all_article.html", article=article, news=news)
 
 
-@app.route("/article/<name>")
+@app.route("/article/<name>", methods=['GET', 'POST'])
 def article(name):
+    if request.method == 'POST':
+        comment = request.form['comment']
+        user = request.form['user']
+
+        new_comment = Comment(user, comment, name)
+        db.session.add(new_comment)
+        db.session.commit()
+
+        return redirect("/article/%s" % name)
+
     table = Article.query.filter_by(name=name)
     tComment = Comment.query.filter_by(articleName=name)
     for Table in table:
