@@ -100,9 +100,7 @@
             display: block;
             clear: both;
         }
-        /**
-         * Caja del Comentario
-         ---------------------------*/
+
         .comments-list .comment-box {
             width: 680px;
             float: right;
@@ -315,31 +313,32 @@
     </form>
 </div>
 <br><br>
-{% for tComment in TComment %}
-	<div class="comments-container">
-		<h1>Comment</h1>
+<div class="comments-container">
+    {% for tComment in TComment %}
+        <h1>Comment</h1>
 
-		<ul id="comments-list" class="comments-list">
-			<li>
-				<div class="comment-main-level">
-					<!-- Avatar -->
-					<div class="comment-avatar"><img src="/image/user.png" alt=""></div>
-					<!-- Contenedor del Comentario -->
-					<div class="comment-box">
-						<div class="comment-head">
-							<h6 class="comment-name">
+        <ul id="comments-list" class="comments-list">
+            <li>
+                <div class="comment-main-level">
+                    <!-- Avatar -->
+                    <div class="comment-avatar"><img src="/image/user.png" alt=""></div>
+                    <!-- Contenedor del Comentario -->
+                    <div class="comment-box">
+                        <div class="comment-head">
+                            <h6 class="comment-name">
                                 <a>{{ tComment.user }}</a>
                             </h6>
-						</div>
-						<div class="comment-content">
+                        </div>
+                        <div class="comment-content">
                             {{ tComment.text }}
-						</div>
-					</div>
-				</div>
+                        </div>
+                    </div>
+                </div>
             </li>
         </ul>
-    </div>
-<br><br>
-{% endfor %}
+        <br><br>
+    {% endfor %}
+    <button class="btn btn-warning btn-lg">Post</button>
+</div>
 </body>
 </html>
