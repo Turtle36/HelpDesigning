@@ -18,40 +18,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
     <style type="text/css">
-        input[type=range] {
-          -webkit-appearance: none;
-          margin: 10px 0;
-        }
-        input[type=range]:focus {
-          outline: none;
-        }
-        input[type=range]::-webkit-slider-runnable-track {
-          height: 12.8px;
-          cursor: pointer;
-          animate: 0.2s;
-          box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-          background: #007bff;
-          border-radius: 25px;
-          border: 0px solid #000101;
-        }
-        input[type=range]::-webkit-slider-thumb {
-          box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
-          border: 0px solid #000000;
-          height: 20px;
-          width: 39px;
-          border-radius: 7px;
-          background: #fff;
-          cursor: pointer;
-          box-shadow: 0px 0px 5px rgb(143, 143, 143);
-          -webkit-appearance: none;
-          margin-top: -3.6px;
-        }
-        input[type=range]:focus::-webkit-slider-runnable-track {
-          background: #007bff;
-        }
-
-
-         .comments-container * {
+        .comments-container * {
             margin: 0;
             padding: 0;
             -webkit-box-sizing: border-box;
@@ -269,8 +236,7 @@
                 </h4>
             </div>
             <div class="card-body">
-                <input class="none" type="range" min="1" max="50" value="0" id="slider" step="1">
-                <div id="content" style="color: black;">
+                <div id="content" style="color: black; font-size: 20px;">
                     {% for tables in table %}
                         {{ tables.content }}
                     {% endfor %}
@@ -293,9 +259,6 @@
         </div>
     </div>
 </div>
-<div class="container">
-    <strong style="color: white;">By {% for tables in table %}{{ tables.user }}{% endfor %}</strong>
-</div>
 <div id="notFound" style="display: none;">
     <div class="container">
         <p style="color: red;">Article Not Found</p>
@@ -312,7 +275,6 @@
     }
 </script>
 <br><br>
-<hr style="color: white; height: 2px;">
 <script>
     function validateForm() {
         let comment = document.forms['CommentForm']['comment'].value;
@@ -324,13 +286,24 @@
     }
 </script>
 <form method="post" onsubmit="return validateForm()" id="CommentForm" name="CommentForm">
-    <div class="input-group container">
-      <input style="border: 2px solid white; color: black;" onkeydown="this.style.border = '2px solid white'" type="text" name="comment" id="comment"/>
-      <div class="input-group-prepend">
-        <button class="btn btn-light btn-lg" type="submit">Post</button>
-      </div>
-    </div>
     <input id="userName" name="user" readonly style="display: none;">
+    <ul class="comments-list">
+        <li>
+            <div class="comment-main-level">
+                <div class="comment-avatar"><img style="background: white" src="/image/user.png" alt=""></div>
+                <div class="comment-box">
+                    <div class="comment-head">
+                        <h6 class="comment-name">
+
+                        </h6>
+                    </div>
+                    <div class="comment-content">
+                        {{ tComment.text }}
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
 </form>
 
 <div class="comments-container">
@@ -359,10 +332,6 @@
     {% endfor %}
 </div>
 <script>
-    $("#slider").on("input",function () {
-            $('#content').css("font-size", $(this).val() + "px");
-    });
-
     document.getElementById("userName").value = getCookie("__usm")
 </script>
 <br><br>
