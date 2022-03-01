@@ -219,12 +219,12 @@
                               onsubmit="return validateForm()">
                             <div class="container">
                                 <label><b>Title</b></label><br>
-                                <input type="text" style="width: 100%;" placeholder="Please enter a title" name="title"
+                                <input type="text" onkeydown="this.style.border = '2px solid white'" style="width: 100%;" placeholder="Please enter a title" name="title"
                                        id="title"
                                        maxlength="50">
                                 <br><br>
                                 <label><b>Content</b></label><br>
-                                <textarea rows="15" placeholder="Please enter a content"
+                                <textarea rows="15" onkeydown="this.style.border = '2px solid white'" placeholder="Please enter a content"
                                           style="width: 100%; resize: none; outline: none;"
                                           name="content"
                                           id="Content"></textarea>

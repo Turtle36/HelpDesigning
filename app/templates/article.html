@@ -16,6 +16,7 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
     <style type="text/css">
          .comments-container * {
             margin: 0;
@@ -226,7 +227,7 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-gradient-primary">
 <div class="container" id="Article" style="display: block;">
     <div class="panel-group">
         <div class="panel panel-primary">
@@ -260,7 +261,7 @@
             </script>
         </div>
     </div>
-    <strong>By {% for tables in table %}{{ tables.user }}{% endfor %}</strong>
+    <strong style="color: white;">By {% for tables in table %}{{ tables.user }}{% endfor %}</strong>
 </div>
 <div id="notFound" style="display: none;">
     <div class="container">
@@ -279,25 +280,35 @@
 </script>
 <br><br>
 <hr>
-<form method="post">
+<script>
+    function validateForm() {
+        let comment = document.forms['CommentForm']['comment'].value;
+
+        if (comment === "" || comment === null) {
+            document.getElementById("comment").style.border = "2px solid red";
+            return false;
+        }
+    }
+</script>
+<form method="post" onsubmit="return validateForm()" id="CommentForm" name="CommentForm">
     <div class="input-group container">
-      <input type="text" name="comment"/>
+      <input style="border: 2px solid white;" onkeydown="this.style.border = '2px solid white'" type="text" name="comment" id="comment"/>
       <div class="input-group-prepend">
-        <button class="btn btn-primary btn-lg" type="submit">Post</button>
+        <button class="btn btn-light btn-lg" type="submit">Post</button>
       </div>
     </div>
     <input id="userName" name="user" readonly style="display: none;">
 </form>
 
 <div class="comments-container">
-    <h1>Comment</h1>
+    <h1 style="color: white;">Comment</h1>
     {% for tComment in TComment %}
         <br>
 
         <ul id="comments-list" class="comments-list">
             <li>
                 <div class="comment-main-level">
-                    <div class="comment-avatar"><img src="/image/user.png" alt=""></div>
+                    <div class="comment-avatar"><img style="background: white" src="/image/user.png" alt=""></div>
                     <div class="comment-box">
                         <div class="comment-head">
                             <h6 class="comment-name">
