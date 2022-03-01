@@ -227,22 +227,19 @@
         }
     </style>
 </head>
-<body class="bg-gradient-primary">
+<body class="bg-gradient-light">
 <div class="container" id="Article" style="display: block;">
-    <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h4 class="panel-title">
+    <div class="card shadow">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h4 class="m-0 font-weight-bold text-primary">
                     <span>{{ name }}</span>
                 </h4>
             </div>
-            <div id="packtpubcollapse2" class="panel-collapse">
-                <div class="panel-body">
-                    <div id="content">
-                        {% for tables in table %}
-                            {{ tables.content }}
-                        {% endfor %}
-                    </div>
+            <div class="card-body bg-gradient-light">
+                <div id="content" class="bg-gradient-light" style="color: black">
+                    {% for tables in table %}
+                        {{ tables.content }}
+                    {% endfor %}
                 </div>
             </div>
             <script>
@@ -261,6 +258,8 @@
             </script>
         </div>
     </div>
+</div>
+<div class="container">
     <strong style="color: white;">By {% for tables in table %}{{ tables.user }}{% endfor %}</strong>
 </div>
 <div id="notFound" style="display: none;">
@@ -292,7 +291,7 @@
 </script>
 <form method="post" onsubmit="return validateForm()" id="CommentForm" name="CommentForm">
     <div class="input-group container">
-      <input style="border: 2px solid white;" onkeydown="this.style.border = '2px solid white'" type="text" name="comment" id="comment"/>
+      <input style="border: 2px solid white; color: black;" onkeydown="this.style.border = '2px solid white'" type="text" name="comment" id="comment"/>
       <div class="input-group-prepend">
         <button class="btn btn-light btn-lg" type="submit">Post</button>
       </div>
