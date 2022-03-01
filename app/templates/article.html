@@ -297,12 +297,7 @@
                         </h6>
                     </div>
                     <div class="comment-content">
-                        <div class="input-group container">
-                              <input placeholder="Type Here..." style="border: 2px solid white; color: black;" onkeydown="this.style.border = '2px solid white'" type="text" name="comment" id="comment"/>
-                              <div class="input-group-prepend">
-                                <button class="btn btn-primary btn-lg" type="submit">Post</button>
-                              </div>
-                        </div>
+                        <input placeholder="Type Here..." style="border: 2px solid white; color: black;" onkeydown="this.style.border = '2px solid white'" type="text" name="comment" id="comment"/>
                     </div>
                 </div>
             </div>
@@ -335,11 +330,11 @@
         <br>
     {% endfor %}
 </div>
+<input id="userName" name="user" readonly style="display: none;">
 <script>
     document.getElementById("userName").value = getCookie("__usm")
     document.getElementById("username-comment").innerHTML = getCookie("__usm")
 </script>
-<input id="userName" name="user" readonly style="display: none;">
 <br><br>
 </body>
 </html>
