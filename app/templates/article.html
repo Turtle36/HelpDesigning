@@ -18,6 +18,39 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
     <style type="text/css">
+        input[type=range] {
+          -webkit-appearance: none;
+          margin: 10px 0;
+        }
+        input[type=range]:focus {
+          outline: none;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+          height: 12.8px;
+          cursor: pointer;
+          animate: 0.2s;
+          box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+          background: #007bff;
+          border-radius: 25px;
+          border: 0px solid #000101;
+        }
+        input[type=range]::-webkit-slider-thumb {
+          box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+          border: 0px solid #000000;
+          height: 20px;
+          width: 39px;
+          border-radius: 7px;
+          background: #fff;
+          cursor: pointer;
+          box-shadow: 0px 0px 5px rgb(143, 143, 143);
+          -webkit-appearance: none;
+          margin-top: -3.6px;
+        }
+        input[type=range]:focus::-webkit-slider-runnable-track {
+          background: #007bff;
+        }
+
+
          .comments-container * {
             margin: 0;
             padding: 0;
@@ -227,7 +260,7 @@
         }
     </style>
 </head>
-<body class="bg-gradient-light">
+<body class="bg-primary">
 <div class="container" id="Article" style="display: block;">
     <div class="card shadow">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -235,8 +268,9 @@
                     <span>{{ name }}</span>
                 </h4>
             </div>
-            <div class="card-body bg-gradient-light">
-                <div id="content" class="bg-gradient-light" style="color: black">
+            <div class="card-body">
+                <input class="none" type="range" min="1" max="50" value="0" id="slider" step="1">
+                <div id="content" style="color: black;">
                     {% for tables in table %}
                         {{ tables.content }}
                     {% endfor %}
@@ -325,6 +359,10 @@
     {% endfor %}
 </div>
 <script>
+    $("#slider").on("input",function () {
+            $('#content').css("font-size", $(this).val() + "px");
+    });
+
     document.getElementById("userName").value = getCookie("__usm")
 </script>
 <br><br>
