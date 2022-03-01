@@ -286,7 +286,6 @@
     }
 </script>
 <form method="post" onsubmit="return validateForm()" class="comments-container" id="CommentForm" name="CommentForm">
-    <input id="userName" name="user" readonly style="display: none;">
     <ul class="comments-list">
         <li>
             <div class="comment-main-level">
@@ -340,6 +339,7 @@
     document.getElementById("userName").value = getCookie("__usm")
     document.getElementById("username-comment").innerHTML = getCookie("__usm")
 </script>
+<input id="userName" name="user" readonly style="display: none;">
 <br><br>
 </body>
 </html>
