@@ -285,21 +285,36 @@
         }
     }
 </script>
-<form method="post" onsubmit="return validateForm()" id="CommentForm" name="CommentForm">
-    <div class="input-group container">
-      <input type="text" id="comment" style="border: 2px solid white; color: black;" onkeydown="this.style.border = '2px solid white';" name="comment"/>
-      <div class="input-group-prepend">
-        <button class="btn btn-primary btn-lg" type="submit">Post</button>
-      </div>
-    </div>
-    <input id="userName" name="user" readonly style="display: none;">
-</form>
-
 <div class="comments-container">
     <h1 style="color: white;">Comment</h1>
+        <ul class="comments-list">
+            <li>
+                <div class="comment-main-level">
+                    <div class="comment-avatar"><img style="background: white" src="/image/user.png" alt=""></div>
+                    <div class="comment-box">
+                        <div class="comment-head">
+                            <h6 class="comment-name">
+                                <a id="username3"></a>
+                            </h6>
+                        </div>
+                        <div class="comment-content">
+                            <form method="post" onsubmit="return validateForm()" id="CommentForm" name="CommentForm">
+                                <div class="input-group container">
+                                  <input type="text" id="comment"  placeholder="Type Here..." style="border: 2px solid white; color: black;" onkeydown="this.style.border = '2px solid white';" name="comment"/>
+                                  <div class="input-group-prepend">
+                                    <button class="btn btn-primary btn-lg" type="submit">Post</button>
+                                  </div>
+                                </div>
+                                <input id="userName" name="user" readonly style="display: none;">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
     {% for tComment in TComment %}
         <br>
-
         <ul id="comments-list" class="comments-list">
             <li>
                 <div class="comment-main-level">
@@ -322,7 +337,15 @@
 </div>
 <script>
     document.getElementById("userName").value = getCookie("__usm")
-    document.getElementById("username-comment").innerHTML = getCookie("__usm")
+    document.getElementById("username3").value = getCookie("__usm")
+
+    if (document.getElementById("userName").value === "") {
+        document.getElementById("username3").innerHTML = "Guest";
+    }
+
+    if (document.getElementById("username3").innerHTML === "Guest") {
+        document.getElementById("userName").value = "Guest";
+    }
 </script>
 <br><br>
 </body>
