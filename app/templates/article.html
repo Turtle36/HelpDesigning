@@ -337,7 +337,7 @@
 </div>
 <script>
     document.getElementById("userName").value = getCookie("__usm")
-    document.getElementById("username3").value = getCookie("__usm")
+    document.getElementById("username3").innerHTML = getCookie("__usm")
 
     if (document.getElementById("userName").value === "") {
         document.getElementById("username3").innerHTML = "Guest";
