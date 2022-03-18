@@ -230,7 +230,7 @@
                                     </div>
                                 </div>
                                 <div class="fileinputs">
-                                    <input type="color" id="background" value="#ffffff"
+                                    <input type="color" id="background"
                                            style="width: 100%; height: 40px;" class="file" name="background"
                                            accept="image/*">
                                     <div class="fakefile">
@@ -259,6 +259,8 @@
                                             reader.readAsDataURL(file);
                                         }
                                     }
+
+                                    document.getElementById("background").value = {{ background }}
                                 </script>
                                 <button class="btn btn-primary">Create</button>
                             </div>
