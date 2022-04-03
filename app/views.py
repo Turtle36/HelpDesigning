@@ -1,6 +1,6 @@
 from flask import *
 from app.main import app
-from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers, news as News, comment as Comment
+from app.models import db, article as Article, sign_up as Sign_Up, login as Login, customers as Customers, comment as Comment
 
 
 @app.route("/delete/article/<name>", methods=['GET', 'POST'])
@@ -28,9 +28,8 @@ def delete(name):
 def home():
     customersTable = Customers.query.all()
     article = Article.query.all()
-    news = News.query.all()
 
-    return render_template("home.html", customers=customersTable, article=article, news=news)
+    return render_template("home.html", customers=customersTable, article=article)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -55,9 +54,9 @@ def login():
 
                 return render_template("setCookie.html", username=username, password=password)
             else:
-                return render_template("alert_error.html", alert='Invalid password', route="login")
+                return render_template("error.html", alert='Invalid password', route="login")
         except:
-            return render_template("alert_error.html", alert='User not found', route="login")
+            return render_template("error.html", alert='User not found', route="login")
 
     return render_template("login.html")
 
@@ -71,10 +70,10 @@ def sign_up():
         exist = db.session.query(db.exists().where(Sign_Up.username == username)).scalar()
 
         if username == 'Anonymous':
-            return render_template("alert_error.html", alert="Username Cannot \"Anonymous\"", route="sign_up")
+            return render_template("error.html", alert="Username Cannot \"Anonymous\"", route="sign_up")
 
         if exist == True:
-            return render_template("alert_error.html", alert=""""%s" Already Exist""" % username)
+            return render_template("error.html", alert=""""%s" Already Exist""" % username)
 
         if username == '':
             return False
@@ -100,8 +99,7 @@ def homepage():
 @app.route("/article")
 def all_article():
     article = Article.query.all()
-    news = News.query.all()
-    return render_template("all_article.html", article=article, news=news)
+    return render_template("all_article.html", article=article)
 
 
 @app.route("/article/<name>", methods=['GET', 'POST'])
@@ -151,11 +149,8 @@ def edit_article(name):
         background = tables.background
         creator = tables.user
 
-        news = News.query.all()
-
         return render_template("edit_article.html", creator=creator, name=name, title=title, tables=table, content=content,
-                               background=background,
-                               news=news)
+                               background=background)
 
 
 @app.route("/new/article", methods=['GET', 'POST'])
@@ -169,7 +164,7 @@ def new_article():
         exist = db.session.query(db.exists().where(Article.name == name)).scalar()
 
         if exist == True:
-            return render_template("alert_error.html", alert="Name \"%s\" Already Exist" % name, route="new/article")
+            return render_template("error.html", alert="Name \"%s\" Already Exist" % name, route="new/article")
 
         if name == "":
             return False
@@ -178,11 +173,11 @@ def new_article():
             return False
 
         if "/" in name:
-            return render_template("alert_error.html", route="new/article",
+            return render_template("error.html", route="new/article",
                                    alert="You cannot enter a '?' or '/' in title")
 
         if "?" in name:
-            return render_template("alert_error.html", route="new/article",
+            return render_template("error.html", route="new/article",
                                    alert="You cannot enter a '?' or '/' in title")
 
         new_article = Article(name=name, content=content, background=background, user=creator)
@@ -190,9 +185,7 @@ def new_article():
         db.session.commit()
         return redirect("/article/%s" % (name))
 
-    news = News.query.all()
-
-    return render_template("new_article.html", news=news)
+    return render_template("new_article.html")
 
 
 @app.errorhandler(404)
