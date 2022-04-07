@@ -42,6 +42,6 @@ def user_png():
     return redirect(url_for("static", filename='img/png/user.png'))
 
 
-@app.route("/image/flower.jpg")
-def image_jpg():
-    return redirect(url_for("static", filename='img/jpg/flower.jpg'))
+@app.route("/image/mountain.jpg")
+def clouds_jpg():
+    return redirect(url_for("static", filename='img/jpg/mountain.jpg'))
