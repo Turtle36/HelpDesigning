@@ -42,6 +42,6 @@ def user_png():
     return redirect(url_for("static", filename='img/png/user.png'))
 
 
-@app.route("/image/bubling.jpg")
-def photounyup_jpg():
-    return redirect(url_for("static", filename='img/jpg/bubling.jpg'))
+@app.route("/image/nature.jpg")
+def nature_jpg():
+    return redirect(url_for("static", filename='img/jpg/nature.jpg'))
