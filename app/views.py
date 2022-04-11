@@ -93,7 +93,7 @@ def sign_up():
 
 @app.route("/")
 def homepage():
-    return redirect(url_for("home"))
+    return render_template("homepage.html")
 
 
 @app.route("/article")
